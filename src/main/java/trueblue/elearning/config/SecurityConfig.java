@@ -12,11 +12,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			    .antMatchers("/user", "/logout", "/resources/**", "/css/**", "/images/**", "/js/**", "/upload/**" ).permitAll()
+			    .antMatchers("/logout", "/resources/**", "/css/**", "/images/**", "/js/**", "/upload/**","/hello" ).permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginPage("/user/login")
+				.loginPage("/login")
 				.permitAll()
 				.and()
 			.logout()
