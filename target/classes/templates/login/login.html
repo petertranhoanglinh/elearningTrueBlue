@@ -1,12 +1,13 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>  
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <link th:href="@{/static/css/style.css}" rel="stylesheet" />
-<title> Login Page </title>   
-</head>    
-<body>    
-    <center> <h1> Student Login Form </h1> </center>   
+<head>
+    <meta charset="UTF-8">
+    <title> Login Page </title>   
+    <link type="text/css" rel="stylesheet" th:href="@{~/css/style.css}" />
+ 
+</head>
+<body>
+     <center> <h1> Student Login Form </h1> </center>   
     <form>  
         <div class="container">   
             <label>Username : </label>   
@@ -19,5 +20,5 @@
             Forgot <a href="#"> password? </a>   
         </div>   
     </form>     
-</body>     
-</html>  
+</body>
+</html>
