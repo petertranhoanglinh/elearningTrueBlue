@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title> Login Page </title>   
     <link type="text/css" rel="stylesheet" th:href="@{~/css/style.css}" />
  
 </head>
 <body>
-     <center> <h1> Student Login Form </h1> </center>   
-    <form>  
+    <h1> Student Login Form </h1> 
+    <form  th:action="@{/j_spring_security_check}" method="POST">  
         <div class="container">   
             <label>Username : </label>   
-            <input type="text" placeholder="Enter Username" name="username" required>  
+            <input type="text" placeholder="Enter Username" name="username" id="username" required  >  
             <label>Password : </label>   
-            <input type="password" placeholder="Enter Password" name="password" required>  
-            <button type="submit">Login</button>   
+            <input type="password" placeholder="Enter Password" name="password" id = "password" required >  
+            <button type="submit" value="submit">Login</button>   
             <input type="checkbox" checked="checked"> Remember me   
             <button type="button" class="cancelbtn"> Cancel</button>   
             Forgot <a href="#"> password? </a>   
