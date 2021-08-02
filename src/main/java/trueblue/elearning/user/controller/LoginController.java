@@ -18,7 +18,7 @@ import trueblue.elearning.user.model.UserModel;
 
 @Controller
 
-public class login {
+public class LoginController {
 	@Autowired private UserDao userdao;
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -27,7 +27,7 @@ public class login {
 		return "login/login";
 
 	}
-	@RequestMapping(value = "/test",method = RequestMethod.GET)
+	@RequestMapping(value = "/goal",method = RequestMethod.GET)
 	public String index2() {
 		
 		return "login/hello";
