@@ -37,3 +37,14 @@ button {
         padding: 25px;   
         background-color: lightblue;  
     }   
+    
+.center {
+	text-align: center;
+}
+.loginform {
+  padding: 10px;
+  border: 1px solid pink;
+  border-radius: 10px;
+  float: left;
+  margin-top: 10px;
+}

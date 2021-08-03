@@ -2,21 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title> Login Page </title>   
+ <title> Login Page </title>   
     <link type="text/css" rel="stylesheet" th:href="@{~/css/style.css}" />
- 
+	<script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script th:inline="javascript" type="text/javascript">
+	$(document).ready(function(){
+		 
+		 var msg1 = "Đăng nhập thất bại";
+		 var errorSys = /*[[${#request.getParameter('success')}]]*/ '';
+		 if (errorSys == "fail") {
+			swal(msg1, {
+				icon: "error",
+			});
+		}
+		
+			$('#login').click(function () {
+			var msg = validate();
+			if (msg != "") {
+				swal(msg, {
+					icon: "warning",
+				});
+				return false;
+			} else {
+
+				$("#loginFormX").submit();
+				//alert(errorSys);
+			}
+		});
+
+	 });	
+		 function validate(){
+			var meg = ""
+			
+			if($('#username').val() == ""){
+				
+				meg = meg + "Vui lòng nhập email " ;
+				meg = meg + '\n';
+			}
+			
+			if($('#password').val() == ""){
+				meg = meg + "Vui lòng nhập password " ;
+				meg = meg + '\n';
+			}
+			return meg;
+		}
+
+	
+	</script>
+	
 </head>
 <body>
-    <h1> Student Login Form </h1> 
-    <form  th:action="@{/j_spring_security_check}" method="POST">  
+    <h1 class="center"> Student Login Form </h1> 
+    <form  th:action="@{/j_spring_security_check}" method="POST" id = "loginFormX">  
         <div class="container">   
-            <label>Username : </label>   
-            <input type="text" placeholder="Enter Username" name="username" id="username" required  >  
-            <label>Password : </label>   
-            <input type="password" placeholder="Enter Password" name="password" id = "password" required >  
-            <button type="submit" value="submit">Login</button>   
+            <label>Username:</label>   
+            <input type="text" placeholder="Vui lòng nhập email" name="username" id="username">  
+            <label>Password:</label>   
+            <input type="password" placeholder="Vui lòng nhập Password" name="password" id = "password">  
+            <button  id = "login">Login</button>   
             <input type="checkbox" checked="checked"> Remember me   
-            <button type="button" class="cancelbtn"> Cancel</button>   
+            <button type="button" class="cancelbtn" id="cancel"> Cancel</button>   
             Forgot <a href="#"> password? </a>   
         </div>   
     </form>     
