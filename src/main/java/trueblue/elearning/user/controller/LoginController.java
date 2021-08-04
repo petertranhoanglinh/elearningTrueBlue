@@ -34,10 +34,10 @@ public class LoginController {
 		return "login/login";
 
 	}
-	@RequestMapping(value = "/",method = RequestMethod.GET)
+	@RequestMapping(value = "/home",method = RequestMethod.GET)
 	public String index2() {
 		
-		return "login/imformation";
+		return "login/home";
 
 	}
 
@@ -62,6 +62,21 @@ public class LoginController {
 
 	}
 	
+	@RequestMapping(value = "/account",method = RequestMethod.GET)
+	public String accountPage() {
+		
+		return "account/account";
+
+	}
+	
+	@RequestMapping(value = "/course",method = RequestMethod.GET)
+	public String coursePage() {
+		
+		return "course/course";
+
+	}
+
+
 	
 	
 

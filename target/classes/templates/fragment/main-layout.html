@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Page 1 Title</title>
+
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" th:href="@{~/css/styleStatic.css}" />
+<!-- Other javascript, css source files -->
+</head>
+<body>
+	<header>
+		<h2>FPOLY DA NANG</h2>
+	</header>
+	<section>
+		<nav>
+			<ul>
+				<li><a href="/home">Home</a></li>
+				<li><a href="/product">Product</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</nav>
+	<article th:replace = "{/fragment/header:: header}">
+	
+	</article>
+	</section>
+	<footer>
+		<p>Footer</p>
+		<p>Copy right by namnv</p>
+	</footer>
+</body>
+</html>

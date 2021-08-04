@@ -10,7 +10,9 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<script th:inline="javascript" type="text/javascript">
-	    var msg1 = "Đăng nhập thất bại";
+
+		
+	    var msg1 = "Login failed";
     	$(document).ready(function(){
 	    const signUpButton = document.getElementById('signUp');
 		const signInButton = document.getElementById('signIn');
@@ -51,12 +53,12 @@
 			
 			if($('#username').val() == ""){
 				
-				meg = meg + "Vui lòng nhập email " ;
+				meg = meg + "Please enter your email" ;
 				meg = meg + '\n';
 			}
 			
 			if($('#password').val() == ""){
-				meg = meg + "Vui lòng nhập password " ;
+				meg = meg + "Please enter password" ;
 				meg = meg + '\n';
 			}
 			return meg;
@@ -73,6 +75,10 @@
 			<input type="text" placeholder="Name" />
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
+			<input type="password" placeholder="Enter the password"/>
+			<input type="text" placeholder="FullName"/>
+			<input type="text" placeholder="Addrees"/>
+			
 			<button>Sign Up</button>
 		</form>
 	</div>

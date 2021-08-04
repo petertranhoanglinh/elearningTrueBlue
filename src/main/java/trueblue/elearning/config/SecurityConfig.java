@@ -1,9 +1,5 @@
 package trueblue.elearning.config;
-import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,14 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-
 import trueblue.elearning.user.service.CustormerUserDetailsService;
 
 
@@ -40,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				 http.authorizeRequests().and().formLogin()
 				.loginProcessingUrl("/login")
 				.loginPage("/login") 
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/home")
 				.failureUrl("/login?success=fail")
 				.usernameParameter("username")//
 		        .passwordParameter("password")
