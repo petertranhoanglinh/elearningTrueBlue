@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Hello World![[${#httpServletRequest.remoteUser}]]!</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello</h1>
+        <form th:action="@{/logout}" >
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+</html>

@@ -10,16 +10,26 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<script th:inline="javascript" type="text/javascript">
-	$(document).ready(function(){
+	    var msg1 = "Đăng nhập thất bại";
+    	$(document).ready(function(){
+	    const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
 		 
-		 var msg1 = "Đăng nhập thất bại";
+		
 		 var errorSys = /*[[${#request.getParameter('success')}]]*/ '';
 		 if (errorSys == "fail") {
-			swal(msg1, {
-				icon: "error",
-			});
-		}
-		
+			       swal(msg1,{
+							icon: "error",
+				          });} 
 			$('#login').click(function () {
 			var msg = validate();
 			if (msg != "") {
@@ -30,9 +40,10 @@
 			} else {
 
 				$("#loginFormX").submit();
-				//alert(errorSys);
-			}
+				}
 		});
+	
+
 
 	 });	
 		 function validate(){
@@ -50,24 +61,44 @@
 			}
 			return meg;
 		}
-
-	
 	</script>
 	
 </head>
 <body>
-    <h1 class="center"> Student Login Form </h1> 
-    <form  th:action="@{/j_spring_security_check}" method="POST" id = "loginFormX">  
-        <div class="container">   
-            <label>Username:</label>   
-            <input type="text" placeholder="Vui lòng nhập email" name="username" id="username">  
-            <label>Password:</label>   
-            <input type="password" placeholder="Vui lòng nhập Password" name="password" id = "password">  
-            <button  id = "login">Login</button>   
-            <input type="checkbox" checked="checked"> Remember me   
-            <button type="button" class="cancelbtn" id="cancel"> Cancel</button>   
-            Forgot <a href="#"> password? </a>   
-        </div>   
-    </form>     
-</body>
+<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		 <form  th:action="@{/login}" method="POST" id = "loginFormX">  
+			<h1>Sign in</h1>
+			<input type="text" placeholder="Email" name="username" id="username"/>
+			<input type="password" placeholder="Password" name="password" id = "password"/>
+			<a href="#">Forgot your password?</a>
+			<button id = "login">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </html>
