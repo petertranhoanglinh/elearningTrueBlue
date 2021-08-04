@@ -10,8 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+
+
 import trueblue.elearning.user.service.CustormerUserDetailsService;
 
 
@@ -30,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.anyRequest().authenticated();
 				
 				 http.authorizeRequests().and().formLogin()
-				.loginProcessingUrl("/login")
-				.loginPage("/login") 
+				.loginProcessingUrl("/loginPage")
+				.loginPage("/login") .defaultSuccessUrl("/", false)
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?success=fail")
 				.usernameParameter("username")//
@@ -50,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			    InMemoryTokenRepositoryImpl memory = new InMemoryTokenRepositoryImpl();
 			    return memory;
 			}
-		     
+		   
 		
 	
 	
@@ -70,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public PasswordEncoder passwordEncoder() { 
 	    return new BCryptPasswordEncoder(); 
 	}
+	
 	
 	
 	

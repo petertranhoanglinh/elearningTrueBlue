@@ -35,7 +35,9 @@ public class LoginController {
 
 	}
 	@RequestMapping(value = "/home",method = RequestMethod.GET)
-	public String index2() {
+	public String index2(Model model) {
+		List<UserModel> userDao = userdao.ListGroup();
+		model.addAttribute("userDao", userDao);
 		
 		return "login/home";
 
@@ -55,10 +57,17 @@ public class LoginController {
     }
 	
 	
-	@RequestMapping(value = "/hello",method = RequestMethod.GET)
-	public @ResponseBody List<UserModel> testData() {
-		List<UserModel> userDao = userdao.ListGroup();
-		return userDao;
+	@RequestMapping(value = "/getDashBordUser",method = RequestMethod.GET)
+	public @ResponseBody List<UserModel> getDashBordUser(Model model) {
+		try {
+			List<UserModel> userDao = userdao.ListGroup();
+			return userDao;
+			
+		} catch (Exception e) {
+
+			return null;
+		}
+		
 
 	}
 	
@@ -73,6 +82,15 @@ public class LoginController {
 	public String coursePage() {
 		
 		return "course/course";
+
+	}
+	
+	@RequestMapping(value = "/hello",method = RequestMethod.GET)
+	public @ResponseBody List<UserModel> textData() {
+		List<UserModel> userList;
+		userList = userdao.ListGroup();
+		
+		return userList;
 
 	}
 

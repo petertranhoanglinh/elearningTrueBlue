@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+.popup-modal {
+  display: none;
+  top:200px;
+  left: 300px;
+  width: 60%;
+  height: 60%;
+  min-width: 20%;
+  min-height: 20%;
+  position: absolute;
+  z-index: 9;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  border: 1px solid #d3d3d3;
+}
+
+
+
+.popup-header {
+  padding: 10px;
+  cursor: move;
+  background-color: #fff;
+  color: black;
+  font-weight: 700;
+  z-index: 100000;
+}
+
+.popup-close-modal {
+  color: red;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -13px;
+}
+
+.popup-close-modal:hover,
+.popup-close-modal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.popup-modal1 table.table-result-header{
+	margin-top: 0 !important;
+	
+}
+
+.search_popup_order {
+	display: flex;
+	align-items: center;
+}
+.search-modal{
+	/* margin-top: 2%;
+	margin-left: 1%; */
+	background: #f6f6f6;
+	border-top: 1px solid #333;
+	padding:  15px 10px;
+	font-size: 12px;
+	font-weight: 700;
+}
+.search-modal label{
+	
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.btn-search-result{
+	height: 23px;
+	width: 70px;
+	background: #464646;
+    color: white;
+}
+.btn-search-result:hover{
+	cursor: pointer;
+}
+
+.result-search{
+	 overflow-x: hidden;
+    /* overflow: auto;
+    max-height: 391px; */
+}
+
+.table-result-header{
+	margin-top: 2%;
+	
+}
+.table-result-header th{
+	background: #f5f7fb;
+	height: 48px;
+	padding: 3px 8px;
+    font-size: 12px;
+}
+.table-result-header tr th{
+	border: 1px solid #e6e6e6;
+	text-align: center;
+	border-top: 1px solid #333;
+}
+
+.table-result-search{
+	border-collapse: collapse;
+	width: 100%;
+}
+.table-result-search:hover{
+	cursor: pointer;
+}
+.table-result-search th{
+	background: #f5f7fb;
+	height: 48px;
+	padding: 3px 8px;
+    font-size: 12px;
+}
+.table-result-search tr th{
+	border: 1px solid #e6e6e6;
+	text-align: center;
+	border-top: 1px solid #333;
+	
+}
+.table-result-search td{
+	height: 30px;
+	padding: 3px 8px;
+    font-size: 12px;
+}
+.table-result-search tr td{
+	border: 1px solid #e6e6e6;
+	text-align: center;
+}
+/*End Popup bank-Center*/
+
+

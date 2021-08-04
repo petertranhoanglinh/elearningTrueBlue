@@ -1,0 +1,147 @@
+@charset "utf-8";
+/* @media print {*/
+/*    @page {size:21cm 29.7cm;A4margin:0;}*/
+/*}*/
+
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+
+@media print
+{
+  table { page-break-after:alway; page-break-inside: auto;}
+  tr{page-break-inside: auto;}
+  .page-divide { page-break-after: always; }
+  
+   .sector {page-break-after: always;}
+}
+
+@page {
+  size: auto;
+  margin:0;
+}
+
+body{padding:0;margin:0;font-size:12px;line-height:1.1;word-wrap: break-word; word-break: keep-all;}
+li{list-style:none;}
+ul,h1,h2,h3,p,li,dt,dd,table,th,dt,dd,dl,ol{padding:0;margin:0;}
+caption{display:none;}
+h1, h2, h3, h4, h5, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, div,body {
+  -webkit-print-color-adjust:exact;
+  margin:0;
+}
+
+.fl_right{float:right;}
+.fl_left{float:left;}
+.clr:after{content:"";display:block;clear:both;}
+
+/* width */
+.wd100{width:100% !important;}
+.wd80{width:80% !important;}
+.wd60{width:60% !important;}
+.wd50{width:50% !important;}
+.wd40{width:40% !important;}
+.wd20{width:20% !important;}
+
+.printWrap{width: 100%;margin:0 auto;font-size:12px;font-family: "Nanum Barun Gothic", 'Alef', dotum,arial,sans-serif;line-height:1.1;color:#333;position: relative;height:100%;padding: 1cm; box-sizing:border-box;}
+table{border-collapse:collapse;}
+.printWrap input[type="checkbox"]{margin:0;vertical-align:middle;background:#fff;border:1px solid #141414;}
+.breakhere {page-break-before: always;}
+.dataArea{display:inline-block;height:1em;font-weight:normal;position:relative;min-width:120px;padding:0 3px;box-sizing:border-box;}
+.dataArea:after{content:"";display:block;width:100%;height:1px;background:#333;position:absolute;left:0;bottom:0;}
+.t_l{text-align:left;}
+.t_c{text-align:center;}
+.t_r{text-align:right !important;}
+.pd10{padding:10px;box-sizing:border-box;}
+.pdr10{padding-right:10px !important;}
+.blueTxt{color:#1761fd;}
+.redTxt{color:#f32f5e;}
+.mgt10{margin-top:10px;}
+.mgb10{margin-bottom:10px;}.mgb0{margin-bottom:0 !important;}
+.mgr10{margin-right:10px;}
+
+/* 회원등록확인서 */
+.printWrap h2{text-align:center;font-weight:700;font-size:28px;margin-bottom:20px;color:#2c3652;position: relative;}
+.bdWrap{border:1px solid #e3ebf6;background:#fff;overflow:hidden;margin-bottom:10px;box-sizing:border-box;}
+.printWrap table{width:100%;border:1px solid #eaf0f7;margin-bottom:10px}
+.printWrap table tr{page-break-inside: avoid;}
+.printWrap td{padding:10px 10px;font-size:12px;font-weight:300;color:#303e67;border-right:1px solid #eaf0f7;border-bottom:1px solid #eaf0f7;}
+.bdr0{border-right:0 !important;}
+.grayBg{color:#303e67 !important;font-weight:700 !important;background:#f1f5fa;}
+.bdWrap dl{display:table;width:100%;}
+.bdWrap dt{display:table-cell;vertical-align:middle;padding-left:14px;text-indent:-14px;line-height:1.3;}
+.bdWrap dd{display:table-cell;vertical-align:middle;width:120px;text-align:right;}
+.bdWrap dd input{margin-left:5px !important;}
+.frontLi li{line-height:1.3;padding-left:10px;text-indent:-10px;margin-bottom:3px;}
+.bdWrap p{padding-left:14px;text-indent:-14px;margin-bottom:5px;letter-spacing:-0.3px;}
+/*.frontBtm{margin-top:20px; text-align:center; font-size: 20px;}*/
+h3{font-size:24px;font-weight:normal;margin-bottom:20px;text-align:center;line-height:50px;}
+.frontBtm h3 img{width:50px;vertical-align:middle;margin-left:20px;}
+.frontBtm ul{width:100%;text-align:center;border-top:1px solid #eaf0f7;padding-top:10px;}
+.frontBtm li{display:inline-block;margin-right:40px;}
+.frontBtm li:last-child{margin-right:0;}
+.frontBtm .certify{font-size: 20px;margin-top:70px; line-height:26px;}
+.frontBtm .today{margin-top:20px;font-size: 18px;margin-bottom:50px;text-align: center;}
+.frontBtm .compName{margin:30px;}
+.frontBtm .prtLogo{width:150px;}
+.btmTxt{text-align:center;font-size:10px;margin-top:10px;color:#939aa2;}
+
+.printBack{padding-top:2cm;}
+.columnWrap{border:1px solid #eaf0f7;margin-bottom:10px;width:100%;display:table;box-sizing:border-box;}
+.column{width:50%;display:table-cell;padding:10px;box-sizing:border-box;font-size:10px;}
+.column:last-child{border-left:1px solid #eaf0f7;}
+.column dl{margin-bottom:5px;}
+.column dt{font-weight:700;margin-bottom:2px;}
+.column dd{letter-spacing:-0.5px;}
+.memInfo{padding:0px 0px;}
+.memInfo ul{display:table;width:100%;padding:0 10px;box-sizing:border-box;border-bottom:1px solid #eaf0f7;}
+.memInfo ul:last-child{border-bottom:0;}
+.memInfo li{display:table-cell;vertical-align:middle;padding:5px 0;font-weight:700;}
+.memInfo li span{display:inline-block;}
+.memInfo .t_c{font-size:16px;}
+.li3 li{width:33.33%;}
+.li2 li{width:50%;}
+.backBtm{font-size:11px;line-height:1.3;}
+
+/* 회원 확인 증명서, 탈퇴 확인 증명서 */
+h4{font-size: 14px;font-weight:normal;margin-bottom: 10px;margin-top: 50px;}
+.certifyWrap .printFront > p{border-top: 5px solid #2c3652; padding-top: 5px; font-size: 10px; line-height: 14px;}
+.certifyWrap .printFront h2 span{vertical-align:bottom;float: left;margin-top: 12px;font-size:18px;}
+.certifyWrap .frontBtm h3 span{margin-right:10px;}
+
+/* 구매계약서(직판, 특판, 방판) */
+.purchaseWrap h2{text-align: left; display: inline-block; width: 25%; float:left;}
+.purchaseWrap p{font-size:10px;}
+.purchaseWrap td{font-size:10px; padding:5px;}
+.btFix{position:relative;}
+.printTit dl{float:left;width:50%;display:table;font-size: 12px;margin: 1px 0;}
+.printTit dt{display: table-cell; width:30%;}
+.printTit dd{display: table-cell; width:70%;}
+.printTit p{float:right; width:15%; text-align:right;}
+.certifyFoot{width: 100%;border-top:1px solid #2c3652;padding-top:10px;}
+.purchaseWrap .frontBtm ul{border-top:0;}
+
+/* 구매계약서(직접수령) */
+.purchaseWrap02 span{position:absolute; left:0; top:18px; font-size:14px;}
+.purchaseWrap02 p{margin-bottom: 12px;font-size:14px;font-weight:bold;}
+.purchaseWrap02 dl{margin: 9px 0;}
+.purchaseWrap02 dt{display:table-cell; width:20%; vertical-align: top;}
+.purchaseWrap02 dd{display:table-cell;width:30%; text-align:left;}
+.purchaseWrap02 td{padding:5px;}
+.purchaseWrap02 .purchaseList td{font-size:10px;}
+.purchaseWrap02 tfoot td{background:#f9f9f9;}
+
+/* 원천징수영수증 */
+.withHolding{color:#333;font-family:"굴림"; font-size:12px;margin:0 auto;padding:1cm;}
+.withWrap{border:1px solid #333; width:100%;}
+.bdrB{border-right:1px solid #333;}
+
+table.nwrite {border:1px solid #333; margin:0 auto;}
+table.nwrite td{border-top:1px solid #333; border-bottom:1px solid #333; text-align:center; padding:10px;}
+table.nwrite td.topline{border-top:1px solid #fff; border-bottom:1px solid #fff;}
+table.nwrite2 {border:0px solid; background-color:#FFF; width:100%;}
+table.nwrite2 td{border-left:1px solid #333; border-right:1px solid #333; border-bottom:1px solid #333;  text-align:center;  padding:10px 0;}
+table.nwrite3 {background-color:#FFFFFF; border:1px solid #333; border-top:0;width:100%;}
+
+.gray03 {font-size:15px;}
+.style1 {font-size: 20px; line-height: 15px; font-weight: bold; }
+
+.signPosR{position:relative;}
+.signPosR img{position:absolute;width: 50px; right: 40px; top: -19px;}

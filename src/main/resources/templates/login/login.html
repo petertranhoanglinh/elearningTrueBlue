@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <title> Login Page </title>   
-    <link type="text/css" rel="stylesheet" th:href="@{~/css/style.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{~/css/style1.css}" />
 	<script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
@@ -83,7 +83,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		 <form  th:action="@{/login}" method="POST" id = "loginFormX">  
+		 <form  th:action="@{/loginPage}" method="POST" id = "loginFormX">  
 			<h1>Sign in</h1>
 			<input type="text" placeholder="Email" name="username" id="username"/>
 			<input type="password" placeholder="Password" name="password" id = "password"/>
