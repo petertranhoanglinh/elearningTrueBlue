@@ -3,6 +3,7 @@ package trueblue.elearning.user.controller;
 
 
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,11 +42,12 @@ public class LoginController {
 	}
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public void logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public void logoutPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        response.sendRedirect("/login/login");
 	
        
         
