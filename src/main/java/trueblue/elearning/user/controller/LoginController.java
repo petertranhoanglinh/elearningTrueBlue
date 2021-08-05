@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.model.UserModel;
 import trueblue.elearning.user.service.UserService;
@@ -51,34 +50,6 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/getDashBordUser", method = RequestMethod.GET)
-	public @ResponseBody List<UserModel> getDashBordUser(Model model) {
-		try {
-			List<UserModel> userDao = userdao.ListGroup();
-			return userDao;
-
-		} catch (Exception e) {
-
-			return null;
-		}
-
-	}
-
-	@RequestMapping(value = "/course", method = RequestMethod.GET)
-	public String coursePage() {
-
-		return "course/course";
-
-	}
-
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public @ResponseBody List<UserModel> textData() {
-		List<UserModel> userList;
-		userList = userdao.ListGroup();
-
-		return userList;
-
-	}
 
 	@RequestMapping("/getbyfullname")
 	public String getbyFullname(@RequestParam(value = "fullname", required = false) String fullname, Model model) {
