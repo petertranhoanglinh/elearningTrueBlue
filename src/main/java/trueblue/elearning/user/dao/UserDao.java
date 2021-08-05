@@ -25,7 +25,11 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 				, nativeQuery = true)                                                                                                         
 		public List<UserModel> findByEmail(String fullname);
     
-	 
+	 @Query(value="SELECT  *"
+	            +" from udemy_Users "
+	            + "where email Like :email "
+				, nativeQuery = true)                                                                                                         
+		public List<UserModel> findByEmailReal(String email);
 	
 
 }

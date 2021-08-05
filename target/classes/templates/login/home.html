@@ -60,10 +60,6 @@
 	<script th:inline="javascript" type="text/javascript">
 	
 	var a = 0;
-    var columnLayout;
-	var auiGridProps;
-	var footerLayout;
-	var wowGird;
 	$(document).ready(function(){
 		
 		
@@ -77,7 +73,7 @@
 		 $('#searchForm').click(function () {
 			 	$("#searchForm1").submit();
 		});
-		
+	
 	
        
   
@@ -128,14 +124,15 @@
 		</tr>
 		<tr th:each="userDao:${userDao}">
 			<td>
-				<a th:href="@{'/img/' + ${userDao.avatar}+'.jpg'}" />
+				<a th:href="@{'/account/linkgetAccount?account=' + ${userDao.email}}" />
 				<img th:src="@{'/img/' + ${userDao.avatar}+'.jpg'}" style="width: 40px;height: 40px;">
 				</a>
 			</td>
-
+           
 			<td th:text="${userDao.fullname}"></td>
 			<td th:text="${userDao.email}"></td>
 			<td th:text="${userDao.address}"></td>
+           
 		</tr>
 	</table>
    </form>

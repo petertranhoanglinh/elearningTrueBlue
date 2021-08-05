@@ -16,6 +16,11 @@ public class UserServiceImf implements UserService{
 		// TODO Auto-generated method stub
 		return userdao.findByEmail(fullname);
 	}
+	@Override
+	public List<UserModel> getUserByEmailReal(String email) {
+		// TODO Auto-generated method stub
+		return userdao.findByEmailReal(email);
+	}
 	
 
 
