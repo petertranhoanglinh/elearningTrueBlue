@@ -12,8 +12,17 @@
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" th:href="@{~/css/header.css}"/>
-
+<script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
+<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
 <!-- Other javascript, css source files -->
+ <script th:inline="javascript" type="text/javascript">
+
+		$(document).ready(function () {
+
+	
+		});
+	</script>
 </head>
 <body>
 	<header>
@@ -31,6 +40,7 @@
                     <li class="nav-item"><a th:href="@{/manager}" class="nav-link text-uppercase font-weight-bold">Manager</a></li>
                     <li class="nav-item"><a th:href="@{/logout}" class="nav-link text-uppercase font-weight-bold">LogOut</a></li>
                 </ul>
+                
             </div>
         </div>
     </nav>
