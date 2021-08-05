@@ -17,24 +17,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.model.UserModel;
+import trueblue.elearning.user.service.CustormerUserDetailsService;
+import trueblue.elearning.user.service.UserService;
 
 
 @Controller
 
 public class LoginController {
 	@Autowired private UserDao userdao;
+	@Autowired private UserService userService;
+
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public String index21() {
+	public String index21(HttpServletRequest request, HttpServletResponse response,Model model) {
 		
 		return "login/login";
 
 	}
-	@RequestMapping(value = "/home",method = RequestMethod.GET)
+	@RequestMapping(value = {"/home", "/","login/login"}, method = RequestMethod.GET)
 	public String index2(Model model) {
 		List<UserModel> userDao = userdao.ListGroup();
 		model.addAttribute("userDao", userDao);
@@ -71,12 +76,7 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping(value = "/account",method = RequestMethod.GET)
-	public String accountPage() {
-		
-		return "account/account";
-
-	}
+	
 	
 	@RequestMapping(value = "/course",method = RequestMethod.GET)
 	public String coursePage() {
@@ -94,7 +94,14 @@ public class LoginController {
 
 	}
 
+	@RequestMapping("/getbyfullname")
+	public String getbyFullname(@RequestParam(value = "fullname", required = false) String fullname, Model model) {
+		List<UserModel> userDao;
+		userDao = userService.getUserByEmail(fullname);
+		model.addAttribute("userDao", userDao);
 
+		return "login/home";
+	}
 	
 	
 

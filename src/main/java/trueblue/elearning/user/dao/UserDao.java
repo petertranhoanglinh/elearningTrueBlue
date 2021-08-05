@@ -20,10 +20,10 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 		public List<UserModel> ListGroup();
 	 
 	 @Query(value="SELECT  *"
-	            +" from udemy_Users"
-	            + "where email = :email"
+	            +" from udemy_Users "
+	            + "where fullname Like :fullname "
 				, nativeQuery = true)                                                                                                         
-		public List<UserModel> findByEmail(@Param("email") String email);
+		public List<UserModel> findByEmail(String fullname);
     
 	 
 	

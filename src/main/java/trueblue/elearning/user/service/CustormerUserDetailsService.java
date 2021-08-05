@@ -20,9 +20,12 @@ import trueblue.elearning.user.model.UserModel;
 @Service
 public class CustormerUserDetailsService  implements UserDetailsService{
 	@Autowired private UserDao _userdao;
+	String getUsername;
 
 
+    
 
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Boolean check = false;
@@ -44,6 +47,7 @@ public class CustormerUserDetailsService  implements UserDetailsService{
 			
 		 }
 		if(check == true){
+			getUsername=username1;
 			System.out.println(username1);
 			System.out.println(password1);
 			List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
@@ -64,6 +68,15 @@ public class CustormerUserDetailsService  implements UserDetailsService{
 		
 	    
 	
+	}
+
+
+
+
+
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return getUsername;
 	}
 
 }

@@ -12,9 +12,9 @@ import trueblue.elearning.user.model.UserModel;
 public class UserServiceImf implements UserService{
 @Autowired UserDao userdao;
 	@Override
-	public List<UserModel> getUserByEmail(String email) {
+	public List<UserModel> getUserByEmail(String fullname) {
 		// TODO Auto-generated method stub
-		return userdao.findByEmail(null);
+		return userdao.findByEmail(fullname);
 	}
 	
 

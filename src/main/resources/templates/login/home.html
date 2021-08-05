@@ -4,20 +4,19 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Home</title>
-		
 	<link rel="stylesheet" th:href="@{~//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css}">
 	<link rel="stylesheet" th:href="@{~/css/AUIGrid_style.css}">
-     <script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
-      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-		<link rel="stylesheet" type="text/css" th:href="@{~/css/header.css}"/>
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-	    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-	    <script type="text/javascript" th:src="@{~/js/common.js}"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/header.css}"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" th:src="@{~/js/common.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery.wowAUIGrid.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/AUIGrid.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/AUIGridLicense.js}"></script>
@@ -69,11 +68,17 @@
 		
 		
         $('#showTable').click(function () {
+	         $("#searchForm2").submit();
 			 document.getElementById("checkTable").style.display="block";
 		});
 		$('#hideTable').click(function () {
          document.getElementById("checkTable").style.display="none";
 		});
+		 $('#searchForm').click(function () {
+			 	$("#searchForm1").submit();
+		});
+		
+	
        
   
   
@@ -97,17 +102,24 @@
    
   
  
- <div style="width:750px;height:670px">
+ <div style="width:800px;height:670px">
 
  
-   <div class="row">
-        <div class="col-lg-10 mt-5 mb-5">
-         <h4 style="padding: 50px; padding-bottom: 20px; color: blue;"> <a class="nav-link text-uppercase font-weight-bold"><p style="font-size: 17px;">Imformation teacher</p></a> </h4>
+
+        <div class="col-lg-10 mt-5 mb-5" style="padding-top: 30px ">
+         <h4 style="padding: 5px; color: blue;"> <a class="nav-link text-uppercase font-weight-bold"><p style="font-size: 17px;">Imformation teacher</p></a> </h4>
            
         </div>
-    </div>
-    
-	<table style="width:100%" id="checkTable">
+
+    <div style="padding-bottom: 10px ;padding-left: 5px;">
+    <form th:action="@{/getbyfullname}" id ="searchForm1">
+    <input type="text" placeholder="Enter name teacher" th:name="fullname"/>
+     <button id = "searchForm">search</button>
+    </form>
+   </div>
+<div style="padding-left:5px"> 
+   <form th:action="@{/home}" id ="searchForm2">
+	<table style="width:100%" id="checkTable" >
 		<tr>
 			<th>Img</th>
 			<th>fullname</th>
@@ -115,17 +127,19 @@
 			<th>Address</th>
 		</tr>
 		<tr th:each="userDao:${userDao}">
-		 <td>
-		   <a th:href="@{'/img/' + ${userDao.avatar}+'.jpg'}"/>
-		   <img th:src="@{'/img/' + ${userDao.avatar}+'.jpg'}" style="width: 40px;height: 40px;">
-		   </a>
-		  </td>
-		    
+			<td>
+				<a th:href="@{'/img/' + ${userDao.avatar}+'.jpg'}" />
+				<img th:src="@{'/img/' + ${userDao.avatar}+'.jpg'}" style="width: 40px;height: 40px;">
+				</a>
+			</td>
+
 			<td th:text="${userDao.fullname}"></td>
 			<td th:text="${userDao.email}"></td>
 			<td th:text="${userDao.address}"></td>
 		</tr>
 	</table>
+   </form>
+</div>
  </div>
   <button id = "showTable">ShowTable</button>
   <button id = "hideTable">HideTable</button>
