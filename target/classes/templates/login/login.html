@@ -11,7 +11,9 @@
 	
 	<script th:inline="javascript" type="text/javascript">
 
-		
+		if(window.location.pathname != "/login"){
+			location.href = "/login";
+		}
 	    var msg1 = "Login failed";
     	$(document).ready(function(){
 	    const signUpButton = document.getElementById('signUp');
@@ -44,23 +46,79 @@
 			} else {
 
 				$("#loginFormX").submit();
+				
 				}
 		});
-	
+		
+		
+		$('#signUp1').click(function () {
+			
+			$("#signUpForm").submit();
+           
+			if($('#password').val() != $('#replacePassword').val()){
+				swal("The password you entered does not match ", {
+					icon: "warning",
+				});
+				return false;
+			}
+			var msg = validateSignIn();
 
+			if(msg != ""){
+				swal(msg, {
+					icon: "warning",
+				});
+				return false;
+			}
+		
+
+	
+			
+			
+			
+		});
+	
 
 	 });	
 		 function validate(){
 			var meg = ""
 			
-			if($('#username').val() == ""){
+			if($('#username1').val() == ""){
 				
 				meg = meg + "Please enter your email" ;
 				meg = meg + '\n';
 			}
 			
+			if($('#password1').val() == ""){
+				meg = meg + "Please enter password" ;
+				meg = meg + '\n';
+			}
+			return meg;
+		}
+		
+		 function validateSignIn(){
+			var meg = ""
+			
+			if($('#fullname').val() == ""){
+				
+				meg = meg + "Please enter your fullname" ;
+				meg = meg + '\n';
+			}
+			
 			if($('#password').val() == ""){
 				meg = meg + "Please enter password" ;
+				meg = meg + '\n';
+			}
+			
+			if($('#email').val() == ""){
+				meg = meg + "Please enter email" ;
+				meg = meg + '\n';
+			}
+			if($('#address').val() == ""){
+				meg = meg + "Please enter address" ;
+				meg = meg + '\n';
+			}
+			if($('#phone').val() == ""){
+				meg = meg + "Please enter phone" ;
 				meg = meg + '\n';
 			}
 			return meg;
@@ -69,26 +127,25 @@
 	
 </head>
 <body>
-<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<h2>Sign in/up Form</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form th:action="@{/login}" th:object="${userDto}" id="signUpForm" method="GET" >
 			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<input type="password" placeholder="Enter the password"/>
-			<input type="text" placeholder="FullName"/>
-			<input type="text" placeholder="Addrees"/>
-			
-			<button>Sign Up</button>
+			<input type="text" placeholder="Name" th:field="*{fullname}"/>
+			<input type="email" placeholder="Email"  th:field="*{email}"/>
+			<input type="password" placeholder="Password" th:field="*{password}" id = "password"/>
+			<input type="password" placeholder="Enter the password" id = "replacePassword"/>
+			<input type="text" placeholder="Addrees" th:field="*{address}"/>
+			<input type="text" placeholder="Phone" th:field ="*{phone}"/>
+			<button ID ="signUp1">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		 <form  th:action="@{/loginPage}" method="POST" id = "loginFormX">  
 			<h1>Sign in</h1>
-			<input type="text" placeholder="Email" name="username" id="username"/>
-			<input type="password" placeholder="Password" name="password" id = "password"/>
+			<input type="text" placeholder="Email" name="username" id = "username1"/>
+			<input type="password" placeholder="Password" name="password" id = "password1"/>
 			<a href="#">Forgot your password?</a>
 			<button id = "login">Sign In</button>
 		</form>
@@ -105,6 +162,8 @@
 				<p>Enter your personal details and start journey with us</p>
 				<button class="ghost" id="signUp">Sign Up</button>
 			</div>
+			
+			
 		</div>
 	</div>
 </div>

@@ -2,9 +2,9 @@ package trueblue.elearning.user.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import trueblue.elearning.user.model.UserModel;
@@ -17,7 +17,7 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 	 @Query(value="SELECT  *"
 	            +" from udemy_Users"
 				, nativeQuery = true)                                                                                                         
-		public List<UserModel> ListGroup();
+		public List<UserModel> ListGroup(Pageable pageable);
 	 
 	 @Query(value="SELECT  *"
 	            +" from udemy_Users "

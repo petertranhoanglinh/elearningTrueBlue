@@ -3,13 +3,22 @@ package trueblue.elearning.user.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import trueblue.elearning.user.dao.UserDao;
+import trueblue.elearning.user.dto.UserDto;
 import trueblue.elearning.user.model.UserModel;
+import trueblue.elearning.user.model.Users;
 import trueblue.elearning.user.service.CustormerUserDetailsService;
 import trueblue.elearning.user.service.UserService;
 
@@ -21,6 +30,7 @@ public class AccountController {
 	private CustormerUserDetailsService cus;
 	@Autowired
 	private UserService userService;
+
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String accountPage(Model model) {
@@ -108,5 +118,11 @@ public class AccountController {
 
 		return "account/account";
 	}
+	
+	
+	
+	 
+	
+	
 
 }
