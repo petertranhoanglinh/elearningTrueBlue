@@ -53,7 +53,7 @@
 		
 		$('#signUp1').click(function () {
 			
-			$("#signUpForm").submit();
+			
            
 			if($('#password').val() != $('#replacePassword').val()){
 				swal("The password you entered does not match ", {
@@ -61,6 +61,7 @@
 				});
 				return false;
 			}
+			
 			var msg = validateSignIn();
 
 			if(msg != ""){
@@ -68,6 +69,16 @@
 					icon: "warning",
 				});
 				return false;
+			}else{
+				$("#signUpForm").submit();
+				var checkMail  = $('#checkMail').text()
+			    alert(checkMail);
+			
+				swal("Success Register Account", {
+					icon: "success",
+				});
+				return false;
+				
 			}
 		
 
@@ -130,7 +141,7 @@
 <h2>Sign in/up Form</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form th:action="@{/login}" th:object="${userDto}" id="signUpForm" method="GET" >
+		<form th:action="@{/save}" th:object="${userDto}" id="signUpForm" method="POST" >
 			<h1>Create Account</h1>
 			<input type="text" placeholder="Name" th:field="*{fullname}"/>
 			<input type="email" placeholder="Email"  th:field="*{email}"/>
@@ -139,6 +150,7 @@
 			<input type="text" placeholder="Addrees" th:field="*{address}"/>
 			<input type="text" placeholder="Phone" th:field ="*{phone}"/>
 			<button ID ="signUp1">Sign Up</button>
+			<span th:text="${session.checkMail}"  id = "checkMail" style="display: none;"></span>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">

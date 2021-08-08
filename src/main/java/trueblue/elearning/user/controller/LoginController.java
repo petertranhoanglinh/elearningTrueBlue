@@ -1,5 +1,6 @@
 package trueblue.elearning.user.controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,15 +13,12 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.dto.UserDto;
 import trueblue.elearning.user.model.UserModel;
-import trueblue.elearning.user.service.CustormerUserDetailsService;
 import trueblue.elearning.user.service.UserService;
 
 @Controller
@@ -30,12 +28,9 @@ public class LoginController {
 	private UserDao userdao;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private CustormerUserDetailsService cus;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-    String index21(@ModelAttribute("userDto") UserDto userDto) {
-		
+    String index21 (UserDto userDto) {
 		
 			
 		return "login/login";
@@ -81,19 +76,30 @@ public class LoginController {
 	
 	
 	@RequestMapping(value= "/save",  method = RequestMethod.POST)
-	public String addUser(@RequestAttribute("userDto") UserDto userDto, Model model) {
-		String email = userDto.getEmail();
-		System.out.println(email);
-		if(email == null) {
-			email ="";
-		}
-		if(email.equals("")) {
-		String checkEmail = "true";
-	    model.addAttribute(checkEmail);
-	   
-		}else {
-			System.out.println("email là" +email );
-		}
+	public String addUser(@ModelAttribute("userDto") UserDto userDto,HttpServletRequest request ) throws IOException {
+		
+	
+		 List<UserModel> user = new ArrayList<UserModel>();
+			user =     userService.getUserByEmailReal(userDto.getEmail());
+			
+			if(user.isEmpty()) {
+				
+			
+				userService.addUser(userDto);
+				System.out.println(userDto.getEmail());
+			}
+			else {
+				
+				System.out.println("CREATE FAIL BECAUSE EMAIL USED");
+				
+				}
+		
+			
+			 
+
+
+		
+		 
 		 return "login/login";
 	
 	
