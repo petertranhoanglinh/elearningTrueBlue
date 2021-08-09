@@ -21,6 +21,9 @@ public class UserServiceImf implements UserService {
 	@Override
 	public List<UserModel> getUserByEmail(String fullname) {
 		// TODO Auto-generated method stub
+		if(fullname.equals("")) {
+			fullname = "1";
+		}
 		return userdao.findByEmail(fullname);
 	}
 
@@ -43,6 +46,12 @@ public class UserServiceImf implements UserService {
         newUser.setAvatar(userDto.getFullname());
         newUser.setAddress(userDto.getAddress());
 		return userdao.save(newUser);
+	}
+
+	@Override
+	public Users updateAccount(UserDto userDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

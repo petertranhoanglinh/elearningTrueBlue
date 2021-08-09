@@ -17,6 +17,6 @@ public interface UserService {
 	
 	public Users addUser(UserDto userDto);
 
-	
+	public Users updateAccount( UserDto userDto );
 
 }

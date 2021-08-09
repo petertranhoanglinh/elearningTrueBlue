@@ -20,8 +20,9 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 		public List<UserModel> ListGroup(Pageable pageable);
 	 
 	 @Query(value="SELECT  *"
-	            +" from udemy_Users "
-	            + "where fullname Like :fullname OR email like :fullname"
+	            +" FROM udemy_Users "
+	            + "WHERE fullname Like :fullname OR email like :fullname "
+	            + " OR :fullname = '1' " 
 				, nativeQuery = true)                                                                                                               
 		public List<UserModel> findByEmail(String fullname);
     
@@ -31,5 +32,14 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 				, nativeQuery = true)                                                                                                   
 		public List<UserModel> findByEmailReal(String email);
 	
-
+	@Query(value = "UPDATE udemy_users                " 
+			+ "        SET fullname = :fullname       "
+			+ "          , email   = :email           "
+			+ "          , password   = :password     "
+			+ "          , avatar   = :avatar         "
+			+ "          , phone   = :phone           "
+			+ "          , address   = :address       "
+			+ "      WHERE email = :email             "
+	        , nativeQuery = true)
+    public void Account(String email, String fullname, String password, String address, String avatar, String phone );
 }
