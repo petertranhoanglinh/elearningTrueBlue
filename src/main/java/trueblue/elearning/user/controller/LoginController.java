@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.dto.UserDto;
 import trueblue.elearning.user.model.UserModel;
@@ -66,45 +68,27 @@ public class LoginController {
 
 		return "login/home";
 	}
-	
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-	public String submit() {
-	    // Code that uses the employee object
-
-	    return "employeeView";
-	} 
-	
-	
 	@RequestMapping(value= "/save",  method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("userDto") UserDto userDto,HttpServletRequest request ) throws IOException {
+	 @ResponseBody public String addUser(@ModelAttribute("userDto") UserDto userDto,Model model ) throws IOException {
 		
 	
 		 List<UserModel> user = new ArrayList<UserModel>();
 			user =     userService.getUserByEmailReal(userDto.getEmail());
 			
 			if(user.isEmpty()) {
-				
-			
 				userService.addUser(userDto);
 				System.out.println(userDto.getEmail());
+		
+				 return "Register success" + "*" + userDto.getEmail() + "*" ;
+				
 			}
 			else {
 				
 				System.out.println("CREATE FAIL BECAUSE EMAIL USED");
 				
+				return "Register Fail beacause email " + "*" + userDto.getEmail() + "*" + " used ";
 				}
-		
-			
-			 
 
-
-		
-		 
-		 return "login/login";
-	
-	
-		
-		
 	}
 	
 	

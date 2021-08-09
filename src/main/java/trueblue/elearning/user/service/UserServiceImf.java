@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.dto.UserDto;
@@ -40,7 +41,9 @@ public class UserServiceImf implements UserService {
         newUser.setStatus("Active");
         newUser.setPhone(userDto.getPhone());
         newUser.setAvatar(userDto.getFullname());
+        newUser.setAddress(userDto.getAddress());
 		return userdao.save(newUser);
 	}
+	
 
 }

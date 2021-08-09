@@ -16,6 +16,12 @@
 		}
 	    var msg1 = "Login failed";
     	$(document).ready(function(){
+	    if($('#checkMail').text() == "true"){
+			swal("Success Register Account", {
+					icon: "success",
+				});
+				return false;
+		}
 	    const signUpButton = document.getElementById('signUp');
 		const signInButton = document.getElementById('signIn');
 		const container = document.getElementById('container');
@@ -27,6 +33,7 @@
 		signInButton.addEventListener('click', () => {
 			container.classList.remove("right-panel-active");
 		});
+		
 		
 		
 		 
@@ -50,17 +57,21 @@
 				}
 		});
 		
-		
+		reloadform();
 		$('#signUp1').click(function () {
 			
-			
-           
-			if($('#password').val() != $('#replacePassword').val()){
-				swal("The password you entered does not match ", {
-					icon: "warning",
+		   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		   var email = $("#email").val();
+		   
+		   if(!email.match(mailformat))
+		   {
+			swal("Invalid email format", {
+					icon: "error",
 				});
 				return false;
-			}
+			
+		   }
+          
 			
 			var msg = validateSignIn();
 
@@ -70,16 +81,9 @@
 				});
 				return false;
 			}else{
-				$("#signUpForm").submit();
-				var checkMail  = $('#checkMail').text()
-			    alert(checkMail);
-			
-				swal("Success Register Account", {
-					icon: "success",
-				});
-				return false;
-				
+				$("#signUpForm").submit();	
 			}
+			
 		
 
 	
@@ -132,13 +136,26 @@
 				meg = meg + "Please enter phone" ;
 				meg = meg + '\n';
 			}
+			 
+			if($('#password').val() != $('#replacePassword').val()){
+				meg = meg + "The password you entered does not match ";
+				meg = meg + '\n'	;
+			} 
 			return meg;
 		}
+		function reloadform(){
+			$('#fullname').val("")            ;
+			$('#password').val("")            ;
+			$('#email').val("")               ;
+			$('#address').val("")             ;
+			$('#phone').val("")               ;
+			$('#replacePassword').val("")     ;
+		}		
 	</script>
 	
 </head>
 <body>
-<h2>Sign in/up Form</h2>
+<h2>Sign in/Sign Up</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form th:action="@{/save}" th:object="${userDto}" id="signUpForm" method="POST" >
@@ -149,9 +166,9 @@
 			<input type="password" placeholder="Enter the password" id = "replacePassword"/>
 			<input type="text" placeholder="Addrees" th:field="*{address}"/>
 			<input type="text" placeholder="Phone" th:field ="*{phone}"/>
-			<button ID ="signUp1">Sign Up</button>
-			<span th:text="${session.checkMail}"  id = "checkMail" style="display: none;"></span>
+			<button id ="signUp1">Sign Up</button>
 		</form>
+	
 	</div>
 	<div class="form-container sign-in-container">
 		 <form  th:action="@{/loginPage}" method="POST" id = "loginFormX">  

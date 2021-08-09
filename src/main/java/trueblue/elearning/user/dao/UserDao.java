@@ -21,7 +21,7 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 	 
 	 @Query(value="SELECT  *"
 	            +" from udemy_Users "
-	            + "where fullname Like :fullname "
+	            + "where fullname Like :fullname OR email like :fullname"
 				, nativeQuery = true)                                                                                                               
 		public List<UserModel> findByEmail(String fullname);
     
