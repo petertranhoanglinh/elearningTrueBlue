@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Home</title>
+         <script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+	     <script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
+	     <script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+	     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+
+       
+            
+            .div_left{
+            
+            width: 40%;
+      
+            float: left;
+            
+          
+            
+            }
+            
+            .div_right{
+            
+            width: 60%;
+            
+            float: left;
+            
+        
+            
+          }
+            
+</style>
+   	<script th:inline="javascript" type="text/javascript">
+
+	$(document).ready(function(){
+		var errorSys = /*[[${#request.getParameter('fail')}]]*/ '';
+		 if (errorSys == "true") {
+			       swal("The password you entered is incorrect",{
+							icon: "error",
+				          });} 
+	     if (errorSys == "fail") {
+			       swal("Success Save",{
+							icon: "success",
+				          });} 
+	
+		if($('#emailReal').text() != $('#emailFake').text()){
+			
+			document.getElementById("editButton").style.display="none";
+		}
+		$('#editButton').click(function () {
+		   document.getElementById("showEdit").style.display = "block";
+
+		});
+		getData();
+		$('#saveBtn').click(function () {
+		  var msg  = validatePassword()
+		  if(msg != ""){
+			swal(msg, {
+					icon: "error",
+				});
+				return false;
+		   }else{
+			$("#saveSubmit").submit();
+		   }
+			
+			
+		
+
+		});
+	
+
+      });
+      function getData(){
+	
+	  var fullname = $("#fullname1").text();
+	  var email =     $("#emailFake").text();
+	  var phone     = $("#phone1").text();
+	  var address   = $("#address1").text();
+	  var avatar    = $("#avatar1").text();
+	  $("#fullname2").val(fullname);      
+	  $("#email2").val(email);      
+	  $("#email3").val(email);
+	  $("#phone2").val(phone);         
+	  $("#address2").val(address);         
+	  $("#avatar2").val(avatar);        
+     }
+     function validatePassword(){
+	   var meg = ""
+			
+			if($('#passwordCur').val() == ""){
+				
+				meg = meg + "Please Enter Your PassWord" ;
+				meg = meg + '\n';
+			}
+			
+			
+			return meg;
+	
+    }
+	</script>
+   
+   
+    </head>
+    <body>
+   <header th:replace="fragment/header:: header">
+   </header>
+   
+  
+<div style="width:100%;height:670px">
+	<h5 style="padding-top: 90px; padding-left: 15px;"> 1.My Account
+	</h5>
+	<span th:text = "${emailReal}" style="display: none;" id ="emailReal"></span>
+	
+	<div class="div_left">
+	<div class="container">
+    <div class="main-body">
+   
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                  <a th:href="@{'/img/' + ${avatar}+'.jpg'}" />
+                   <img th:src="@{'/img/' + ${avatar}+'.jpg'}" alt="Admin" class="rounded-circle" width="120">
+                    <div class="mt-3">
+                   <a>
+                      <h4><span th:text = "${fullname}"></span></h4>
+                      <p class="text-secondary mb-1">Full Stack Developer</p>
+                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                      <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text = "${fullname}" id = "fullname1"></span>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" id = "email1">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                       <span th:text = "${email}" id="emailFake"></span>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                       <span th:text = "${phone}" id ="phone1"></span>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <span th:text = "${status}" id = "status1"></span>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <span th:text = "${address}" id = "address1"></span>
+                       <span th:text = "${avatar}" id = "avatar1" style="display: none;"></span>
+                       
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info " target="__blank" id = "editButton">Edit</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+ <div class="div_right"  id = "showEdit" style="display: none;">
+ <form th:object = "${userDto}" id ="saveSubmit" th:action="@{/account/saveUpdate}" method = "POST">
+ <div class="container rounded bg-white  mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img th:src="@{'/img/' + ${avatar}+'.jpg'}" alt="Admin" class="rounded-circle" width="120"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+                 <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="enter fullname" value="" id = "fullname2" th:field ="*{fullname}"></div>
+                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" id = "phone2" th:field ="*{phone}"value=""></div>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value="" id ="address2" th:field ="*{address}"></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="" id = "email2" th:field ="*{email}" disabled></div>
+                   <input type="text" class="form-control" placeholder="enter email id" value="" id = "email3" th:field ="*{email}"  style="display: none;">
+                </div>
+              
+                <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" id = "saveBtn">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Path Avatar</label><input type="text" class="form-control" placeholder="experience" value="" id = "avatar2" th:field ="*{avatar}"></div> <br>
+                <div class="col-md-12"><label class="labels" style="color: red;">Password</label><input type="password" class="form-control" placeholder="Your Password" value="" id ="passwordCur" th:field ="*{password}"></div>
+                 <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" placeholder="Set New Password" value="" th:field ="*{newPass}"></div>
+         
+            </div>
+        </div>
+    </div>
+    </form>
+
+</div>
+</div>
+</div>
+
+
+
+  
+  <footer th:replace="fragment/footer:: footer"></footer>
+      
+ 
+    </body>
+    
+    
+</html>

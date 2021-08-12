@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
+import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.utils.DateUtils;
 
 @Setter

@@ -1,0 +1,28 @@
+.wowTree {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666;
+	white-space: nowrap;
+}
+.wowTree img {
+	border: 0px;
+	vertical-align: middle;
+}
+.wowTree a {
+	color: #333;
+	text-decoration: none;
+}
+.wowTree a.node, .wowTree a.nodeSel {
+	white-space: nowrap;
+	padding: 1px 2px 1px 2px;
+}
+.wowTree a.node:hover, .wowTree a.nodeSel:hover {
+	color: #333;
+	text-decoration: underline;
+}
+.wowTree a.nodeSel {
+	background-color: #c0d2ec;
+}
+.wowTree .clip {
+	overflow: hidden;
+}

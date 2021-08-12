@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title> Login Page </title>   
+    <link type="text/css" rel="stylesheet" th:href="@{~/css/style1.css}" />
+	<script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
+	<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script th:inline="javascript" type="text/javascript">
+
+		if(window.location.pathname != "/login"){
+			location.href = "/login";
+		}
+	    var msg1 = "Login failed";
+    	$(document).ready(function(){
+	    if($('#checkMail').text() == "true"){
+			swal("Success Register Account", {
+					icon: "success",
+				});
+				return false;
+		}
+	    const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+		
+		
+		
+		 
+		
+		 var errorSys = /*[[${#request.getParameter('success')}]]*/ '';
+		 if (errorSys == "fail") {
+			       swal(msg1,{
+							icon: "error",
+				          });} 
+			$('#login').click(function () {
+			var msg = validate();
+			if (msg != "") {
+				swal(msg, {
+					icon: "warning",
+				});
+				return false;
+			} else {
+
+				$("#loginFormX").submit();
+				
+				}
+		});
+		
+		reloadform();
+		$('#signUp1').click(function () {
+			
+		   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		   var email = $("#email").val();
+		   
+		   if(!email.match(mailformat))
+		   {
+			swal("Invalid email format", {
+					icon: "error",
+				});
+				return false;
+			
+		   }
+          
+			
+			var msg = validateSignIn();
+
+			if(msg != ""){
+				swal(msg, {
+					icon: "warning",
+				});
+				return false;
+			}else{
+				$("#signUpForm").submit();	
+			}
+			
+		
+
+	
+			
+			
+			
+		});
+	
+
+	 });	
+		 function validate(){
+			var meg = ""
+			
+			if($('#username1').val() == ""){
+				
+				meg = meg + "Please enter your email" ;
+				meg = meg + '\n';
+			}
+			
+			if($('#password1').val() == ""){
+				meg = meg + "Please enter password" ;
+				meg = meg + '\n';
+			}
+			return meg;
+		}
+		
+		 function validateSignIn(){
+			var meg = ""
+			
+			if($('#fullname').val() == ""){
+				
+				meg = meg + "Please enter your fullname" ;
+				meg = meg + '\n';
+			}
+			
+			if($('#password').val() == ""){
+				meg = meg + "Please enter password" ;
+				meg = meg + '\n';
+			}
+			
+			if($('#email').val() == ""){
+				meg = meg + "Please enter email" ;
+				meg = meg + '\n';
+			}
+			if($('#address').val() == ""){
+				meg = meg + "Please enter address" ;
+				meg = meg + '\n';
+			}
+			if($('#phone').val() == ""){
+				meg = meg + "Please enter phone" ;
+				meg = meg + '\n';
+			}
+			 
+			if($('#password').val() != $('#replacePassword').val()){
+				meg = meg + "The password you entered does not match ";
+				meg = meg + '\n'	;
+			} 
+			return meg;
+		}
+		function reloadform(){
+			$('#fullname').val("")            ;
+			$('#password').val("")            ;
+			$('#email').val("")               ;
+			$('#address').val("")             ;
+			$('#phone').val("")               ;
+			$('#replacePassword').val("")     ;
+		}		
+	</script>
+	
+</head>
+<body>
+<h2>Sign in/Sign Up</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form th:action="@{/save}" th:object="${userDto}" id="signUpForm" method="POST" >
+			<h1>Create Account</h1>
+			<input type="text" placeholder="Name" th:field="*{fullname}"/>
+			<input type="email" placeholder="Email"  th:field="*{email}"/>
+			<input type="password" placeholder="Password" th:field="*{password}" id = "password"/>
+			<input type="password" placeholder="Enter the password" id = "replacePassword"/>
+			<input type="text" placeholder="Addrees" th:field="*{address}"/>
+			<input type="text" placeholder="Phone" th:field ="*{phone}"/>
+			<button id ="signUp1">Sign Up</button>
+		</form>
+	
+	</div>
+	<div class="form-container sign-in-container">
+		 <form  th:action="@{/loginPage}" method="POST" id = "loginFormX">  
+			<h1>Sign in</h1>
+			<input type="text" placeholder="Email" name="username" id = "username1"/>
+			<input type="password" placeholder="Password" name="password" id = "password1"/>
+			<a href="#">Forgot your password?</a>
+			<button id = "login">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+
+</html>

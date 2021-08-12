@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+
+
+/* 여백 초기화 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, legend, 
+textarea, select, fieldset, p, button, menu, figure, figcaption {margin:0; padding:0;}
+
+
+* {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/* 시멘틱 요소 블록화 */
+header, aside, article, footer, hgroup, menu, nav, section, details, figure, 
+figcaption {display:block; }
+
+/* 폰트 초기화 */
+body, input, textarea, select, button, table {
+	font-family: Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움","Helvetica Neue", Helvetica, Arial, sans-serif; font-size:12px;}
+
+/* 링크 초기화 */
+a {color:#666;text-decoration:none; cursor: pointer}
+a:active, a:hover, a:focus {text-decoration:none;}
+
+*,ol,ul{margin: 0;  padding: 0;}
+
+em{font-style: normal;}
+li{list-style:none;}
+html {height: 100%; -ms-overflow-style: scrollbar;}
+
+label {font-weight: normal;}
+
+/* 제목 폰트 초기화 */
+h1, h2, h3, h4, h5, h6 {font-size:12px; font-weight:normal; }
+
+/* 블릿 기호 초기화 */
+dl,ul,ol,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer;border: 0;
+    outline: 0;
+    cursor: pointer;}
+
+/* 테두리 초기화 */
+img, fieldset {border:none;}
+
+/* 블라인드 효과 */
+.blind {width:0; height:0; left:0; top:0; font-size:0; line-height:0; overflow:hidden; position:absolute;}	
+
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+input,button,select,textarea {font-family: inherit; font-size: inherit; line-height: inherit;}
+
+figure {margin: 0;}
+img {vertical-align: middle;}
+
+table {background-color: transparent;}
+caption {padding-top: 8px; padding-bottom: 8px; color: #777777;  text-align: left;}
+/* th { text-align: left;} */
+
+table {border-collapse: collapse; border-spacing: 0;}
+td, th {padding: 0;}

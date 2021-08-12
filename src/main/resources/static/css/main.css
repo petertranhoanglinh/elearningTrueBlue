@@ -1,0 +1,1075 @@
+@charset "UTF-8";
+
+/***********************************************
+ ** 레이아웃
+ ***********************************************/
+body{overflow-y:hidden;}
+#wapper {width:100%;margin:0 auto; min-height:100%;}
+#container {position:relative; min-width:1900px; /*border-bottom:1px solid #aaa;*/}
+#content {height:100%; padding:10px; min-width:1300px;border-left: 1px solid #aaa;overflow-y:hidden;}
+
+#wapper header{position:relative; width:100%; min-width:1900px; overflow:visible; z-index:10;}
+#wapper .left_fix_cont{position:relative; float:left; padding:10px; background:#fff; width:300px;}
+#wapper aside {position: absolute; top:0px; right:0px; width:301px; height:100%; border-left:1px solid #aaa;}
+
+/* content */
+.content_list {overflow:hidden;width:1282px;position:relative;}
+.content_list_toggle {padding: 0 4px 0 0px;height:730px;overflow-y:auto;}
+.content__list{margin-bottom:31px;} /* scroll not hidden */
+.content_box{width:100%;}
+
+.list_content_item{overflow-y: hidden; height: auto;}
+
+/* footer */
+#footer {position: absolute;bottom: 0px; z-index: 10; width: 100%; background:#fff;}
+.footer-btn {margin:8px 0 0 0;}
+.footer-btn button i{margin-right:5px;}
+.copyright {float:right; font-size: 10px; color: #666; padding:5px 4px 0 0;}
+.copyright span {color:#f67f21;}
+.copyright a {color: #999;}
+
+/***********************************************
+ ** header
+ ***********************************************/
+.header_top{position:relative; background:#434343; height:50px;} 
+.allMenuToggle{position:absolute;top:0;left:0;}
+.header_top h1{position:absolute;top:0;left:50px;padding:5px 10px;}
+.header_top h1 a:hover{cursor: pointer;}
+.header_top .top-select{background: #434343; border: 1px solid #747474; font-size: 11px; font-weight: normal; width: 90px; height: 24px; color: #b3b3b3; margin-top:13px;}
+.header_top .top_gnb {position:absolute;top:0;left:180px;margin:0;}
+.header_top .top_gnb > li {float: left;}
+.header_top .top_gnb > li > a {display:block; text-align:center; height:50px; line-height:50px;padding:0 22px; color:#fff; font-size:13px; font-weight:bold; transition-duration:0.5s; cursor: pointer;}
+.header_top .top_gnb > li > a:hover {background-color: #666; text-decoration: none;font-weight: bold; color: #fff;}
+.header_top .top_gnb .selected a:hover {color: #FFFFFF;}
+.header_top .top_gnb .selected {background-color: #252525;}
+.header_top .langSelect{position:absolute;top:13px;right:40px;}
+
+/* GNB */
+.gnb {min-width:1200px; background:#f5f7fc;border-bottom:1px solid #aaa;height:80px;box-sizing:border-box;}
+.gnb:after {content:""; display:block; clear:both; }
+.gnb > ul {display:table;}
+.gnb > ul li { display:table-cell; width:110px;}
+
+
+
+
+/*.gnb > ul li a { display:block; width:100%; color:#666; line-height:1.4; text-align:center;}
+.gnb > ul li a:hover { text-decoration:none; background-color:#e6eaf4;  height:79px;}
+.gnb > ul li a:before { content:""; display:block; width:38px; height:34px; margin:2px auto 5px; vertical-align:middle; background-image:url("../images/top_menu01.png"); background-repeat:no-repeat; }
+.gnb > ul li.selected a { color:#333;font-weight:bold;}
+.gnb > ul > li a:before { display:block; width:34px; height:34px; margin:2px auto 5px;}
+.gnb > ul li a { display:block; overflow:hidden; width:100%; color:#666; height:79px; line-height:1.4; text-align:center; text-overflow:ellipsis; white-space:nowrap; transition-duration:0.5s;}
+.gnb > ul .menu01 a:before { background-position:0 0; }
+.gnb > ul .menu02 a:before { background-position:-38px 0; }
+.gnb > ul .menu03 a:before { background-position:-76px 0; }
+.gnb > ul .menu04 a:before { background-position:-114px 0; }
+.gnb > ul .menu05 a:before { background-position:-151px 0; }
+.gnb > ul .menu06 a:before { background-position:-190px 0; }
+.gnb > ul .menu07 a:before { background-position:-228px 0; }
+.gnb > ul .menu08 a:before { background-position:0 -34px; }
+.gnb > ul .menu09 a:before { background-position:-38px -34px; }
+.gnb > ul .menu10 a:before { background-position:-76px -34px; }
+.gnb > ul .menu11 a:before { background-position:-114px -34px; }
+.gnb > ul .menu12 a:before { background-position:-151px -34px; }
+.gnb > ul .menu13 a:before { background-position:-190px -34px; }
+.gnb > ul .menu14 a:before { background-position:-228px -34px; }
+.gnb > ul .menu15 a:before { background-position:0 0; }
+.gnb > ul .menu16 a:before { background-position:-38px 0;  }
+
+.gnb > ul .menu01.selected a:before { background-position:0 -68px; }
+.gnb > ul .menu02.selected a:before { background-position:-38px -68px; }
+.gnb > ul .menu03.selected a:before { background-position:-76px -68px; }
+.gnb > ul .menu04.selected a:before { background-position:-114px -68px; }
+.gnb > ul .menu05.selected a:before { background-position:-151px -68px; }
+.gnb > ul .menu06.selected a:before { background-position:-190px -68px; }
+.gnb > ul .menu07.selected a:before { background-position:-228px -68px; }
+.gnb > ul .menu08.selected a:before { background-position:-0px -104px; }
+.gnb > ul .menu09.selected a:before { background-position:-38px -104px; }
+.gnb > ul .menu10.selected a:before { background-position:-76px -104px; }
+.gnb > ul .menu11.selected a:before { background-position:-114px -104px; }
+.gnb > ul .menu12.selected a:before { background-position:-151px -104px; }
+.gnb > ul .menu13.selected a:before { background-position:-190px -104px; }
+.gnb > ul .menu14.selected a:before { background-position:-228px -104px; }
+.gnb > ul .menu15.selected a:before { background-position:0 -68px;  }
+.gnb > ul .menu16.selected a:before { background-position:-38px -68px;}*/
+
+
+/* menu sub */
+/*.gnb > ul li a {  width:100%; color:#666; line-height:1.4; text-align:center;}*/
+.gnb > ul li a:hover, .gnb > ul li.selected a { text-decoration:none; background-color:#e6eaf4;display:block;}
+
+.gnb > ul.inc-mymenu li a,
+.gnb > ul.inc-member li a,
+.gnb > ul.inc-cons li a,
+.gnb > ul.inc-order li a,
+.gnb > ul.inc-ado li a,
+.gnb > ul.inc-stock li a,
+.gnb > ul.inc-pdt li a,
+.gnb > ul.inc-sms li a,
+.gnb > ul.inc-pay li a,
+.gnb > ul.inc-statis li a,
+.gnb > ul.inc-analys li a,
+.gnb > ul.inc-office li a,
+.gnb > ul.inc-system li a,
+.gnb > ul.inc-nmtr li a,
+.gnb > ul.inc-favor li a,
+.gnb > ul.inc-settings1 li a,
+.gnb > ul.inc-settings2 li a,
+.gnb > ul.inc-pay-Pay_Plan li a {color:#666; line-height:1.4; text-align:center; white-space:nowrap;display:block; height:79px; padding-top:10px; padding-bottom:10px; cursor: pointer;}
+
+.gnb > ul li.inc-member-3210 a span,
+.gnb > ul li.inc-member-3230 a span,
+.gnb > ul li.inc-member-3010 a span,
+.gnb > ul li.inc-member-3030 a span,
+.gnb > ul li.inc-member-3090 a span,
+.gnb > ul li.inc-member-3110 a span,
+.gnb > ul li.inc-member-3120 a span,
+.gnb > ul li.inc-member-3130 a span,
+.gnb > ul li.inc-member-3060 a span,
+.gnb > ul li.inc-member-3040 a span,
+.gnb > ul li.inc-member-3140 a span,
+.gnb > ul li.inc-member-3310 a span,
+.gnb > ul li.inc-member-3320 a span,
+.gnb > ul li.inc-member-3390 a span,
+.gnb > ul li.inc-cons-3510 a span,
+.gnb > ul li.inc-cons-3610 a span,
+.gnb > ul li.inc-cons-3620 a span,
+.gnb > ul li.inc-cons-3630 a span,
+.gnb > ul li.inc-cons-3640 a span,
+.gnb > ul li.inc-cons-3580 a span,
+.gnb > ul li.inc-cons-3590 a span,
+.gnb > ul li.inc-order-4210 a span,
+.gnb > ul li.inc-order-4230 a span,
+.gnb > ul li.inc-order-4240 a span,
+.gnb > ul li.inc-order-4010 a span,
+.gnb > ul li.inc-order-4020 a span,
+.gnb > ul li.inc-order-4030 a span,
+.gnb > ul li.inc-order-4040 a span,
+.gnb > ul li.inc-order-4110 a span,
+.gnb > ul li.inc-order-4120 a span,
+.gnb > ul li.inc-order-4310 a span,
+.gnb > ul li.inc-order-4320 a span,
+.gnb > ul li.inc-order-4330 a span,
+.gnb > ul li.inc-order-4340 a span,
+.gnb > ul li.inc-order-4350 a span,
+.gnb > ul li.inc-order-4250 a span,
+.gnb > ul li.inc-order-4130 a span,
+.gnb > ul li.inc-ado-4730 a span,
+.gnb > ul li.inc-ado-4710 a span,
+.gnb > ul li.inc-ado-4720 a span,
+.gnb > ul li.inc-ado-4510 a span,
+.gnb > ul li.inc-ado-4530 a span,
+.gnb > ul li.inc-ado-4540 a span,
+.gnb > ul li.inc-ado-4550 a span,
+.gnb > ul li.inc-ado-4520 a span,
+.gnb > ul li.inc-ado-4590 a span,
+.gnb > ul li.inc-stock-5010 a span,
+.gnb > ul li.inc-stock-5020 a span,
+.gnb > ul li.inc-stock-5030 a span,
+.gnb > ul li.inc-stock-5040 a span,
+.gnb > ul li.inc-stock-5050 a span,
+.gnb > ul li.inc-stock-5060 a span,
+.gnb > ul li.inc-stock-5110 a span,
+.gnb > ul li.inc-stock-5120 a span,
+.gnb > ul li.inc-stock-5130 a span,
+.gnb > ul li.inc-stock-5210 a span,
+.gnb > ul li.inc-stock-5220 a span,
+.gnb > ul li.inc-stock-5230 a span,
+.gnb > ul li.inc-stock-5240 a span,
+.gnb > ul li.inc-pdt-2110 a span,
+.gnb > ul li.inc-pdt-2130 a span,
+.gnb > ul li.inc-pdt-2010 a span,
+.gnb > ul li.inc-pdt-2020 a span,
+.gnb > ul li.inc-pdt-2030 a span,
+.gnb > ul li.inc-pdt-2040 a span,
+.gnb > ul li.inc-pdt-2050 a span,
+.gnb > ul li.inc-pdt-2060 a span,
+.gnb > ul li.inc-pdt-2070 a span,
+.gnb > ul li.inc-pdt-2080 a span,
+.gnb > ul li.inc-pdt-2120 a span,
+.gnb > ul li.inc-pdt-2140 a span,
+.gnb > ul li.inc-sms-2510 a span,
+.gnb > ul li.inc-sms-2520 a span,
+.gnb > ul li.inc-sms-2530 a span,
+.gnb > ul li.inc-sms-2610 a span,
+.gnb > ul li.inc-sms-2620 a span,
+.gnb > ul li.inc-sms-2630 a span,
+.gnb > ul li.inc-pay-8000 a span,
+.gnb > ul li.inc-pay-8001 a span,
+.gnb > ul li.inc-pay-8010 a span,
+.gnb > ul li.inc-pay-8020 a span,
+.gnb > ul li.inc-pay-8030 a span,
+.gnb > ul li.inc-pay-8040 a span,
+.gnb > ul li.inc-pay-8050 a span,
+.gnb > ul li.inc-pay-8060 a span,
+.gnb > ul li.inc-pay-8070 a span,
+.gnb > ul li.inc-pay-8210 a span,
+.gnb > ul li.inc-pay-8220 a span,
+.gnb > ul li.inc-pay-8230 a span,
+.gnb > ul li.inc-pay-8240 a span,
+.gnb > ul li.inc-pay-8310 a span,
+.gnb > ul li.inc-pay-8320 a span,
+.gnb > ul li.inc-statis-7010 a span,
+.gnb > ul li.inc-statis-7020 a span,
+.gnb > ul li.inc-statis-7030 a span,
+.gnb > ul li.inc-statis-7060 a span,
+.gnb > ul li.inc-statis-7070 a span,
+.gnb > ul li.inc-statis-7110 a span,
+.gnb > ul li.inc-statis-7120 a span,
+.gnb > ul li.inc-statis-7010 a span,
+.gnb > ul li.inc-statis-7130 a span,
+.gnb > ul li.inc-statis-7210 a span,
+.gnb > ul li.inc-statis-7220 a span,
+.gnb > ul li.inc-statis-7230 a span,
+.gnb > ul li.inc-statis-7240 a span,
+.gnb > ul li.inc-statis-7250 a span,
+.gnb > ul li.inc-statis-7310 a span,
+.gnb > ul li.inc-statis-7320 a span,
+.gnb > ul li.inc-analys-7510 a span,
+.gnb > ul li.inc-analys-7520 a span,
+.gnb > ul li.inc-analys-7530 a span,
+.gnb > ul li.inc-analys-7610 a span,
+.gnb > ul li.inc-analys-7620 a span,
+.gnb > ul li.inc-analys-7630 a span,
+.gnb > ul li.inc-analys-7710 a span,
+.gnb > ul li.inc-analys-7720 a span,
+.gnb > ul li.inc-analys-7730 a span,
+.gnb > ul li.inc-analys-7740 a span,
+.gnb > ul li.inc-analys-7810 a span,
+.gnb > ul li.inc-analys-7820 a span,
+.gnb > ul li.inc-analys-7910 a span,
+.gnb > ul li.inc-analys-7920 a span,
+.gnb > ul li.inc-analys-7930 a span,
+.gnb > ul.inc-office li.inc-office-6010 a span,
+.gnb > ul.inc-office li.inc-office-6020 a span,
+.gnb > ul.inc-office li.inc-office-6030 a span,
+.gnb > ul.inc-office li.inc-office-6040 a span,
+.gnb > ul.inc-office li.inc-office-6050 a span,
+.gnb > ul.inc-office li.inc-office-6060 a span,
+.gnb > ul.inc-office li.inc-office-6070 a span,
+.gnb > ul.inc-office li.inc-office-6074 a span,
+.gnb > ul.inc-office li.inc-office-6080 a span,
+.gnb > ul.inc-office li.inc-office-6090 a span,
+.gnb > ul.inc-office li.inc-office-6100 a span,
+.gnb > ul.inc-office li.inc-office-6110 a span,
+.gnb > ul li.inc-system-9010 a span,
+.gnb > ul li.inc-system-1010 a span,
+.gnb > ul li.inc-system-1020 a span,
+.gnb > ul li.inc-system-1030 a span,
+.gnb > ul li.inc-system-1040 a span,
+.gnb > ul li.inc-system-1050 a span,
+.gnb > ul li.inc-system-1060 a span,
+.gnb > ul li.inc-system-1070 a span,
+.gnb > ul li.inc-system-1080 a span,
+.gnb > ul li.inc-system-1090 a span,
+.gnb > ul li.inc-system-1100 a span,
+.gnb > ul li.inc-system-1110 a span,
+.gnb > ul li.inc-system-9110 a span,
+.gnb > ul li.inc-system-9210 a span,
+.gnb > ul li.inc-system-9310 a span,
+.gnb > ul li.inc-system-9320 a span,
+.gnb > ul li.inc-nmtr-9530 a span,
+.gnb > ul li.inc-nmtr-9510 a span,
+.gnb > ul li.inc-nmtr-9520 a span,
+.gnb > ul li.inc-nmtr-9610 a span,
+.gnb > ul li.inc-nmtr-9620 a span,
+.gnb > ul li.inc-nmtr-9630 a span,
+.gnb > ul li.inc-nmtr-9640 a span,
+.gnb > ul li.inc-nmtr-9650 a span,
+.gnb > ul li.inc-nmtr-9660 a span,
+.gnb > ul li.inc-nmtr-9670 a span,
+.gnb > ul li.inc-nmtr-9680 a span,
+.gnb > ul li.inc-nmtr-9690 a span,
+.gnb > ul li.inc-settings1-1000 a span,
+.gnb > ul li.inc-settings1-9330 a span,
+.gnb > ul li.inc-settings1-9340 a span,
+.gnb > ul li.inc-settings1-9350 a span,
+.gnb > ul li.inc-settings1-9360 a span,
+.gnb > ul li.inc-settings1-9370 a span,
+.gnb > ul li.inc-settings2-9020 a span,
+.gnb > ul li.inc-settings2-9030 a span,
+.gnb > ul li.inc-settings2-9910 a span,
+.gnb > ul li.inc-settings2-9920 a span,
+.gnb > ul li.inc-settings2-7410 a span,
+.gnb > ul li.inc-settings2-7420 a span,
+.gnb > ul li.inc-settings2-7430 a span,
+.gnb > ul li.inc-settings2-7460 a span,
+.gnb > ul li.inc-settings2-7470 a span,
+.gnb > ul li.inc-ado-4560 a span,
+.gnb > ul li.inc-favor-LK05 a span,
+.gnb > ul li.inc-favor-LK10 a span,
+.gnb > ul li.inc-favor-LK15 a span,
+.gnb > ul li.inc-favor-LK20 a span,
+.gnb > ul li.inc-favor-LK25 a span,
+.gnb > ul li.inc-favor-LK30 a span,
+.gnb > ul li.inc-favor-LK35 a span,
+.gnb > ul li.inc-favor-LK40 a span,
+.gnb > ul li.inc-favor-LK45 a span,
+.gnb > ul li.inc-favor-LK50 a span,
+.gnb > ul li.inc-pay-Pay_Plan a span {
+	background-position:0px 0px; background-repeat: no-repeat;width:22px; height:22px; display:block; margin:0 0 7px 44px; 
+/* background:#666 ;text-indent:-9999em;
+   	mask-size: 27px 27px;
+    -webkit-mask-size: 27px 27px;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center 6px;
+    -webkit-mask-position: center 6px;*/ }
+    
+.gnb > ul li.inc-member-3210 a:hover span,
+.gnb > ul li.inc-member-3230 a:hover span,
+.gnb > ul li.inc-member-3010 a:hover span,
+.gnb > ul li.inc-member-3030 a:hover span,
+.gnb > ul li.inc-member-3090 a:hover span,
+.gnb > ul li.inc-member-3110 a:hover span,
+.gnb > ul li.inc-member-3120 a:hover span,
+.gnb > ul li.inc-member-3130 a:hover span,
+.gnb > ul li.inc-member-3060 a:hover span,
+.gnb > ul li.inc-member-3040 a:hover span,
+.gnb > ul li.inc-member-3140 a:hover span,
+.gnb > ul li.inc-member-3310 a:hover span,
+.gnb > ul li.inc-member-3320 a:hover span,
+.gnb > ul li.inc-member-3390 a:hover span,
+.gnb > ul li.inc-cons-3510 a:hover span,
+.gnb > ul li.inc-cons-3610 a:hover span,
+.gnb > ul li.inc-cons-3620 a:hover span,
+.gnb > ul li.inc-cons-3630 a:hover span,
+.gnb > ul li.inc-cons-3640 a:hover span,
+.gnb > ul li.inc-cons-3580 a:hover span,
+.gnb > ul li.inc-cons-3590 a:hover span,
+.gnb > ul li.inc-order-4210 a:hover span,
+.gnb > ul li.inc-order-4230 a:hover span,
+.gnb > ul li.inc-order-4240 a:hover span,
+.gnb > ul li.inc-order-4010 a:hover span,
+.gnb > ul li.inc-order-4020 a:hover span,
+.gnb > ul li.inc-order-4030 a:hover span,
+.gnb > ul li.inc-order-4040 a:hover span,
+.gnb > ul li.inc-order-4110 a:hover span,
+.gnb > ul li.inc-order-4120 a:hover span,
+.gnb > ul li.inc-order-4310 a:hover span,
+.gnb > ul li.inc-order-4320 a:hover span,
+.gnb > ul li.inc-order-4330 a:hover span,
+.gnb > ul li.inc-order-4340 a:hover span,
+.gnb > ul li.inc-order-4350 a:hover span,
+.gnb > ul li.inc-order-4250 a:hover span,
+.gnb > ul li.inc-order-4130 a:hover span,
+.gnb > ul li.inc-ado-4730 a:hover span,
+.gnb > ul li.inc-ado-4710 a:hover span,
+.gnb > ul li.inc-ado-4720 a:hover span,
+.gnb > ul li.inc-ado-4510 a:hover span,
+.gnb > ul li.inc-ado-4530 a:hover span,
+.gnb > ul li.inc-ado-4540 a:hover span,
+.gnb > ul li.inc-ado-4550 a:hover span,
+.gnb > ul li.inc-ado-4520 a:hover span,
+.gnb > ul li.inc-ado-4590 a:hover span,
+.gnb > ul li.inc-stock-5010 a:hover span,
+.gnb > ul li.inc-stock-5020 a:hover span,
+.gnb > ul li.inc-stock-5030 a:hover span,
+.gnb > ul li.inc-stock-5040 a:hover span,
+.gnb > ul li.inc-stock-5050 a:hover span,
+.gnb > ul li.inc-stock-5060 a:hover span,
+.gnb > ul li.inc-stock-5110 a:hover span,
+.gnb > ul li.inc-stock-5120 a:hover span,
+.gnb > ul li.inc-stock-5130 a:hover span,
+.gnb > ul li.inc-stock-5210 a:hover span,
+.gnb > ul li.inc-stock-5220 a:hover span,
+.gnb > ul li.inc-stock-5230 a:hover span,
+.gnb > ul li.inc-stock-5240 a:hover span,
+.gnb > ul li.inc-pdt-2110 a:hover span,
+.gnb > ul li.inc-pdt-2130 a:hover span,
+.gnb > ul li.inc-pdt-2010 a:hover span,
+.gnb > ul li.inc-pdt-2020 a:hover span,
+.gnb > ul li.inc-pdt-2030 a:hover span,
+.gnb > ul li.inc-pdt-2040 a:hover span,
+.gnb > ul li.inc-pdt-2050 a:hover span,
+.gnb > ul li.inc-pdt-2060 a:hover span,
+.gnb > ul li.inc-pdt-2070 a:hover span,
+.gnb > ul li.inc-pdt-2080 a:hover span,
+.gnb > ul li.inc-pdt-2120 a:hover span,
+.gnb > ul li.inc-pdt-2140 a:hover span,
+.gnb > ul li.inc-sms-2510 a:hover span,
+.gnb > ul li.inc-sms-2520 a:hover span,
+.gnb > ul li.inc-sms-2530 a:hover span,
+.gnb > ul li.inc-sms-2610 a:hover span,
+.gnb > ul li.inc-sms-2620 a:hover span,
+.gnb > ul li.inc-sms-2630 a:hover span,
+.gnb > ul li.inc-sms-2630 a:hover span,
+.gnb > ul li.inc-pay-8000 a:hover span,
+.gnb > ul li.inc-pay-8001 a:hover span,
+.gnb > ul li.inc-pay-8010 a:hover span,
+.gnb > ul li.inc-pay-8020 a:hover span,
+.gnb > ul li.inc-pay-8030 a:hover span,
+.gnb > ul li.inc-pay-8040 a:hover span,
+.gnb > ul li.inc-pay-8050 a:hover span,
+.gnb > ul li.inc-pay-8060 a:hover span,
+.gnb > ul li.inc-pay-8070 a:hover span,
+.gnb > ul li.inc-pay-8210 a:hover span,
+.gnb > ul li.inc-pay-8220 a:hover span,
+.gnb > ul li.inc-pay-8230 a:hover span,
+.gnb > ul li.inc-pay-8240 a:hover span,
+.gnb > ul li.inc-pay-8310 a:hover span,
+.gnb > ul li.inc-pay-8320 a:hover span,
+.gnb > ul li.inc-statis-7010 a:hover span,
+.gnb > ul li.inc-statis-7020 a:hover span,
+.gnb > ul li.inc-statis-7030 a:hover span,
+.gnb > ul li.inc-statis-7060 a:hover span,
+.gnb > ul li.inc-statis-7070 a:hover span,
+.gnb > ul li.inc-statis-7110 a:hover span,
+.gnb > ul li.inc-statis-7120 a:hover span,
+.gnb > ul li.inc-statis-7010 a:hover span,
+.gnb > ul li.inc-statis-7130 a:hover span,
+.gnb > ul li.inc-statis-7210 a:hover span,
+.gnb > ul li.inc-statis-7220 a:hover span,
+.gnb > ul li.inc-statis-7230 a:hover span,
+.gnb > ul li.inc-statis-7240 a:hover span,
+.gnb > ul li.inc-statis-7250 a:hover span,
+.gnb > ul li.inc-statis-7310 a:hover span,
+.gnb > ul li.inc-statis-7320 a:hover span,
+.gnb > ul li.inc-analys-7510 a:hover span,
+.gnb > ul li.inc-analys-7520 a:hover span,
+.gnb > ul li.inc-analys-7530 a:hover span,
+.gnb > ul li.inc-analys-7610 a:hover span,
+.gnb > ul li.inc-analys-7620 a:hover span,
+.gnb > ul li.inc-analys-7630 a:hover span,
+.gnb > ul li.inc-analys-7710 a:hover span,
+.gnb > ul li.inc-analys-7720 a:hover span,
+.gnb > ul li.inc-analys-7730 a:hover span,
+.gnb > ul li.inc-analys-7740 a:hover span,
+.gnb > ul li.inc-analys-7810 a:hover span,
+.gnb > ul li.inc-analys-7820 a:hover span,
+.gnb > ul li.inc-analys-7910 a:hover span,
+.gnb > ul li.inc-analys-7920 a:hover span,
+.gnb > ul li.inc-analys-7930 a:hover span,
+.gnb > ul.inc-office li.inc-office-6010 a:hover span,
+.gnb > ul.inc-office li.inc-office-6020 a:hover span,
+.gnb > ul.inc-office li.inc-office-6030 a:hover span,
+.gnb > ul.inc-office li.inc-office-6040 a:hover span,
+.gnb > ul.inc-office li.inc-office-6050 a:hover span,
+.gnb > ul.inc-office li.inc-office-6060 a:hover span,
+.gnb > ul.inc-office li.inc-office-6070 a:hover span,
+.gnb > ul.inc-office li.inc-office-6074 a:hover span,
+.gnb > ul.inc-office li.inc-office-6080 a:hover span,
+.gnb > ul.inc-office li.inc-office-6090 a:hover span,
+.gnb > ul li.inc-system-9010 a:hover span,
+.gnb > ul li.inc-system-1010 a:hover span,
+.gnb > ul li.inc-system-1020 a:hover span,
+.gnb > ul li.inc-system-1030 a:hover span,
+.gnb > ul li.inc-system-1040 a:hover span,
+.gnb > ul li.inc-system-1050 a:hover span,
+.gnb > ul li.inc-system-1060 a:hover span,
+.gnb > ul li.inc-system-1070 a:hover span,
+.gnb > ul li.inc-system-1080 a:hover span,
+.gnb > ul li.inc-system-1090 a:hover span,
+.gnb > ul li.inc-system-1100 a:hover span,
+.gnb > ul li.inc-system-1110 a:hover span,
+.gnb > ul li.inc-system-9110 a:hover span,
+.gnb > ul li.inc-system-9210 a:hover span,
+.gnb > ul li.inc-system-9310 a:hover span,
+.gnb > ul li.inc-system-9320 a:hover span,
+.gnb > ul li.inc-nmtr-9530 a:hover span,
+.gnb > ul li.inc-nmtr-9510 a:hover span,
+.gnb > ul li.inc-nmtr-9520 a:hover span,
+.gnb > ul li.inc-nmtr-9610 a:hover span,
+.gnb > ul li.inc-nmtr-9620 a:hover span,
+.gnb > ul li.inc-nmtr-9630 a:hover span,
+.gnb > ul li.inc-nmtr-9640 a:hover span,
+.gnb > ul li.inc-nmtr-9650 a:hover span,
+.gnb > ul li.inc-nmtr-9660 a:hover span,
+.gnb > ul li.inc-nmtr-9670 a:hover span,
+.gnb > ul li.inc-nmtr-9680 a:hover span,
+.gnb > ul li.inc-nmtr-9690 a:hover span,
+.gnb > ul li.inc-settings1-1000 a:hover span,
+.gnb > ul li.inc-settings1-9330 a:hover span,
+.gnb > ul li.inc-settings1-9340 a:hover span,
+.gnb > ul li.inc-settings1-9350 a:hover span,
+.gnb > ul li.inc-settings1-9360 a:hover span,
+.gnb > ul li.inc-settings1-9370 a:hover span,
+.gnb > ul li.inc-settings2-9020 a:hover span,
+.gnb > ul li.inc-settings2-9030 a:hover span,
+.gnb > ul li.inc-settings2-9910 a:hover span,
+.gnb > ul li.inc-settings2-9920 a:hover span,
+.gnb > ul li.inc-settings2-7410 a:hover span,
+.gnb > ul li.inc-settings2-7420 a:hover span,
+.gnb > ul li.inc-settings2-7430 a:hover span,
+.gnb > ul li.inc-settings2-7460 a:hover span,
+.gnb > ul li.inc-settings2-7470 a:hover span,
+.gnb > ul li.inc-ado-4560 a:hover span,
+.gnb > ul li.inc-favor-LK05 a:hover span,
+.gnb > ul li.inc-favor-LK10 a:hover span,
+.gnb > ul li.inc-favor-LK15 a:hover span,
+.gnb > ul li.inc-favor-LK20 a:hover span,
+.gnb > ul li.inc-favor-LK25 a:hover span,
+.gnb > ul li.inc-favor-LK30 a:hover span,
+.gnb > ul li.inc-favor-LK35 a:hover span,
+.gnb > ul li.inc-favor-LK40 a:hover span,
+.gnb > ul li.inc-favor-LK45 a:hover span,
+.gnb > ul li.inc-favor-LK50 a:hover span,
+.gnb > ul li.inc-pay-Pay_Plan a:hover span {/*background-color:#3279a4;*/ background-position:-22px 0px;
+background-repeat: no-repeat;width:22px; height:22px; display:block; }
+    
+.gnb > ul li.inc-member-3210 a span,
+.gnb > ul li.inc-order-4210 a span,
+.gnb > ul li.inc-ado-4710 a span,
+.gnb > ul li.inc-pdt-2110 a span,
+.gnb > ul li.inc-nmtr-9610 a span,
+.gnb > ul li.inc-nmtr-9630 a span,
+.gnb > ul li.inc-settings2-9020 a span,
+.gnb > ul li.inc-favor-LK20 a span {
+    background-image: url("../images/sub-ico/inc-member-3210.png");
+}    
+.gnb > ul li.inc-member-3230 a span,
+.gnb > ul li.inc-order-4230 a span,
+.gnb > ul li.inc-ado-4720 a span,
+.gnb > ul li.inc-pdt-2130 a span {
+    background-image: url("../images/sub-ico/inc-member-3230.png");
+}
+.gnb > ul li.inc-member-3010 a span,
+.gnb > ul li.inc-cons-3510 a span,
+.gnb > ul li.inc-system-9010 a span {
+    background-image: url("../images/sub-ico/inc-member-3010.png");
+}
+.gnb > ul li.inc-member-3030 a span {
+    background-image: url("../images/sub-ico/inc-member-3030.png");
+}
+.gnb > ul li.inc-member-3090 a span,
+.gnb > ul li.inc-order-4040 a span,
+.gnb > ul li.inc-settings2-7470 a span,
+.gnb > ul li.inc-ado-4560 a span {
+    background-image: url("../images/sub-ico/inc-member-3090.png");
+}
+.gnb > ul li.inc-member-3110 a span,
+.gnb > ul li.inc-analys-7810 a span {
+    background-image: url("../images/sub-ico/inc-member-3110.png");
+} 
+.gnb > ul li.inc-member-3120 a span {
+    background-image: url("../images/sub-ico/inc-member-3120.png");
+} 
+.gnb > ul li.inc-member-3130 a span {
+    background-image: url("../images/sub-ico/inc-member-3130.png");
+} 
+.gnb > ul li.inc-member-3060 a span,
+.gnb > ul li.inc-pay-8320 a span {
+    background-image: url("../images/sub-ico/inc-member-3060.png");
+} 
+.gnb > ul li.inc-member-3040 a span,
+.gnb > ul li.inc-order-4020 a span,
+.gnb > ul li.inc-pay-8210 a span {
+    background-image: url("../images/sub-ico/inc-member-3040.png");
+}
+.gnb > ul li.inc-member-3140 a span,
+.gnb > ul li.inc-favor-LK30 a span {
+    background-image: url("../images/sub-ico/inc-member-3140.png");
+}  
+.gnb > ul li.inc-member-3310 a span,
+.gnb > ul li.inc-pdt-2050 a span {
+    background-image: url("../images/sub-ico/inc-member-3310.png");
+}  
+.gnb > ul li.inc-member-3320 a span,
+.gnb > ul li.inc-pay-8000 a span {
+    background-image: url("../images/sub-ico/inc-member-3320.png");
+}  
+.gnb > ul li.inc-member-3390 a span {
+	background-image: url("../images/sub-ico/inc-member-3390.png");}          
+
+.gnb > ul li.inc-cons-3610 a span,
+.gnb > ul li.inc-system-1110 a span {
+    background-image: url("../images/sub-ico/inc-cons-3610.png");
+} 
+.gnb > ul li.inc-cons-3620 a span, 
+.gnb > ul li.inc-pay-8030 a span,
+.gnb > ul li.inc-system-9210 a span,
+.gnb > ul li.inc-favor-LK25 a span {
+    background-image: url("../images/sub-ico/inc-cons-3620.png");
+} 
+.gnb > ul li.inc-cons-3630 a span,
+.gnb > ul li.inc-statis-7120 a span,
+.gnb > ul li.inc-analys-7710 a span,
+.gnb > ul li.inc-nmtr-9650 a span {
+    background-image: url("../images/sub-ico/inc-cons-3630.png");
+} 
+.gnb > ul li.inc-cons-3640 a span {
+    background-image: url("../images/sub-ico/inc-cons-3640.png");
+} 
+.gnb > ul li.inc-cons-3580 a span,
+.gnb > ul li.inc-ado-4590 a span,
+.gnb > ul li.inc-pdt-2060 a span,
+.gnb > ul li.inc-pdt-2140 a span,
+.gnb > ul li.inc-sms-2630 a span,
+.gnb > ul li.inc-pay-8001 a span,
+.gnb > ul li.inc-system-9310 a span,
+.gnb > ul li.inc-settings1-9330 a span {
+    background-image: url("../images/sub-ico/inc-cons-3580.png");
+} 
+.gnb > ul li.inc-cons-3590 a span {
+    background-image: url("../images/sub-ico/inc-cons-3590.png");
+}
+
+.gnb > ul li.inc-order-4010 a span {
+	background-image: url("../images/sub-ico/inc-order-4010.png");
+} 
+    
+.gnb > ul li.inc-order-4240 a span,
+.gnb > ul li.inc-ado-4730 a span {
+    background-image: url("../images/sub-ico/inc-order-4240.png");
+} 
+.gnb > ul li.inc-order-4030 a span,
+.gnb > ul li.inc-ado-4530 a span {
+    background-image: url("../images/sub-ico/inc-order-4030.png");
+} 
+.gnb > ul li.inc-order-4120 a span,
+.gnb > ul li.inc-analys-7820 a span,
+.gnb > ul li.inc-settings2-7460 a span {
+    background-image: url("../images/sub-ico/inc-order-4120.png");
+} 
+.gnb > ul li.inc-order-4310 a span,
+.gnb > ul li.inc-settings1-9340 a span {
+    background-image: url("../images/sub-ico/inc-order-4310.png");
+} 
+.gnb > ul li.inc-order-4330 a span,
+.gnb > ul.inc-office li.inc-office-6010 a span {
+    background-image: url("../images/sub-ico/inc-order-4330.png");
+}
+
+.gnb > ul li.inc-office-6110 a span, 
+.gnb > ul li.inc-order-4320 a span, 
+.gnb > ul li.inc-statis-7110 a span, 
+.gnb > ul li.inc-statis-7240 a span,
+.gnb > ul li.inc-sms-2620 a span {
+    background-image: url("../images/sub-ico/inc-order-4320.png");
+} 
+.gnb > ul li.inc-order-4340 a span {
+    background-image: url("../images/sub-ico/inc-order-4340.png");
+} 
+.gnb > ul li.inc-order-4350 a span {
+    background-image: url("../images/sub-ico/inc-order-4350.png");
+} 
+.gnb > ul li.inc-order-4250 a span {
+    background-image: url("../images/sub-ico/inc-order-4250.png");
+} 
+.gnb > ul li.inc-order-4130 a span,
+.gnb > ul li.inc-ado-4540 a span {
+    background-image: url("../images/sub-ico/inc-order-4130.png");
+} 
+
+.gnb > ul li.inc-ado-4510 a span,
+.gnb > ul li.inc-pdt-2020 a span {background-image: url("../images/sub-ico/inc-ado-4510.png");
+    /*background-image: url("../images/sub-ico/inc-ado-4510.png");
+    background-image: url("../images/sub-ico/inc-ado-4510.png");
+    -webkit-background-image: url("../images/sub-ico/inc-ado-4510.png");*/}     
+.gnb > ul li.inc-ado-4550 a span,
+.gnb > ul li.inc-pdt-2070 a span,
+.gnb > ul li.inc-system-9320 a span,
+.gnb > ul li.inc-nmtr-9690 a span,
+.gnb > ul li.inc-settings2-9030 a span {
+    background-image: url("../images/sub-ico/inc-ado-4550.png");
+}
+
+.gnb > ul li.inc-ado-4520 a span {
+    background-image: url("../images/sub-ico/inc-ado-4520.png");
+} 
+   
+.gnb > ul li.inc-stock-5010 a span,
+.gnb > ul li.inc-analys-7510 a span, 
+.gnb > ul li.inc-pdt-2080 a span{
+    background-image: url("../images/sub-ico/inc-stock-5010.png");
+}
+.gnb > ul li.inc-stock-5020 a span {
+    background-image: url("../images/sub-ico/inc-stock-5020.png");
+}
+.gnb > ul li.inc-stock-5030 a span {
+    background-image: url("../images/sub-ico/inc-stock-5030.png");
+}
+.gnb > ul li.inc-stock-5040 a span {
+    background-image: url("../images/sub-ico/inc-stock-5040.png");
+}
+.gnb > ul li.inc-stock-5050 a span,
+.gnb > ul li.inc-nmtr-9670 a span {
+    background-image: url("../images/sub-ico/inc-stock-5050.png");
+}
+.gnb > ul li.inc-stock-5060 a span,
+.gnb > ul li.inc-pdt-2030 a span {
+    background-image: url("../images/sub-ico/inc-stock-5060.png");
+}
+.gnb > ul li.inc-stock-5110 a span,
+.gnb > ul li.inc-analys-7100 a span,
+.gnb > ul li.inc-system-1060 a span {
+    background-image: url("../images/sub-ico/inc-stock-5110.png");
+}
+.gnb > ul li.inc-stock-5120 a span {
+    background-image: url("../images/sub-ico/inc-stock-5120.png");
+}
+.gnb > ul li.inc-stock-5130 a span {
+    background-image: url("../images/sub-ico/inc-stock-5130.png");
+}
+.gnb > ul li.inc-stock-5210 a span,
+.gnb > ul li.inc-pdt-2040 a span,
+.gnb > ul li.inc-pay-8040 a span,
+.gnb > ul li.inc-pay-8220 a span,
+.gnb > ul li.inc-order-4110 a span {
+    background-image: url("../images/sub-ico/inc-stock-5210.png");
+}
+.gnb > ul li.inc-stock-5220 a span {
+    background-image: url("../images/sub-ico/inc-stock-5220.png");
+}
+.gnb > ul li.inc-stock-5230 a span,
+.gnb > ul li.inc-nmtr-9640 a span {
+    background-image: url("../images/sub-ico/inc-stock-5230.png");
+}
+.gnb > ul li.inc-stock-5240 a span {
+    background-image: url("../images/sub-ico/inc-stock-5240.png");
+}
+    
+.gnb > ul li.inc-pdt-2010 a span,
+.gnb > ul li.inc-analys-7730 a span,
+.gnb > ul li.inc-office-6030 a span,
+.gnb > ul li.inc-office-6040 a span,
+.gnb > ul li.inc-office-6050 a span,
+.gnb > ul li.inc-office-6060 a span,
+.gnb > ul li.inc-office-6070 a span,
+.gnb > ul li.inc-office-6074 a span,
+.gnb > ul li.inc-office-6080 a span,
+.gnb > ul li.inc-office-6090 a span,
+.gnb > ul li.inc-system-9110 a span,
+.gnb > ul li.inc-settings2-9920 a span {
+    background-image: url("../images/sub-ico/inc-pdt-2010.png");
+}
+.gnb > ul li.inc-pdt-2120 a span {
+    background-image: url("../images/sub-ico/inc-pdt-2120.png");
+}
+    
+.gnb > ul li.inc-sms-2510 a span {
+    background-image: url("../images/sub-ico/inc-sms-2510.png");
+}
+.gnb > ul li.inc-sms-2520 a span {
+    background-image: url("../images/sub-ico/inc-sms-2520.png");
+}
+.gnb > ul li.inc-sms-2530 a span {
+    background-image: url("../images/sub-ico/inc-sms-2530.png");
+}
+.gnb > ul li.inc-sms-2610 a span {
+    background-image: url("../images/sub-ico/inc-sms-2610.png");
+}
+
+.gnb > ul li.inc-pay-8010 a span, 
+.gnb > ul li.inc-statis-7310 a span,
+.gnb > ul li.inc-analys-7630 a span,
+.gnb > ul li.inc-analys-7910 a span,
+.gnb > ul li.inc-nmtr-9680 a span {
+    background-image: url("../images/sub-ico/inc-pay-8010.png");
+}
+.gnb > ul li.inc-pay-8020 a span {
+    background-image: url("../images/sub-ico/inc-pay-8020.png");
+}
+.gnb > ul li.inc-pay-8310 a span,
+.gnb > ul li.inc-settings2-9910 a span,
+.gnb > ul li.inc-settings2-7430 a span {
+    background-image: url("../images/sub-ico/inc-pay-8310.png");
+}
+.gnb > ul li.inc-pay-8230 a span,
+.gnb > ul li.inc-analys-7740 a span,
+.gnb > ul li.inc-system-1040 a span {
+    background-image: url("../images/sub-ico/inc-pay-8230.png");
+}
+.gnb > ul li.inc-pay-8240 a span,
+.gnb > ul li.inc-pay-8060 a span,
+.gnb > ul li.inc-statis-7070 a span,
+.gnb > ul li.inc-statis-7320 a span,
+.gnb > ul li.inc-analys-7920 a span {
+    background-image: url("../images/sub-ico/inc-pay-8240.png");
+}
+.gnb > ul li.inc-pay-8070 a span,
+.gnb > ul li.inc-settings1-9350 a span {
+    background-image: url("../images/sub-ico/inc-pay-8070.png");
+}
+.gnb > ul li.inc-pay-8050 a span {
+    background-image: url("../images/sub-ico/inc-pay-8050.png");
+}
+
+.gnb > ul li.inc-pay-Pay_Plan a span {
+	background-image: url("../images/sub-ico/inc-pdt-2020.png");
+}
+
+.gnb > ul li.inc-statis-7010 a span {
+    background-image: url("../images/sub-ico/inc-statis-7010.png");
+}
+.gnb > ul li.inc-statis-7020 a span {
+    background-image: url("../images/sub-ico/inc-statis-7020.png");
+}
+.gnb > ul li.inc-statis-7030 a span {
+    background-image: url("../images/sub-ico/inc-statis-7030.png");
+}
+.gnb > ul li.inc-statis-7060 a span {
+    background-image: url("../images/sub-ico/inc-statis-7060.png");
+}
+.gnb > ul li.inc-statis-7110 a span {
+    background-image: url("../images/sub-ico/inc-statis-7110.png");
+}
+.gnb > ul li.inc-statis-7210 a span {
+    background-image: url("../images/sub-ico/inc-statis-7210.png");
+}
+.gnb > ul li.inc-statis-7220 a span {
+    background-image: url("../images/sub-ico/inc-statis-7220.png");
+}
+.gnb > ul li.inc-statis-7230 a span,
+.gnb > ul li.inc-statis-7130 a span {
+    background-image: url("../images/sub-ico/inc-statis-7230.png");
+}
+.gnb > ul li.inc-statis-7250 a span,
+.gnb > ul li.inc-analys-7720 a span {
+    background-image: url("../images/sub-ico/inc-statis-7250.png");
+}
+    
+.gnb > ul li.inc-analys-7520 a span {
+    background-image: url("../images/sub-ico/inc-analys-7520.png");
+}
+.gnb > ul li.inc-analys-7530 a span {
+    background-image: url("../images/sub-ico/inc-analys-7530.png");
+}
+.gnb > ul li.inc-analys-7610 a span,
+.gnb > ul.inc-office li.inc-office-6020 a span,
+.gnb > ul li.inc-system-1070 a span,
+.gnb > ul li.inc-favor-LK45 a span {
+    background-image: url("../images/sub-ico/inc-analys-7610.png");
+ }
+.gnb > ul li.inc-analys-7620 a span,
+.gnb > ul li.inc-system-1050 a span {
+    background-image: url("../images/sub-ico/inc-analys-7620.png");
+}
+.gnb > ul li.inc-analys-7930 a span {
+    background-image: url("../images/sub-ico/inc-analys-7930.png");
+}
+    
+.gnb > ul li.inc-system-1010 a span,
+.gnb > ul li.inc-settings1-1000 a span {
+    background-image: url("../images/sub-ico/inc-system-1010.png");
+} 
+.gnb > ul li.inc-system-1020 a span {
+    background-image: url("../images/sub-ico/inc-system-1020.png");
+} 
+.gnb > ul li.inc-system-1030 a span {
+    background-image: url("../images/sub-ico/inc-system-1030.png");
+} 
+.gnb > ul li.inc-system-1080 a span,
+.gnb > ul li.inc-settings2-7420 a span {
+    background-image: url("../images/sub-ico/inc-system-1080.png");
+} 
+.gnb > ul li.inc-system-1090 a span {
+    background-image: url("../images/sub-ico/inc-system-1090.png");
+}
+
+.gnb > ul li.inc-system-1100 a span {
+    background-image: url("../images/sub-ico/inc-system-1100.png");
+} 
+
+.gnb > ul li.inc-nmtr-9530 a span,
+.gnb > ul li.inc-settings1-9360 a span {
+    background-image: url("../images/sub-ico/inc-nmtr-9530.png");
+}
+.gnb > ul li.inc-settings1-9370 a span {
+    background-image: url("../images/sub-ico/inc-pdt-2020.png");
+}
+ 
+.gnb > ul li.inc-nmtr-9510 a span {
+    background-image: url("../images/sub-ico/inc-nmtr-9510.png");
+}
+.gnb > ul li.inc-nmtr-9520 a span {
+    background-image: url("../images/sub-ico/inc-nmtr-9520.png");
+} 
+.gnb > ul li.inc-nmtr-9620 a span {
+    background-image: url("../images/sub-ico/inc-nmtr-9620.png");
+} 
+.gnb > ul li.inc-nmtr-9660 a span {
+    background-image: url("../images/sub-ico/inc-nmtr-9660.png");
+} 
+
+.gnb > ul li.inc-favor-LK05 a span {
+    background-image: url("../images/sub-ico/inc-site-1.png");
+} 
+.gnb > ul li.inc-favor-LK10 a span {
+    background-image: url("../images/sub-ico/inc-site-2.png");
+}  
+.gnb > ul li.inc-favor-LK15 a span {
+    background-image: url("../images/sub-ico/inc-site-3.png");
+}    
+        
+.gnb > ul li.inc-settings2-7410 a span {
+    background-image: url("../images/sub-ico/inc-settings2-7410.png");
+}
+    
+.gnb > ul li.inc-favor-LK35 a span {
+    background-image: url("../images/sub-ico/inc-site-7.png");
+}
+    
+.gnb > ul li.inc-favor-LK40 a span {
+    background-image: url("../images/sub-ico/inc-site-8.png");
+} 
+
+.gnb > ul li.inc-favor-LK50 a span {
+    background-image: url("../images/sub-ico/inc-site-10.png");
+}
+
+.gnb > ul li.inc-office-6100 a span {
+	background-image: url("../images/sub-ico/inc-office-6100.png");
+}
+    
+    
+    
+    
+/* 상단 언어선택 셀렉트 메뉴 */
+.custom-select-wrapper {position: relative;display: inline-block;user-select: none;}
+.custom-select-wrapper select {display: none;}
+.custom-select {position: relative;display: inline-block;}
+.custom-select-trigger {position: relative;display: block;background: #434343;border: 1px solid #747474;font-size: 11px;font-weight: normal;width: 100px;height: 24px;color: #b3b3b3;cursor: pointer;line-height:24px;padding-left:6px;}
+.custom-select-trigger:after {position: absolute;display: block;content: '';width: 6px; height: 6px;top: 50%; right: 10px;border-bottom: 1px solid #fff;border-right: 1px solid #fff;transform: rotate(45deg) translateY(-50%);transition: all .4s ease-in-out;transform-origin: 50% 0;}
+.custom-select.opened .custom-select-trigger:after {margin-top: 3px;transform: rotate(-135deg) translateY(-50%);}
+.custom-options {position: absolute;display: block;top: 23px; left: 0; right: 0;min-width: 100%;border: 1px solid #747474;box-sizing: border-box;background: #434343;transition: all .4s ease-in-out;opacity: 0;visibility: hidden;pointer-events: none;transform: translateY(-5px);}
+.custom-select.opened .custom-options {opacity: 1;visibility: visible;pointer-events: all;transform: translateY(0);}
+.option-hover:before {background: #f9f9f9;}
+.custom-option {position: relative;display: block;padding:0 6px;border-bottom: 1px solid #747474;font-size: 13px;color: #b5b5b5;line-height:24px;cursor: pointer;transition: all .4s ease-in-out;}
+.custom-option:first-of-type {}
+.custom-option:last-of-type {border-bottom: 0;}
+.custom-option:hover,.custom-option.selection {color:#f67f21;}
+
+/* 오른쪽 상단 슬라이드 메뉴 */
+.header_top .gnbToggle{position:absolute;top:0;right:0;height: 50px;}/*width: 30px;*/
+.header_top .gnbToggle:before{content:"";border-top: 50px solid #252525;border-left: 50px solid transparent;display:inline-block;}
+.header_top .gnbToggle a{display:block;width:40px;height:50px;position:absolute;top:0;right:0;cursor:pointer;}
+.gnbToggle span{width:15px;height:2px;background:#fff;position:absolute;right:6px;top:18px;}
+.gnbToggle .btn-close span.plus{transition: 0.8s;-webkit-transition: 0.8s;transform: rotate(0deg) translate(0px, 0px);-webkit-transform: rotate(0deg) translate(0px, 0px);}
+.gnbToggle .btn-open span.plus{transition: 0.8s;-webkit-transition: 0.8s;transform: rotate(90deg) translate(0px, 0px);-webkit-transform: rotate(90deg) translate(0px, 0px);}
+
+/* allmenu */
+.allMenu { margin:0 auto; position:relative; width:1282px;}/*1300*/
+.allMenu:after { display:block; clear:both; content:'' }
+.allMenu .allMenuView { display:none; position:absolute; top:140px; left:-9px; width:100%; height: 787px; border:1px solid #e6e6e6; z-index:11;  background: #fff; }/*height:500px;*/
+.allMenu .allMenuView .xclose{ position: absolute; bottom: 10px; right: 10px; cursor: pointer;} /* float:right; padding:20px; cursor: pointer; */
+.allMenuBtn {float:left; color:#fff; height:50px; width:50px; font-size:24px; border-right:rgba(255,255,255,0.1) 1px solid;}
+
+
+/***********************************************
+ ** 좌측 고정 메뉴
+ ***********************************************/
+
+/* 로그인회원정보  */
+.user_wrap{background:#f5f7fb; border:1px solid #d6d6d6;}
+.user_wrap .user_top{display:table;width:100%;height:90px;}
+.user_wrap .user_top li{display:table-cell;vertical-align:middle;width:80px;}
+.user_wrap .user_top li.user_thumb{text-align:center; margin-left:5px}
+.user_wrap .user_top li.mymenu{width:calc(100% - 160px);}
+.user_wrap .btn_logout {font-size:11px;text-decoration:none; color:#fff!important; border-radius:14px; background-color:#ccc; padding:6px 10px;/*margin-left:6px;*/}
+.user_wrap .btn_logout:hover {background-color:#bbb; cursor: pointer;}
+.user_wrap .mymenu a {color:#999;margin-right:1px;display:inline-block;}
+.user_wrap .mymenu a:hover {color:#666; cursor: pointer;}
+.user_wrap .mymenu .info_box {line-height:20px;}
+.user_wrap .mymenu .info_box .name {overflow:hidden;max-width:85px;vertical-align:top;white-space:nowrap;text-overflow:ellipsis;font-weight:bold;}
+.user_wrap .mymenu .info_box .text {overflow:hidden; padding-top:1px; white-space:nowrap; text-overflow:ellipsis;color:#999;}
+.user_wrap .user_box {height:40px;border-top:1px solid #d6d6d6;}
+.user_wrap .user_box .tab {float:left; font-weight:bold; width:25%;line-height:40px;text-align:center;  border-right:1px solid #d6d6d6; height:40px; cursor: pointer;}
+.user_wrap .user_box .tab:last-child {border:0px;}
+
+
+.btn-tabs {color: #666666;}
+
+/* 회원리스트 검색 */
+.left_search_wrap{width:100%;margin:10px 0;}
+.left_search_wrap input{width:190px;}
+#searchMemberInfoLeft {width: 60px;}
+
+/* 왼쪽 하단 회원리스트 검색 결과 */
+.quick_icon {text-align:center;}
+.quick_icon a {width:100%; float:left; margin-right:3px; width:9%; height:23px;border:1px solid #e6e6e6;border-radius:2px;color:#666;font-size:16px;position:relative;}
+.quick_icon a:hover {color:#333; background:#f5f7fb;}
+.quick_icon a:last-child {margin-right:0px;}
+
+/***********************************************
+ ** 우측 슬라이드
+ ***********************************************/
+.sidebar {position:relative; float:right; padding:10px; background:#fff; width:300px;}
+
+/* 슬라이드 버튼 */
+.close_btn {position: absolute; top:300px; right:0px; width:30px; height:109px; text-align:center; background:#fff url("../images/btn_close.png") no-repeat right top;border:0;outline:0;cursor:pointer;}
+.open_btn {position: absolute; top:300px; right:300px; width:30px; height:109px; text-align:center; background:url("../images/btn_open.png") no-repeat right top;border:0;outline:0;cursor:pointer; }
+
+/* 공지사항  */
+.notice_wrap {width:100%;margin-bottom:10px;}
+.notice_wrap h2 {padding-bottom:6px; color:#333; font-size:14px; font-weight:bold; border-bottom:1px solid #333;}
+.notice_wrap h2 .more {padding: 2px 0; color:#666; font-size: 11px; float:right;}
+.newslist li {display: block; overflow: hidden; position: relative; margin-top:7px;}
+.newslist li a{color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; padding-right: 70px;letter-spacing: -1px;}
+.newslist li a+span{overflow: hidden; display: block; white-space: nowrap; position: absolute; top: 0; right: 0; color: #999; font-size: 11px;}
+#rightBoard h2 a:hover{cursor:pointer;}
+
+/* 직급별인수 타이틀 */
+.user_member_list h2 {padding-bottom:6px; color:#333; font-size:14px; font-weight:bold;}
+.user_member_list h2 .more {padding: 2px 0; color:#666; font-size: 11px; float:right;}
+
+/* 매출신고  */
+.num_quick {display: inline-block; width:100%;}
+.num_quick ul {padding-top:10px;text-align:center;}
+.num_quick ul li {float:left; margin-right:5px;}
+.num_quick ul li:last-child {margin-right:0px;}
+.num_quick ul li a {display:block;}
+.num_quick ul li span {display:block;color:#fff;font-size:18px;font-weight:bold;line-height:64px;width:66px; height:66px;border-radius:33px;background:#b1bac3;}
+.num_quick ul li p {line-height:30px;}
+
+/* 배너  */
+.r_banner {display: block; }
+.r_banner img {vertical-align: middle;}
+
+/* 툴팁 */
+.tooltip {position: relative;}
+.tooltip__item {position: absolute;width:-webkit-max-content;min-width:96px;min-width:-webkit-max-content;padding: 5px;visibility: hidden;opacity: 0;background: white;transition: all 0.25s cubic-bezier(0, 0, 0.2, 1);color: #484848;border: 1px solid #cecece;border-radius: 3px;font-size:10px;box-shadow: 0 2px 1px #bcbcbc;z-index: 11;}
+.tooltip__item:after {content: "";display: block;position: absolute;width: 0;height: 0;border-style: solid;}
+.tooltip__initiator {cursor: pointer;z-index: 5;}
+.tooltip__initiator i {vertical-align: middle;}
+.tooltip[data-direction="top"] .tooltip__initiator:hover ~ .tooltip__item {transform: translate3d(-50%, 0, 0);visibility: visible;opacity: 1;}
+.tooltip[data-direction="top"] .tooltip__item {bottom: calc(100% + 1em);left: 50%;transform: translate3d(-50%, -15px, 0);}
+.user_unit .tooltip__initiator i{color: #398dbb;}
+.user_unit .tooltip__initiator i:hover{color: #f67f21;}
+.firTip.tooltip[data-direction="top"] .tooltip__item{left:30px;width:62px;min-width:62px;}
+.tooltip[data-direction="top"] .tooltip__item:after {bottom: -5px;left: 50%;margin-left:-6px;transform:rotate(180deg);border-width: 0 0.5em 0.5em 0.5em;border-color: transparent transparent white transparent;-webkit-filter: drop-shadow(1px 2px 1px #bcbcbc);filter: drop-shadow(1px -1px 1px #bcbcbc);}
+.firTip.tooltip[data-direction="top"] .tooltip__item:after{left:14px;}
+
+/* 툴팁2 */
+.tooltip[data-direction="bottom"] .tooltip__initiator:hover ~ .tooltip__item {transform: translate3d(-50%, 0, 0);visibility: visible;opacity: 1;}
+.tooltip[data-direction="bottom"] .tooltip__item {top: calc(100% + 1em);left: 50%;transform: translate3d(-50%, -15px, 0);}
+.tooltip[data-direction="bottom"] .tooltip__item:after {top: -5px;left: 50%;margin-left:-6px;transform:rotate(180deg);border-width: 0 0.5em 0.5em 0.5em;border-color: transparent transparent white transparent;-webkit-filter: drop-shadow(1px 2px 1px #bcbcbc);filter: drop-shadow(1px -1px 1px #bcbcbc);}
+.no_use {
+	color: red;
+	text-decoration: line-through;
+}
+
+/* female and male 23/04/2021 */
+
+.contentdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.female {
+  background: 
+    url("/images/women.png") center / cover,
+    /* url("https://i.imgur.com/qsVFCFh.png") center / cover, */
+    linear-gradient(rgb(239, 125, 50),rgb(239, 125, 50))   bottom / 100% var(--p,0),
+    lightgray;
+  background-repeat:no-repeat;
+  width: 57px;
+  height: 120px;
+}
+
+.male {
+  background: 
+    url("/images/men.png") center / cover,
+    /* url("https://i.imgur.com/qsVFCFh.png") center / cover, */
+    linear-gradient(rgb(51, 121, 163),rgb(51, 61, 163))   bottom / 100% var(--p,0),
+    lightgray;
+  background-repeat:no-repeat;
+  width: 57px;
+  height: 120px;}
+  
+  .aui-grid-nodata-msg-layer {
+	text-align: center;
+	line-height:22px;
+}
