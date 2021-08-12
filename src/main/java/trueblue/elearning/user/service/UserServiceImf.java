@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import trueblue.elearning.user.dao.UserDao;
@@ -47,13 +48,18 @@ public class UserServiceImf implements UserService {
         newUser.setAddress(userDto.getAddress());
 		return userdao.save(newUser);
 	}
-
+	
+	@Transactional
 	@Override
 	public void updateAccount(UserDto userDto) {
 		// TODO Auto-generated method stub
-		
-		 userdao.Account(userDto.getEmail(), userDto.getFullname() ,userDto.getAddress()
-				,userDto.getAvatar(),userDto.getPhone());
+		if(userDto.getNewPass().equals("") || userDto.getNewPass() == null) {
+			userDto.setNewPass(userDto.getPassword());
+		}
+		String password = new BCryptPasswordEncoder().encode(userDto.getNewPass());
+		userDto.setPassword(password);
+		userdao.Account(userDto.getEmail(), userDto.getFullname() ,userDto.getAddress()
+				,userDto.getAvatar(),userDto.getPhone(), userDto.getPassword());
 	}
 	
 

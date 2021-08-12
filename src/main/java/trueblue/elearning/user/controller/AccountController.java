@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,6 +40,7 @@ public class AccountController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String accountPage(Model model,UserDto userDto) {
 		String email = cus.getUsername();
+		System.out.println(email);
 		 model.addAttribute("emailReal",email);
 		String fullname;
 		String email1;
@@ -48,6 +48,7 @@ public class AccountController {
 		String status;
 		String address;
 		String avatar;
+		String password;
 
 		List<UserModel> userList;
 
@@ -59,6 +60,7 @@ public class AccountController {
 			status = "";
 			address = "";
 			avatar = "";
+			password = "";
 
 		} else {
 			userList = userService.getUserByEmailReal(email);
@@ -68,6 +70,10 @@ public class AccountController {
 			status = userList.get(0).getStatus();
 			address = userList.get(0).getAddress();
 			avatar = userList.get(0).getAvatar();
+			password = userList.get(0).getPassword();
+			
+			
+			
 		}
 
 		model.addAttribute("fullname", fullname);
@@ -76,6 +82,7 @@ public class AccountController {
 		model.addAttribute("status", status);
 		model.addAttribute("address", address);
 		model.addAttribute("avatar", avatar);
+		model.addAttribute("password", password);
 
 		System.out.println(email);
 		//
@@ -86,7 +93,9 @@ public class AccountController {
 
 	@RequestMapping("/linkgetAccount")
 	public String getAccount(@RequestParam(value = "account", required = false) String account, Model model,UserDto userDto) {
-	
+		String email = cus.getUsername();
+		System.out.println(email);
+		 model.addAttribute("emailReal",email);
 		String fullname;
 		String email1;
 		String phone;
@@ -128,9 +137,21 @@ public class AccountController {
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
 	
 	 public void UpdateAccount(@ModelAttribute("userDto") UserDto userDto,Model model, HttpServletResponse response) throws IOException {
-		response.sendRedirect("/account");
 		
-		userService.updateAccount(userDto);
+		
+		
+		List<UserModel> userList;
+		userList = userService.getUserByEmailReal(cus.getUsername());
+		String password = userList.get(0).getPassword();
+		BCryptPasswordEncoder encoder =  new BCryptPasswordEncoder();
+		Boolean checkPassword = encoder.matches(userDto.getPassword(), password);
+		if(checkPassword == true && cus.getUsername().equals(userDto.getEmail())) {
+			userService.updateAccount(userDto);
+			response.sendRedirect("/account?fail=fail");
+		}else {
+			response.sendRedirect("/account?fail=true");
+		}
+		
 		
 		
 	}

@@ -7,6 +7,7 @@
          <script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
 	     <script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
 	     <script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+	     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
 
@@ -36,20 +37,37 @@
    	<script th:inline="javascript" type="text/javascript">
 
 	$(document).ready(function(){
-		
-		
+		var errorSys = /*[[${#request.getParameter('fail')}]]*/ '';
+		 if (errorSys == "true") {
+			       swal("The password you entered is incorrect",{
+							icon: "error",
+				          });} 
+	     if (errorSys == "fail") {
+			       swal("Success Save",{
+							icon: "success",
+				          });} 
+	
 		if($('#emailReal').text() != $('#emailFake').text()){
 			
 			document.getElementById("editButton").style.display="none";
 		}
 		$('#editButton').click(function () {
-			
 		   document.getElementById("showEdit").style.display = "block";
 
 		});
 		getData();
 		$('#saveBtn').click(function () {
+		  var msg  = validatePassword()
+		  if(msg != ""){
+			swal(msg, {
+					icon: "error",
+				});
+				return false;
+		   }else{
 			$("#saveSubmit").submit();
+		   }
+			
+			
 		
 
 		});
@@ -65,10 +83,24 @@
 	  var avatar    = $("#avatar1").text();
 	  $("#fullname2").val(fullname);      
 	  $("#email2").val(email);      
+	  $("#email3").val(email);
 	  $("#phone2").val(phone);         
 	  $("#address2").val(address);         
 	  $("#avatar2").val(avatar);        
      }
+     function validatePassword(){
+	   var meg = ""
+			
+			if($('#passwordCur').val() == ""){
+				
+				meg = meg + "Please Enter Your PassWord" ;
+				meg = meg + '\n';
+			}
+			
+			
+			return meg;
+	
+    }
 	</script>
    
    
@@ -152,6 +184,7 @@
                     <div class="col-sm-9 text-secondary">
                       <span th:text = "${address}" id = "address1"></span>
                        <span th:text = "${avatar}" id = "avatar1" style="display: none;"></span>
+                       
                     </div>
                   </div>
                   <hr>
@@ -173,7 +206,7 @@
  <div class="container rounded bg-white  mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img th:src="@{'/img/' + ${avatar}+'.jpg'}" alt="Admin" class="rounded-circle" width="120"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -184,7 +217,8 @@
                  <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="enter fullname" value="" id = "fullname2" th:field ="*{fullname}"></div>
                     <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" id = "phone2" th:field ="*{phone}"value=""></div>
                     <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value="" id ="address2" th:field ="*{address}"></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="" id = "email2" th:field ="*{email}"></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="" id = "email2" th:field ="*{email}" disabled></div>
+                   <input type="text" class="form-control" placeholder="enter email id" value="" id = "email3" th:field ="*{email}"  style="display: none;">
                 </div>
               
                 <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" id = "saveBtn">Save Profile</button></div>
@@ -194,7 +228,8 @@
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
                 <div class="col-md-12"><label class="labels">Path Avatar</label><input type="text" class="form-control" placeholder="experience" value="" id = "avatar2" th:field ="*{avatar}"></div> <br>
-                <div class="col-md-12"><label class="labels">Password</label><input type="password" class="form-control" placeholder="additional details" value=""></div>
+                <div class="col-md-12"><label class="labels" style="color: red;">Password</label><input type="password" class="form-control" placeholder="Your Password" value="" id ="passwordCur" th:field ="*{password}"></div>
+                 <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" placeholder="Set New Password" value="" th:field ="*{newPass}"></div>
          
             </div>
         </div>
