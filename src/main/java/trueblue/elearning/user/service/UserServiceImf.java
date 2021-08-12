@@ -14,6 +14,7 @@ import trueblue.elearning.user.model.UserModel;
 import trueblue.elearning.user.model.Users;
 
 @Service
+@javax.transaction.Transactional
 public class UserServiceImf implements UserService {
 	@Autowired
 	UserDao userdao;
@@ -49,7 +50,7 @@ public class UserServiceImf implements UserService {
 		return userdao.save(newUser);
 	}
 	
-	@Transactional
+	
 	@Override
 	public void updateAccount(UserDto userDto) {
 		// TODO Auto-generated method stub
