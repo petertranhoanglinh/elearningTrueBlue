@@ -10,14 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-
 import trueblue.elearning.user.model.UserModel;
 import trueblue.elearning.user.model.Users;
 
 
-
 @Repository
-@Transactional
 public interface UserDao extends PagingAndSortingRepository<Users, String>{
 	 @Query(value="SELECT  *"
 	            +" from udemy_Users"
@@ -38,14 +35,17 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 				, nativeQuery = true)                                                                                                   
 		public List<UserModel> findByEmailReal(String email);
 	 
-	@javax.persistence.Version
-	@Modifying(clearAutomatically = true)
+	
+	@Transactional
+	@Modifying
 	@Query(value = "UPDATE udemy_users                " 
 			+ "        SET fullname = :fullname       "
 			+ "          , avatar   = :avatar         "
 			+ "          , phone   = :phone           "
 			+ "          , address   = :address       "
 			+ "          , password   = :password     "
+			+ "          , version    =  version + 1  "
+			+ "          , update_by  = :fullname     "
 			+ "      WHERE email = :email             "
 	        , nativeQuery = true)
     public void Account(String email, String fullname, String address, String avatar, String phone, String password );

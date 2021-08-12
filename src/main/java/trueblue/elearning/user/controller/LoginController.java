@@ -27,7 +27,7 @@ import trueblue.elearning.user.service.UserService;
 
 public class LoginController {
 	@Autowired
-	private UserDao userdao;
+	private UserDao userdao; 
 	@Autowired
 	private UserService userService;
 

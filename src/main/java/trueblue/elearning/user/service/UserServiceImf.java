@@ -14,7 +14,6 @@ import trueblue.elearning.user.model.UserModel;
 import trueblue.elearning.user.model.Users;
 
 @Service
-@javax.transaction.Transactional
 public class UserServiceImf implements UserService {
 	@Autowired
 	UserDao userdao;
