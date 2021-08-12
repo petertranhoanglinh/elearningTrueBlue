@@ -1,9 +1,14 @@
 package trueblue.elearning.user.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.dto.UserDto;
@@ -33,7 +39,7 @@ public class AccountController {
 
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String accountPage(Model model) {
+	public String accountPage(Model model,UserDto userDto) {
 		String email = cus.getUsername();
 		 model.addAttribute("emailReal",email);
 		String fullname;
@@ -79,7 +85,7 @@ public class AccountController {
 	}
 
 	@RequestMapping("/linkgetAccount")
-	public String getAccount(@RequestParam(value = "account", required = false) String account, Model model) {
+	public String getAccount(@RequestParam(value = "account", required = false) String account, Model model,UserDto userDto) {
 	
 		String fullname;
 		String email1;
@@ -117,6 +123,16 @@ public class AccountController {
 		model.addAttribute("avatar", avatar);
 
 		return "account/account";
+	}
+	
+	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
+	
+	 public void UpdateAccount(@ModelAttribute("userDto") UserDto userDto,Model model, HttpServletResponse response) throws IOException {
+		response.sendRedirect("/account");
+		
+		userService.updateAccount(userDto);
+		
+		
 	}
 	
 	

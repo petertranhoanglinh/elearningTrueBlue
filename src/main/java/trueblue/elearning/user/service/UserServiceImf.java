@@ -49,9 +49,11 @@ public class UserServiceImf implements UserService {
 	}
 
 	@Override
-	public Users updateAccount(UserDto userDto) {
+	public void updateAccount(UserDto userDto) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		 userdao.Account(userDto.getEmail(), userDto.getFullname() ,userDto.getAddress()
+				,userDto.getAvatar(),userDto.getPhone());
 	}
 	
 

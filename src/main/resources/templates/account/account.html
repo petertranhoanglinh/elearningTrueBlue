@@ -37,6 +37,7 @@
 
 	$(document).ready(function(){
 		
+		
 		if($('#emailReal').text() != $('#emailFake').text()){
 			
 			document.getElementById("editButton").style.display="none";
@@ -46,9 +47,28 @@
 		   document.getElementById("showEdit").style.display = "block";
 
 		});
+		getData();
+		$('#saveBtn').click(function () {
+			$("#saveSubmit").submit();
+		
+
+		});
 	
 
       });
+      function getData(){
+	
+	  var fullname = $("#fullname1").text();
+	  var email =     $("#emailFake").text();
+	  var phone     = $("#phone1").text();
+	  var address   = $("#address1").text();
+	  var avatar    = $("#avatar1").text();
+	  $("#fullname2").val(fullname);      
+	  $("#email2").val(email);      
+	  $("#phone2").val(phone);         
+	  $("#address2").val(address);         
+	  $("#avatar2").val(avatar);        
+     }
 	</script>
    
    
@@ -94,13 +114,13 @@
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <span th:text = "${fullname}"></span>
+                      <span th:text = "${fullname}" id = "fullname1"></span>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0" id = "email1">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                        <span th:text = "${email}" id="emailFake"></span>
@@ -112,7 +132,8 @@
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                       <span th:text = "${phone}"></span>
+                       <span th:text = "${phone}" id ="phone1"></span>
+                       <span th:text = "${password}" id ="password1"></span>
                     </div>
                   </div>
                   <hr>
@@ -121,7 +142,7 @@
                       <h6 class="mb-0">Status</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <span th:text = "${status}"></span>
+                        <span th:text = "${status}" id = "status1"></span>
                     </div>
                   </div>
                   <hr>
@@ -130,7 +151,8 @@
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <span th:text = "${address}"></span>
+                      <span th:text = "${address}" id = "address1"></span>
+                       <span th:text = "${avatar}" id = "avatar1" style="display: none;"></span>
                     </div>
                   </div>
                   <hr>
@@ -148,6 +170,7 @@
         </div>
         </div>
  <div class="div_right"  id = "showEdit" style="display: none;">
+ <form th:object = "${userDto}" id ="saveSubmit" th:action="@{/account/saveUpdate}" method = "POST">
  <div class="container rounded bg-white  mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
@@ -159,23 +182,25 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                 <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="enter fullname" value=""></div>
-                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                 <div class="col-md-12"><label class="labels">Fullname</label><input type="text" class="form-control" placeholder="enter fullname" value="" id = "fullname2" th:field ="*{fullname}"></div>
+                    <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" id = "phone2" th:field ="*{phone}"value=""></div>
+                    <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" value="" id ="address2" th:field ="*{address}"></div>
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value="" id = "email2" th:field ="*{email}"></div>
                 </div>
               
-                <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" id = "saveBtn">Save Profile</button></div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Path Avatar</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Note</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                <div class="col-md-12"><label class="labels">Path Avatar</label><input type="text" class="form-control" placeholder="experience" value="" id = "avatar2" th:field ="*{avatar}"></div> <br>
+                <div class="col-md-12"><label class="labels">Password</label><input type="password" class="form-control" placeholder="additional details" value=""></div>
+         
             </div>
         </div>
     </div>
+    </form>
 
 </div>
 </div>
