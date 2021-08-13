@@ -8,7 +8,15 @@
 	<script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
 	<script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<style>
 	
+	.centerSpan {
+      margin: auto;
+       width: 50%;
+      border: 3px solid green;
+     padding: 10px;
+      }
+	</style>
 	<script th:inline="javascript" type="text/javascript">
 
 		if(window.location.pathname != "/login"){
@@ -177,6 +185,7 @@
 			<input type="password" placeholder="Password" name="password" id = "password1"/>
 			<a href="#">Forgot your password?</a>
 			<button id = "login">Sign In</button>
+			<span style="padding-top: 10px;"> design by Linh Tran </span>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -189,11 +198,13 @@
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<button class="ghost" id="signUp">Sign Up</button>
+				
 			</div>
 			
 			
 		</div>
 	</div>
 </div>
+
 
 </html>
