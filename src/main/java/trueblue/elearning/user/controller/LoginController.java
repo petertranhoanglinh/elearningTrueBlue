@@ -68,28 +68,28 @@ public class LoginController {
 
 		return "login/home";
 	}
-	@RequestMapping(value= "/save",  method = RequestMethod.POST)
-	 @ResponseBody public String addUser(@ModelAttribute("userDto") UserDto userDto,Model model ) throws IOException {
-		
-	
-		 List<UserModel> user = new ArrayList<UserModel>();
-			user =     userService.getUserByEmailReal(userDto.getEmail());
-			
-			if(user.isEmpty()) {
-				userService.addUser(userDto);
-				System.out.println(userDto.getEmail());
-		
-				 return "Register success" + "*" + userDto.getEmail() + "*" ;
-				
-			}
-			else {
-				
-				System.out.println("CREATE FAIL BECAUSE EMAIL USED");
-				
-				return "Register Fail beacause email " + "*" + userDto.getEmail() + "*" + " used ";
-				}
-
-	}
+//	@RequestMapping(value= "/save",  method = RequestMethod.POST)
+//	 @ResponseBody public String addUser(@ModelAttribute("userDto") UserDto userDto,Model model ) throws IOException {
+//		
+//	
+//		 List<UserModel> user = new ArrayList<UserModel>();
+//			user =     userService.getUserByEmailReal(userDto.getEmail());
+//			
+//			if(user.isEmpty()) {
+//				userService.addUser(userDto);
+//				System.out.println(userDto.getEmail());
+//		
+//				 return "Register success" + "*" + userDto.getEmail() + "*" ;
+//				
+//			}
+//			else {
+//				
+//				System.out.println("CREATE FAIL BECAUSE EMAIL USED");
+//				
+//				return "Register Fail beacause email " + "*" + userDto.getEmail() + "*" + " used ";
+//				}
+//
+//	}
 	
 	
 

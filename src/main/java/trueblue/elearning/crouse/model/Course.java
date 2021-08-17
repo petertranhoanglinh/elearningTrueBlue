@@ -17,8 +17,9 @@ public class Course extends AbstractEntity{
 	private String name;
 	private String description;
 	private String image;
-	private String viewCount;
+	private long wiewcount;
 	private String video;
 	private boolean status;
+	private String kindcourse;
 	
 }
