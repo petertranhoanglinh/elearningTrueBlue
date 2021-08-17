@@ -107,6 +107,7 @@
 			<th>fullname</th>
 			<th>Email</th>
 			<th>Address</th>
+			<th>Course</th>
 		</tr>
 		<tr th:each="userDao:${userDao}">
 			<td>
@@ -118,7 +119,7 @@
 			<td th:text="${userDao.fullname}"></td>
 			<td th:text="${userDao.email}"></td>
 			<td th:text="${userDao.address}"></td>
-           
+            <td><a th:href="@{'/course/'+ ${userDao.email}}">Link Course</a></td>
 		</tr>
 	</table>
    </form>

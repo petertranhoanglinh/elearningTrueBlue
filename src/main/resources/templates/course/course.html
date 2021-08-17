@@ -21,6 +21,8 @@
             
           
             
+          
+            
             }
             
             .div_right{
@@ -28,7 +30,6 @@
             width: 60%;
             
             float: left;
-            
         
             
           }
@@ -53,15 +54,13 @@
    
   
 <div style="width:100%;height:670px">
- <div class="div_right"  id = "showEdit" style="padding-top: 100px;" >
+ <div class="div_right"  id = "showEdit" style="padding-top: 110px; padding-bottom: 50px;" >
  <form  id ="saveSubmit" th:action="@{/account/saveUpdate}" method = "POST">
- <div class="container rounded bg-white  mb-5"  style="height: 560px;width: 70%">
+ <div class="container rounded bg-white  mb-5"  style="height: 560px;width: 70%; ">
     <div class="row">
-        <div class="col-md-5 border-right" style="padding-top: 1px;">
-      
-         
+        <div class="col-md-5 border-right">
              <h5>Create Account</h5>
-            <div class="p-3 py-5"  style="padding: 20px ; " >
+            <div class="p-3 py-5"  style="padding-bottom: 50px ; " >
 				<span style="color: red;">Name Course</span> <input type="text" class="form-control" placeholder="enter fullname" value="">
 				<span  style="color: red;">Full Name Teacher</span> <input type="text" class="form-control" placeholder="create your auto by user" value="" disabled>
 				<span  style="color: red;">Description your Account</span> <input type="text" class="form-control" placeholder="enter address" value="">
