@@ -49,6 +49,12 @@ public class CourseController {
 	
 	}
 	
+	@RequestMapping(value = "/showdetailCourse")
+	public String showdetailCourse(Model model, CourseDto courseDto) {
+
+		return "course/showdetailcourse";
+	}
+	
 	@RequestMapping(value = "/showCourse")
 	public String indexShowCourse(Model model, CourseDto courseDto) {
 
