@@ -33,26 +33,26 @@ public class AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false)
-	protected Long id;
+	public Long id;
 	
 	@Version
-	protected int version;
+	public int version;
 	
 	@CreatedBy
-	protected String createBy;
+	public String createBy;
 	
 	@LastModifiedBy
-	protected String updateBy;
+	public String updateBy;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateUtils.DATE_FORMAT)
 	@CreatedDate
 	@DateTimeFormat(pattern = DateUtils.DATE_FORMAT)
 	@Column(name = "create_at", nullable = false, updatable = false)
-	protected LocalDateTime createAt;
+	public LocalDateTime createAt;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateUtils.DATE_FORMAT)
 	@LastModifiedDate
 	@DateTimeFormat(pattern = DateUtils.DATE_FORMAT)
 	@Column(name = "update_at", nullable = false, updatable = false)
-	protected LocalDateTime updateAt;
+	public LocalDateTime updateAt;
 }

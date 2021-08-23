@@ -10,28 +10,12 @@
 	     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-
-       
-            
-            .div_left{
-            
-            width: 40%;
-      
-            float: left;
-            
-          
-            
-          
-            
-            }
-            
             .div_right{
             
             width: 60%;
             
             float: left;
-        
-            
+
           }
             
 </style>
@@ -39,11 +23,30 @@
 
 	$(document).ready(function(){
 		
+		$('#saveBtn').click(function () {
+			checkValueCheckBox();
+			
+			$("#saveSubmit").submit();
+	
 		
+		});
+		
+		function checkValueCheckBox(){
+			var checkBox = document.getElementById("myCheck");
+			var status = document.getElementById("status");
+			if (checkBox.checked == true) {
+				$("#status").val(true);
+				
+			}else{
+				$("#status").val(false);
+				
+			}
+			
+		}
 	
 
       });
-      
+		
 	</script>
    
    
@@ -55,26 +58,27 @@
   
 <div style="width:100%;height:670px">
  <div class="div_right"  id = "showEdit" style="padding-top: 110px; padding-bottom: 50px;" >
- <form  id ="saveSubmit" th:action="@{/account/saveUpdate}" method = "POST">
+ <form  id ="saveSubmit" th:action="@{/course/createCourse}" method = "POST" th:object = "${courseDto}">
  <div class="container rounded bg-white  mb-5"  style="height: 560px;width: 70%; ">
     <div class="row">
         <div class="col-md-5 border-right">
              <h5>Create Account</h5>
             <div class="p-3 py-5"  style="padding-bottom: 50px ; " >
-				<span style="color: red;">Name Course</span> <input type="text" class="form-control" placeholder="enter fullname" value="">
+				<span style="color: red;"   >Name Course</span> <input type="text" class="form-control" placeholder="enter fullname" value="" th:field ="*{name}">
 				<span  style="color: red;">Full Name Teacher</span> <input type="text" class="form-control" placeholder="create your auto by user" value="" disabled>
-				<span  style="color: red;">Description your Account</span> <input type="text" class="form-control" placeholder="enter address" value="">
-				<span  style="color: red;">Video Imfomation</span> <input type="text" class="form-control" placeholder="enter email id" value="">
+				<span  style="color: red;"  >Description your Account</span> <input type="text" class="form-control" placeholder="enter address" value="" th:field ="*{description}">
+				<span  style="color: red;"  >Video Imfomation</span> <input type="text" class="form-control" placeholder="enter email id" value="" th:field ="*{video}">
 				<span  style="color: red;">KindCourse</span> 
-			    <select class="form-control">
-				    <option>IT</option> 
-				    <option>Language</option>  
-				    <option>Life skills</option>    
-				    <option>Technical</option>  
-				    <option>high school subjects</option>    
+			    <select class="form-control" th:field ="*{kindcourse}">
+				    <option th:value="'IT'">IT</option> 
+				    <option th:value="'Language'">Language</option>  
+				    <option th:value="'lifeSkill'">Life skills</option>    
+				    <option th:value="'Technical'">Technical</option>  
+				    <option th:value="'Schoolsubjects'">high school subjects</option>    
 				</select>
-				<span  style="color: red;">Name Account</span> <input type="text" class="form-control" placeholder="enter email id" value="">
-                <span style="color: red;"> Status</span> <input type="checkbox" id="vehicle1" name="vehicle1" value="" class="form-control">
+				<span  style="color: red;"  >image</span> <input type="text" class="form-control" placeholder="enter email id" value="" th:field ="*{image}">
+                <span style="color: red;"> Status</span> <input type="checkbox"  class="form-control" id="myCheck">
+                <input th:field ="*{status}" type="hidden">
               
                <button class="btn btn-primary profile-button" type="button" id = "saveBtn">Save Profile</button>
             </div>

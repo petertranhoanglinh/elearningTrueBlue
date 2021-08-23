@@ -8,6 +8,7 @@ public class CourseDto {
 	private String video;
 	private boolean status;
 	private String kindcourse;
+	private String createBy;
 	
 	
 	
@@ -52,6 +53,12 @@ public class CourseDto {
 	}
 	public void setKindcourse(String kindcourse) {
 		this.kindcourse = kindcourse;
+	}
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
 	}
 	
 	

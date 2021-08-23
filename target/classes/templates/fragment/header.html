@@ -19,6 +19,21 @@
  <script th:inline="javascript" type="text/javascript">
 
 		$(document).ready(function () {
+			 document.getElementById("id1").style.display="none";
+			 document.getElementById("id2").style.display="none";
+	
+			 
+			 $('#courseShow').on('click', function() {
+				
+			   document.getElementById("id1").style.display="block";
+			   document.getElementById("id2").style.display="block";
+				
+				});
+			
+		
+			
+			
+			
 
 	
 		});
@@ -34,13 +49,18 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a th:href="@{/home}" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a th:href="@{/account}" class="nav-link text-uppercase font-weight-bold">Account</a></li>
-                    <li class="nav-item"><a th:href="@{/course}" class="nav-link text-uppercase font-weight-bold">Course</a></li>
+                       <ul style="list-style-type: none" >
+                        <li class="nav-item"><a th:href="@{#}" class="nav-link text-uppercase font-weight-bold" id= "courseShow" >Course</a></li>
+                        <li class="item" id="id1"> <a th:href="@{/course}">new course</a></li>
+		                <li class="item" id="id2"><a th:href="@{/showCourse}">Show Course</a><li>
+		               </ul>
+                      
                     <li class="nav-item"><a th:href="@{/buying}" class="nav-link text-uppercase font-weight-bold">Shopping</a></li>
                     <li class="nav-item"><a th:href="@{/setting}" class="nav-link text-uppercase font-weight-bold">Setting</a></li>
                     <li class="nav-item"><a th:href="@{/manager}" class="nav-link text-uppercase font-weight-bold">Manager</a></li>
                     <li class="nav-item"><a th:href="@{/logout}" class="nav-link text-uppercase font-weight-bold">LogOut</a></li>
                 </ul>
-               <btn><a th:href="@{/course/newCourse}"><span>Create a Course</span></a></btn>
+             
                 
             </div>
         </div>
