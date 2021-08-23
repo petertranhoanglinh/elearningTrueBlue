@@ -1,5 +1,7 @@
 package trueblue.elearning.course.dto;
 
+import java.time.LocalDateTime;
+
 public class CourseDto {
 	private String name;
 	private String description;
@@ -9,6 +11,7 @@ public class CourseDto {
 	private boolean status;
 	private String kindcourse;
 	private String createBy;
+	private LocalDateTime createAt;
 	
 	
 	
@@ -59,6 +62,12 @@ public class CourseDto {
 	}
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+	public LocalDateTime getCreateAt() {
+		return createAt;
+	}
+	public void setCreateAt(LocalDateTime createAt) {
+		this.createAt = createAt;
 	}
 	
 	
