@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import groovyjarjarpicocli.CommandLine.Model;
 import trueblue.elearning.course.dto.CourseDto;
 import trueblue.elearning.course.service.CourseService;
 import trueblue.elearning.user.service.CustormerUserDetailsService;
@@ -46,6 +47,12 @@ public class CourseController {
 		
 	
 	
+	}
+	
+	@RequestMapping(value = "/showCourse")
+	public String indexShowCourse(Model model, CourseDto courseDto) {
+
+		return "course/showCourse";
 	}
 	
 	

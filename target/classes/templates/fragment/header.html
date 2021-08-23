@@ -21,12 +21,14 @@
 		$(document).ready(function () {
 			 document.getElementById("id1").style.display="none";
 			 document.getElementById("id2").style.display="none";
+			 document.getElementById("id3").style.display="none";
 	
 			 
 			 $('#courseShow').on('click', function() {
 				
 			   document.getElementById("id1").style.display="block";
 			   document.getElementById("id2").style.display="block";
+			   document.getElementById("id3").style.display="block";
 				
 				});
 			
@@ -52,13 +54,16 @@
                        <ul style="list-style-type: none" >
                         <li class="nav-item"><a th:href="@{#}" class="nav-link text-uppercase font-weight-bold" id= "courseShow" >Course</a></li>
                         <li class="item" id="id1"> <a th:href="@{/course}">new course</a></li>
-		                <li class="item" id="id2"><a th:href="@{/showCourse}">Show Course</a><li>
+                        <li class="item" id="id3"><a th:href="@{/course/showCourse}">Show  Course</a><li>
+		                <li class="item" id="id2"><a th:href="@{/course/showCourse}">Show detail Course</a><li>
+		               
 		               </ul>
                       
                     <li class="nav-item"><a th:href="@{/buying}" class="nav-link text-uppercase font-weight-bold">Shopping</a></li>
                     <li class="nav-item"><a th:href="@{/setting}" class="nav-link text-uppercase font-weight-bold">Setting</a></li>
                     <li class="nav-item"><a th:href="@{/manager}" class="nav-link text-uppercase font-weight-bold">Manager</a></li>
                     <li class="nav-item"><a th:href="@{/logout}" class="nav-link text-uppercase font-weight-bold">LogOut</a></li>
+                    <span  th:text="${email123}" style="width: 10px; float: left;"></span >
                 </ul>
              
                 

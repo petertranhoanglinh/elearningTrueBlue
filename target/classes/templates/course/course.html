@@ -63,10 +63,12 @@
     <div class="row">
         <div class="col-md-5 border-right">
              <h5>Create Account</h5>
-            <div class="p-3 py-5"  style="padding-bottom: 50px ; " >
+            <div class="p-3 py-5">
 				<span style="color: red;"   >Name Course</span> <input type="text" class="form-control" placeholder="enter fullname" value="" th:field ="*{name}">
-				<span  style="color: red;">Full Name Teacher</span> <input type="text" class="form-control" placeholder="create your auto by user" value="" disabled>
-				<span  style="color: red;"  >Description your Account</span> <input type="text" class="form-control" placeholder="enter address" value="" th:field ="*{description}">
+				<div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label" style="color: red;">Description your Account</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field ="*{description}"></textarea>
+                </div>
 				<span  style="color: red;"  >Video Imfomation</span> <input type="text" class="form-control" placeholder="enter email id" value="" th:field ="*{video}">
 				<span  style="color: red;">KindCourse</span> 
 			    <select class="form-control" th:field ="*{kindcourse}">

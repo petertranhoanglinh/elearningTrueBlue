@@ -21,15 +21,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import trueblue.elearning.user.dao.UserDao;
 import trueblue.elearning.user.dto.UserDto;
 import trueblue.elearning.user.model.UserModel;
+import trueblue.elearning.user.service.CustormerUserDetailsService;
 import trueblue.elearning.user.service.UserService;
 
 @Controller
 
 public class LoginController {
+    
 	@Autowired
 	private UserDao userdao; 
 	@Autowired
 	private UserService userService;
+	@Autowired private CustormerUserDetailsService cus;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
     String index21 (UserDto userDto) {
@@ -43,6 +46,7 @@ public class LoginController {
 	public String index2(Model model) {
 		Pageable pageable = PageRequest.of(0,5);
 		List<UserModel> userDao = userdao.ListGroup(pageable);
+		model.addAttribute("email123",  cus.getUsername());
 		model.addAttribute("userDao", userDao);
        
 		return "login/home";
