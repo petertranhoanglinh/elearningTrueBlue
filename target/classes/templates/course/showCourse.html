@@ -91,29 +91,28 @@
     </form>
    </div>
 <div style="padding-left:5px"> 
-   <form th:action="@{/home}" id ="searchForm2">
-	<table style="width:100%" id="checkTable" >
+  
+	<table style="width:100%" id="checkTable">
 		<tr>
-			<th>Img</th>
-			<th>fullname</th>
-			<th>Email</th>
-			<th>Address</th>
-			<th>Course</th>
+			<th>NameCourse</th>
+			<th>CreateBy</th>
+			<th>Desciption</th>
+			<th>LinkVideo</th>
+			<th>KindCourse</th>
+			<th>Status</th>
+			
 		</tr>
-		<tr>
-			<td>
-				<a>
-				<img>
-				</a>
-			</td>
+		<tr th:each="listCourse : ${listCourse}">
+			<td th:text="*{listCourse.getName()}"></td>
+			<td th:text="*{listCourse.getCreateBy()}"></td>
+			<td th:text="*{listCourse.getDescription()}"></td>
+			<td th:text="*{listCourse.getVideo()}"></td>
+			<td th:text="*{listCourse.getKindcourse()}"></td>
+			<td> <input type="checkbox" value="" th:checked="${listCourse.isStatus()}"></td>
            
-			<td></td>
-			<td></td>
-			<td></td>
-            <td></td>
 		</tr>
 	</table>
-   </form>
+  
 </div>
  </div>
 

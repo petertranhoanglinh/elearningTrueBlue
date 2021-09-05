@@ -13,7 +13,6 @@ import trueblue.elearning.common.model.AbstractEntity;
 @Entity
 @Table(name = "udemy_courses")
 public class Course extends AbstractEntity{
-    
 	private String name;
 	private String description;
 	private String image;

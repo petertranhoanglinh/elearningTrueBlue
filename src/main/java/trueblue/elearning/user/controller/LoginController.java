@@ -67,7 +67,7 @@ public class LoginController {
 	@RequestMapping("/getbyfullname")
 	public String getbyFullname(@RequestParam(value = "fullname", required = false) String fullname, Model model) {
 		List<UserModel> userDao;
-		userDao = userService.getUserByEmail(fullname);
+		userDao = userService.getUserByEmail(fullname).subList(0, 5);
 		model.addAttribute("userDao", userDao);
 
 		return "login/home";
