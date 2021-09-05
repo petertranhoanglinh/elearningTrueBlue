@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +45,6 @@ public class CourseController {
 		} else {
 			response.sendRedirect("/login");
 		}
-
-	
-
 	}
 
 	@RequestMapping(value = "/showdetailCourse")
@@ -71,6 +69,12 @@ public class CourseController {
 		List<CourseModel> listCourseEmail = courseService.getAllCourseByEmail(email);
 		model.addAttribute("listCourse", listCourseEmail);
 		return "course/showdetailcourse";
+	}
+	@GetMapping("/deleteById")
+	public void deleteById(@RequestParam(value = "id") long id,HttpServletResponse response ) throws IOException {
+		courseService.deleteCourseById(id);
+		response.sendRedirect("/course/showdetailCourse");
+		
 	}
 
 }

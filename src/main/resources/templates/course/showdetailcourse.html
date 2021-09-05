@@ -65,10 +65,10 @@
 				:
 			<span th:text="*{listCourse.getDescription()}">
 			</span>
-			<a th:href="@{'/course/delete?id=' +${listCourse.getId()}}"  class="btn btn-primary">
+			<a th:href="@{'/course/deleteById?id='+${listCourse.getId()}}"  class="btn btn-primary">
 		     <span>delete</span>
 		     </a>
-		     <a th:href="@{'/course/delete?id=' +${listCourse.getId()}}"  class="btn btn-primary">
+		     <a th:href="@{'/course/deleteById?id='+${listCourse.getId()}}"  class="btn btn-primary">
 		     <span style="color: red;">ShowCourse</span>
 		     </a>
 		

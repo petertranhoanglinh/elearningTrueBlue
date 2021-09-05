@@ -47,6 +47,12 @@ public class CourseServiceImf implements CourseService {
 		// TODO Auto-generated method stub
 		return this.courseDao.findAll(PageRequest.of(0, 10)).getContent();
 	}
+
+	@Override
+	public void deleteCourseById(long id) {
+		// TODO Auto-generated method stub
+		courseDao.deleteById(id);
+	}
 	
 	
 

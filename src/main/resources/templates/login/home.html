@@ -119,7 +119,7 @@
 			<td th:text="${userDao.fullname}"></td>
 			<td th:text="${userDao.email}"></td>
 			<td th:text="${userDao.address}"></td>
-            <td><a th:href="@{'/course/showdetailCoursePram?email='+ ${userDao.email}}">Link Course</a></td>
+            <td><a th:href="@{'/course/showdetailCoursePram?email='+${userDao.email}}">Link Course</a></td>
 		</tr>
 	</table>
    </form>

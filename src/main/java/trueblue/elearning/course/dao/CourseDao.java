@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import trueblue.elearning.course.model.CourseModel;
 import trueblue.elearning.crouse.model.Course;
 
-public interface CourseDao extends JpaRepository<Course, String>{
+public interface CourseDao extends JpaRepository<Course, Long>{
 	
 
 	@Transactional

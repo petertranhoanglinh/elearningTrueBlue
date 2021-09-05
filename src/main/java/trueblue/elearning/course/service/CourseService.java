@@ -11,5 +11,6 @@ public interface CourseService {
 	public void addCoures(CourseDto courseDto);
 	public List<CourseModel> getAllCourseByEmail(String email);
 	public List<Course> getAllCourse();
+	public void deleteCourseById(long id);
 
 }
