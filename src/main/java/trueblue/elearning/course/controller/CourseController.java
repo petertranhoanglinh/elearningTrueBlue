@@ -118,12 +118,17 @@ public class CourseController {
 		return "course/showCourse";
 	}
 
-	@RequestMapping(value = "/showdetailCoursePram")
+	@RequestMapping(value = "/showdetailCoursePram/{pageNumber}")
 	public String showdetailCourseHome(org.springframework.ui.Model model,
-			@RequestParam(value = "email") String email) {
-
+			@RequestParam(value = "email") String email,
+			@PathVariable int pageNumber,HttpServletRequest request) {
+		PagebleSort<Course> pagbleSort = new PagebleSort<>();
+		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
 		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email);
-		model.addAttribute("listCourse", listCourseEmail);
+		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, PageRequest.of(pageNumber,7));
+		pagbleSort.Pageble(model,listCourseEmail , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
+		
+		model.addAttribute("listCourse", listCourseEmail1);
 		return "course/showdetailcourse";
 		
 	}
