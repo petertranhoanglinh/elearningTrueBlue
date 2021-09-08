@@ -12,9 +12,17 @@ public class CourseDto {
 	private String kindcourse;
 	private String createBy;
 	private LocalDateTime createAt;
+	private String checkSave;
 	
 	
 	
+	
+	public String getCheckSave() {
+		return checkSave;
+	}
+	public void setCheckSave(String checkSave) {
+		this.checkSave = checkSave;
+	}
 	public String getName() {
 		return name;
 	}

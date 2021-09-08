@@ -10,7 +10,7 @@ public class PagebleSort<t> {
 	public  void Pageble(Model model 
 			, List<t> list,PagedListHolder<?> pages,int pageNumber
 			,HttpServletRequest request,String path,
-			String Setatribuite) {
+			String SetAtribuite) {
 		int pagesize = 3;
 		if (pages == null) {
 			pages = new PagedListHolder<>(list);
