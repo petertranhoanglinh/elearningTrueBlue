@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,7 +36,7 @@ public interface UserDao extends PagingAndSortingRepository<Users, String>{
 				, nativeQuery = true)                                                                                                   
 		public List<UserModel> findByEmailReal(String email);
 	 
-	
+
 	@Transactional
 	@Modifying
 	@Query(value = "UPDATE udemy_users                " 

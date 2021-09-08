@@ -1,18 +1,8 @@
-package trueblue.elearning.crouse.model;
+package trueblue.elearning.course.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.time.LocalDateTime;
 
-import lombok.Getter;
-import lombok.Setter;
-import trueblue.elearning.common.model.AbstractEntity;
-
-
-@Getter
-@Setter
-@Entity
-@Table(name = "udemy_courses")
-public class Course extends AbstractEntity{
+public class CourseDto {
 	private String name;
 	private String description;
 	private String image;
@@ -20,6 +10,11 @@ public class Course extends AbstractEntity{
 	private String video;
 	private boolean status;
 	private String kindcourse;
+	private String createBy;
+	private LocalDateTime createAt;
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -62,6 +57,19 @@ public class Course extends AbstractEntity{
 	public void setKindcourse(String kindcourse) {
 		this.kindcourse = kindcourse;
 	}
-
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public LocalDateTime getCreateAt() {
+		return createAt;
+	}
+	public void setCreateAt(LocalDateTime createAt) {
+		this.createAt = createAt;
+	}
 	
+	
+
 }

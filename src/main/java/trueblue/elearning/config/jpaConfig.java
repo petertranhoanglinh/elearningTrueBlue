@@ -14,4 +14,6 @@ public class jpaConfig {
 	AuditorAware<String> auditorAware(){
 		return new AuditorAwareImpl();
 	}
+	
+
 }

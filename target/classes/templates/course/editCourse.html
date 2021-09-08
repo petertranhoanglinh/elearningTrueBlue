@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>account</title>
+         <script type="text/javascript" th:src="@{~/js/jquery-1.8.2.min.js}"></script>
+	     <script type="text/javascript" th:src="@{~/js/jquery-ui_1.12.1.js}"></script>
+	     <script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+	     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       
+            
+</style>
+   	<script th:inline="javascript" type="text/javascript">
+
+	$(document).ready(function(){
+		var errorSys = /*[[${#request.getParameter('fail')}]]*/ '';
+		 if (errorSys == "true") {
+			       swal("The password you entered is incorrect",{
+							icon: "error",
+				          });} 
+	     if (errorSys == "fail") {
+			       swal("Success Save",{
+							icon: "success",
+				          });} 
+	
+		if($('#emailReal').text() != $('#emailFake').text()){
+			
+			document.getElementById("editButton").style.display="none";
+		}
+		$('#editButton').click(function () {
+		   document.getElementById("showEdit").style.display = "block";
+
+		});
+		getData();
+		$('#saveBtn').click(function () {
+		  var msg  = validatePassword()
+		  if(msg != ""){
+			swal(msg, {
+					icon: "error",
+				});
+				return false;
+		   }else{
+			$("#saveSubmit").submit();
+		   }
+			
+			
+		
+
+		});
+	
+
+      });
+      function getData(){
+	
+	  var fullname = $("#fullname1").text();
+	  var email =     $("#emailFake").text();
+	  var phone     = $("#phone1").text();
+	  var address   = $("#address1").text();
+	  var avatar    = $("#avatar1").text();
+	  $("#fullname2").val(fullname);      
+	  $("#email2").val(email);      
+	  $("#email3").val(email);
+	  $("#phone2").val(phone);         
+	  $("#address2").val(address);         
+	  $("#avatar2").val(avatar);        
+     }
+     function validatePassword(){
+	   var meg = ""
+			
+			if($('#passwordCur').val() == ""){
+				
+				meg = meg + "Please Enter Your PassWord" ;
+				meg = meg + '\n';
+			}
+			
+			
+			return meg;
+	
+    }
+	</script>
+   
+   
+    </head>
+    <body>
+   <header th:replace="fragment/header:: header">
+   </header>
+   
+  
+<div style="width:100%;height:670px">
+	<h5 style="padding-top: 90px; padding-left: 15px;"> 1.My Account
+	</h5>
+	
+
+ <div class="div_right"  id = "showEdit" style="display: none;">
+ <form  id ="saveSubmit" method = "POST">
+ <div class="container rounded bg-white  mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img th:src="@{'/img/' + ${avatar}+'.jpg'}" alt="Admin" class="rounded-circle" width="120"><span class="font-weight-bold">Amelly</span><span class="text-black-50">amelly12@bbb.com</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Course Setting</h4>
+                </div>
+                <div class="row mt-2">
+                 <div class="col-md-12"><label class="labels">NameCourse</label><input type="text" class="form-control" placeholder="enter fullname" value=""  ></div>
+                    <div class="col-md-12"><label class="labels">KindCourse</label><input type="text" class="form-control" value=""></div>
+                    <div class="col-md-12"><label class="labels">Linkvideo</label><input type="text" class="form-control" placeholder="enter address" value="" ></div>
+                    <div class="col-md-12"><label class="labels">Status</label><input type="checkbox" ></div>
+                  
+                </div>
+              
+                <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button" id = "saveBtn">Save Profile</button></div>
+            </div>
+        </div>
+      
+    </div>
+    </form>
+    <div style="display: none;">
+    <span id = "nameCourse" th:text="*{listCourse.getNameCourse()}" > </span>
+    </div>
+    
+    
+
+</div>
+</div>
+</div>
+
+
+
+  
+  <footer th:replace="fragment/footer:: footer"></footer>
+      
+ 
+    </body>
+    
+    
+</html>
