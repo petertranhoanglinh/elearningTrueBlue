@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import trueblue.elearning.course.dao.CourseDao;
@@ -37,15 +38,15 @@ public class CourseServiceImf implements CourseService {
 	}
 
 	@Override
-	public List<CourseModel> getAllCourseByEmail(String email) {
+	public List<Course> getAllCourseByEmail(String email , Pageable pageble) {
 		// TODO Auto-generated method stub
-		return this.courseDao.getAllCourseByEmail(email);
+		return this.courseDao.getAllCourseByEmail(email, pageble);
 	}
 
 	@Override
 	public List<Course> getAllCourse() {
 		// TODO Auto-generated method stub
-		return this.courseDao.findAll(PageRequest.of(0, 10)).getContent();
+		return this.courseDao.findAll();
 	}
 
 	@Override
@@ -53,7 +54,34 @@ public class CourseServiceImf implements CourseService {
 		// TODO Auto-generated method stub
 		courseDao.deleteById(id);
 	}
+
+	@Override
+	public Course EditCourseById(long id) {
+		// TODO Auto-generated method stub
+		return this.courseDao.getById(id);
+	}
+
+	@Override
+	public boolean checkEmail(long id, String email) {
+		// TODO Auto-generated method stub
+		if(courseDao.checkIdByemail(id, email) == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public List<Course> getAllCourseByEmail(String email) {
+		// TODO Auto-generated method stub
+		return courseDao.getAllCourseByEmail(email);
+	}
 	
+	@Override
+	public List<Course> getAllCourse(int pageNumber) {
+		// TODO Auto-generated method stub
+		return this.courseDao.findAll(PageRequest.of(pageNumber, 5)).getContent();
+	}
+
 	
 
 	

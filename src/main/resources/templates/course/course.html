@@ -22,11 +22,21 @@
    	<script th:inline="javascript" type="text/javascript">
 
 	$(document).ready(function(){
+		alert()
 		
+		if ($('#check').text() == "true") {
+				swal("Success Register Account", {
+					icon: "success",
+				});
+				$('#check').text("");
+				return false;
+			}
 		$('#saveBtn').click(function () {
 			checkValueCheckBox();
-			
 			$("#saveSubmit").submit();
+	
+	
+			
 	
 		
 		});
@@ -88,6 +98,8 @@
     </div>
  </div>
     </form>
+    
+     <input hidden  id = "check1"  th:text="*{check}"type="hidden"/>
 
 </div>
 </div>

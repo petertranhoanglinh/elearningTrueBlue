@@ -62,5 +62,6 @@ public class Course extends AbstractEntity{
 	public void setKindcourse(String kindcourse) {
 		this.kindcourse = kindcourse;
 	}
+
 	
 }

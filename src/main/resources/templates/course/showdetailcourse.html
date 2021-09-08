@@ -37,7 +37,15 @@
    	<script th:inline="javascript" type="text/javascript">
 
 	$(document).ready(function(){
-		
+		var a = $("#show").text();
+		if($("#check").text()  == "false"){
+			swal("You cant delete because it is not use you", {
+					icon: "warning",
+				});
+				return false;
+	        $("#check").text("");
+		}
+	
 	
 
       });
@@ -55,28 +63,67 @@
 		
 
 			<!--Duyệt qua toàn bộ phần tử trong biến "todoList"-->
+			
 
-			<li th:each="listCourse : ${listCourse}">
-
-				
-                
-				<span th:text="*{listCourse.getName()}">
-				</span>
-				:
-			<span th:text="*{listCourse.getDescription()}">
-			</span>
-			<a th:href="@{'/course/deleteById?id='+${listCourse.getId()}}"  class="btn btn-primary">
-		     <span>delete</span>
-		     </a>
-		     <a th:href="@{'/course/deleteById?id='+${listCourse.getId()}}"  class="btn btn-primary">
-		     <span style="color: red;">ShowCourse</span>
-		     </a>
+			<div class="row">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>NameCourse</th>
+							<th>Desciption</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="listCourse : ${listCourse}">
+							<td th:text="${listCourse.id}"></td>
+							<td th:text="${listCourse.name}"></td>
+							<td th:text="${listCourse.description}"></td>
+							<td><a><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a th:href="@{'/course/deleteById/'+${listCourse.createBy}+'?id='+${listCourse.id}}"><span>delete</span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<ul class="pagination" style="float: inline-end;">
+			<li
+				th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+				<a class="page-link" th:href="@{/course/showdetailCourse/1}">First</a>
+			</li>
+			<li
+				th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+				<a class="page-link" aria-label="Previous"
+				th:href="@{|${baseUrl}${currentIndex - 1}|}"
+				title='Go to previous page'><span aria-hidden="true">«</span>
+					<span class="sr-only">Previous</span></a>
+			</li>
+			<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+				th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+				<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+					th:text='${item}'>1</span>
+			</a>
+			</li>
+			<li
+				th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+				<a class="page-link" aria-label="Next"
+				th:href="@{|${baseUrl}${currentIndex + 1}|}" title='Go to next page'><span
+					aria-hidden="true">»</span> <span class="sr-only">Next</span></a>
+			</li>
+			<li
+				th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+				<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+			</li>
+		</ul>
+			</div>
+			<span th:text="*{check}" id= "check" style="display: none;"><span>
+			
 		
 
-
-			</li>
-
-		</ul>
+		
 </div>
 
 

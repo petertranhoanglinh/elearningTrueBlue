@@ -1,6 +1,7 @@
 package trueblue.elearning.course.model;
 
 public interface CourseModel {
+	public String getCreateBy() ;
 	public long getId();
 	public String getName();
 	public String getDescription();

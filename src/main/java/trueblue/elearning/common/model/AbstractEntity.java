@@ -45,7 +45,7 @@ public class AbstractEntity implements Serializable {
 	public String updateBy;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateUtils.DATE_FORMAT)
-	@CreatedDate
+	@CreatedDate	
 	@DateTimeFormat(pattern = DateUtils.DATE_FORMAT)
 	@Column(name = "create_at", nullable = false, updatable = false)
 	public LocalDateTime createAt;

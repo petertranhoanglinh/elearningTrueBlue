@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,6 +40,17 @@ public interface CourseDao extends JpaRepository<Course, Long>{
      @Query(value ="   SELECT * FROM udemy_courses     "
      		+ "        WHERE create_by = :email        "
      		, nativeQuery = true)
-     public List<CourseModel> getAllCourseByEmail(String email);
+     public List<Course> getAllCourseByEmail(String email, Pageable pageable);
+     
+     @Query(value ="   SELECT * FROM udemy_courses     "
+      		+ "        WHERE create_by = :email        "
+      		, nativeQuery = true)
+      public List<Course> getAllCourseByEmail(String email);
+     
+     @Query(value ="   SELECT * FROM udemy_courses     "
+      		+ "        WHERE create_by = :email        "
+      		+ "           AND       id = :id           "
+      		, nativeQuery = true)
+      public List<Course> checkIdByemail(long  id, String email);
 
 }
