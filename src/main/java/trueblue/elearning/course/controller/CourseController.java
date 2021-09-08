@@ -66,33 +66,12 @@ public class CourseController {
 			,HttpServletRequest request) throws IOException{
 		String email = cus.getUsername();
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
-		int pagesize = 3;
+	
 	    List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email);
 		
 		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email, PageRequest.of(pageNumber,7));
-		
-		if (pages == null) {
-			pages = new PagedListHolder<>(listCourseEmail1);
-			pages.setPageSize(pagesize);
-		} else {
-			final int goToPage = pageNumber - 1;
-			if (goToPage <= pages.getPageCount() && goToPage >= 0) {
-				pages.setPage(goToPage);
-			}
-		}
-		request.getSession().setAttribute("listCoursePage", pages);
-		int current = pages.getPage() + 1;
-		int begin = Math.max(1, current - listCourseEmail1.size());
-		int end = Math.min(begin + 5, pages.getPageCount());
-		int totalPageCount = pages.getPageCount();
-		String baseUrl = "/course/showdetailCourse/";
-		model.addAttribute("beginIndex", begin);
-		model.addAttribute("endIndex", end);
-		model.addAttribute("currentIndex", current);
-		model.addAttribute("totalPageCount", totalPageCount);
-		model.addAttribute("baseUrl", baseUrl);
-		model.addAttribute("employees", pages);
-
+		PagebleSort<Course> pagbleSort = new PagebleSort<>();
+		pagbleSort.Pageble(model,listCourseEmail1 , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
 		
 		
 		model.addAttribute("listCourse", listCourseEmail);
@@ -109,7 +88,7 @@ public class CourseController {
 		PagebleSort<Course> pagbleSort = new PagebleSort<>();
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("pageSort");
 		List<Course> list =  courseService.getAllCourse();
-		pagbleSort.Pageble(model,list , pages, pageNumber, request,"/course/showCourse/");
+		pagbleSort.Pageble(model,list , pages, pageNumber, request,"/course/showCourse/","pageSort");
 		
 		
 		
