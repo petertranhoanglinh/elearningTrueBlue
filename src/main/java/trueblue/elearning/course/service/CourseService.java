@@ -11,7 +11,7 @@ import trueblue.elearning.crouse.model.Course;
 
 public interface CourseService {
 	public void addCoures(CourseDto courseDto);
-	public List<Course> getAllCourseByEmail(String email, Pageable  pageble);
+	public List<Course> getAllCourseByEmail(String email, int pageNumber);
 	public List<Course> getAllCourseByEmail(String email);
 	public List<Course> getAllCourse();
 	public void deleteCourseById(long id);

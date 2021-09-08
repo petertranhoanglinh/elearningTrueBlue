@@ -23,7 +23,7 @@ public class PagebleSort<t> {
 		}
 		request.getSession().setAttribute("pageSort", pages);
 		int current = pages.getPage() + 1;
-		int begin = Math.max(1, current - list.size());
+		int begin = Math.max(0, current - list.size());
 		int end = Math.min(begin + 5, pages.getPageCount());
 		int totalPageCount = pages.getPageCount();
 		String baseUrl = path;

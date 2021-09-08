@@ -66,11 +66,12 @@ public class CourseController {
 	public String showdetailCourse(org.springframework.ui.Model model,@PathVariable int pageNumber
 			,HttpServletRequest request) throws IOException{
 		String email = cus.getUsername();
+		System.out.println(email);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
 		int pagesize = 3;
 	    List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email);
 		
-		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email, PageRequest.of(pageNumber,7));
+		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email, pageNumber);
 		
 		if (pages == null) {
 			pages = new PagedListHolder<>(listCourseEmail1);
@@ -82,8 +83,8 @@ public class CourseController {
 			}
 		}
 		request.getSession().setAttribute("listCoursePage", pages);
-		int current = pages.getPage() + 1;
-		int begin = Math.max(1, current - listCourseEmail1.size());
+		int current = pages.getPage()+1;
+		int begin = Math.max(0, current - listCourseEmail1.size());
 		int end = Math.min(begin + 5, pages.getPageCount());
 		int totalPageCount = pages.getPageCount();
 		String baseUrl = "/course/showdetailCourse/";
@@ -125,7 +126,7 @@ public class CourseController {
 		PagebleSort<Course> pagbleSort = new PagebleSort<>();
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
 		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email);
-		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, PageRequest.of(pageNumber,7));
+		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, pageNumber);
 		pagbleSort.Pageble(model,listCourseEmail , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
 		
 		model.addAttribute("listCourse", listCourseEmail1);
