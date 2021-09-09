@@ -92,7 +92,7 @@
 				<ul class="pagination" style="float: inline-end;">
 			<li
 				th:class="${currentIndex == 0}? 'page-item disabled' : 'page-item'">
-				<a class="page-link" th:href="@{/course/showdetailCourse/0}">First</a>
+				<a class="page-link" th:href="@{|${baseUrl}0|}">First</a>
 			</li>
 			<li
 				th:class="${currentIndex == 0}? 'page-item disabled': 'page-item' ">
@@ -118,6 +118,7 @@
 				<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
 			</li>
 		</ul>
+  
 			</div>
 			<span th:text="*{check}" id= "check" style="display: none;"><span>
 			

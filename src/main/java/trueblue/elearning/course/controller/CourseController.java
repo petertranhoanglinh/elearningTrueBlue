@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,8 @@ public class CourseController {
 	@RequestMapping("")
 	public String index(CourseDto courseDto,HttpServletRequest request) {
 		request.getSession().setAttribute("listCoursePage", null);
+		request.getSession().setAttribute("listCoursePage1", null);
+		request.getSession().setAttribute("pageSort", null);
 		
 		return "course/course";
 	}
@@ -59,7 +62,7 @@ public class CourseController {
 			modell.addAttribute(courseDto.getCheckSave());
 		
 		}
-		return "/course/course";
+		return "course/course";
 	}
 
 	@RequestMapping(value = "/showdetailCourse/{pageNumber}")
@@ -94,8 +97,8 @@ public class CourseController {
 		model.addAttribute("totalPageCount", totalPageCount);
 		model.addAttribute("baseUrl", baseUrl);
 		model.addAttribute("employees", pages);
-		PagebleSort<Course> pagbleSort = new PagebleSort<>();
-		pagbleSort.Pageble(model,listCourseEmail1 , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
+		
+		
 		
 		model.addAttribute("listCourse", listCourseEmail);
 		return "course/showdetailcourse";
@@ -119,16 +122,15 @@ public class CourseController {
 		return "course/showCourse";
 	}
 
-	@RequestMapping(value = "/showdetailCoursePram/{pageNumber}")
+	@RequestMapping(value = "/showdetailCoursePram/{email}/{pageNumber}")
 	public String showdetailCourseHome(org.springframework.ui.Model model,
-			@RequestParam(value = "email") String email,
-			@PathVariable int pageNumber,HttpServletRequest request) {
+			@PathVariable(value = "email") String email,
+			@PathVariable (value = "pageNumber")int pageNumber,HttpServletRequest request) {
 		PagebleSort<Course> pagbleSort = new PagebleSort<>();
-		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
+		PagedListHolder<?> pages1 = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage1");
 		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email);
 		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, pageNumber);
-		pagbleSort.Pageble(model,listCourseEmail , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
-		
+		pagbleSort.Pageble(model,listCourseEmail , pages1, pageNumber, request,"/course/showdetailCoursePram/"+email+"/","listCoursePage1");
 		model.addAttribute("listCourse", listCourseEmail1);
 		return "course/showdetailcourse";
 		
@@ -155,11 +157,16 @@ public class CourseController {
 
 	}
 
-	@RequestMapping(value = "/edit")
-	public String editCourse(org.springframework.ui.Model model, CourseDto courseDto,
+	@GetMapping(value = "/edit" )
+	public String editCourse(org.springframework.ui.Model model, @ModelAttribute("courseDto") CourseDto courseDto,
 			@RequestParam(value = "id") long id) {
-		model.addAttribute("listCourse", courseService.EditCourseById(id));
-		return "course/showCourse";
+		
+		Course course =  courseService.getCourseById(id) ;
+		courseDto.setCreateBy(course.getCreateBy());
+		courseDto.setDescription(course.getDescription());
+		courseDto.setName(course.getName());
+		courseDto.setImage(course.getImage());
+		return "course/editCourse";
 	}
 	
 

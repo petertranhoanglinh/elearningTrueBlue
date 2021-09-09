@@ -15,7 +15,7 @@ public interface CourseService {
 	public List<Course> getAllCourseByEmail(String email);
 	public List<Course> getAllCourse();
 	public void deleteCourseById(long id);
-	public Course EditCourseById(long id);
+	public Course getCourseById(long id);
 	public boolean checkEmail  (long id, String email);
 	List<Course> getAllCourse(int pageNumber);
 
