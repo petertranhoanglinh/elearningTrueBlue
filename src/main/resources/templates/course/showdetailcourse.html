@@ -91,11 +91,11 @@
 			<div>
 				<ul class="pagination" style="float: inline-end;">
 			<li
-				th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
-				<a class="page-link" th:href="@{/course/showdetailCourse/1}">First</a>
+				th:class="${currentIndex == 0}? 'page-item disabled' : 'page-item'">
+				<a class="page-link" th:href="@{/course/showdetailCourse/0}">First</a>
 			</li>
 			<li
-				th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+				th:class="${currentIndex == 0}? 'page-item disabled': 'page-item' ">
 				<a class="page-link" aria-label="Previous"
 				th:href="@{|${baseUrl}${currentIndex - 1}|}"
 				title='Go to previous page'><span aria-hidden="true">«</span>
@@ -104,7 +104,7 @@
 			<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
 				th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
 				<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
-					th:text='${item}'>1</span>
+					th:text='${item}'>0</span>
 			</a>
 			</li>
 			<li

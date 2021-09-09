@@ -39,23 +39,24 @@ public class CourseController {
 
 	@RequestMapping("")
 	public String index(CourseDto courseDto,HttpServletRequest request) {
-		request.getSession().setAttribute("listCoursePage", request);
+		request.getSession().setAttribute("listCoursePage", null);
 		
 		return "course/course";
 	}
 
 	@RequestMapping(value = "/createCourse", method = RequestMethod.POST)
 	public String createCourse(@ModelAttribute("courseDto") CourseDto courseDto, HttpServletResponse response,org.springframework.ui.Model modell) throws IOException {
-		System.out.println(courseDto.isStatus());
 
 		if (cus.getUsername() != null 
 				&& !courseDto.getName().equals("") && !courseDto.getDescription().equals(""))  {
 			courseDto.setCreateBy(cus.getUsername());
+			courseDto.setCheckSave("true");
+			modell.addAttribute(courseDto.getCheckSave());
 			courseService.addCoures(courseDto);
-			modell.addAttribute("check", "true");
-			
+		
 		} else {
-			modell.addAttribute("check", "false");
+			courseDto.setCheckSave("false");
+			modell.addAttribute(courseDto.getCheckSave());
 		
 		}
 		return "/course/course";
@@ -65,14 +66,36 @@ public class CourseController {
 	public String showdetailCourse(org.springframework.ui.Model model,@PathVariable int pageNumber
 			,HttpServletRequest request) throws IOException{
 		String email = cus.getUsername();
+		System.out.println(email);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
-	
+		int pagesize = 3;
 	    List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email);
 		
-		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email, PageRequest.of(pageNumber,7));
+		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email, pageNumber);
+		
+		if (pages == null) {
+			pages = new PagedListHolder<>(listCourseEmail1);
+			pages.setPageSize(pagesize);
+		} else {
+			final int goToPage = pageNumber - 1;
+			if (goToPage <= pages.getPageCount() && goToPage >= 0) {
+				pages.setPage(goToPage);
+			}
+		}
+		request.getSession().setAttribute("listCoursePage", pages);
+		int current = pages.getPage()+1;
+		int begin = Math.max(0, current - listCourseEmail1.size());
+		int end = Math.min(begin + 5, pages.getPageCount());
+		int totalPageCount = pages.getPageCount();
+		String baseUrl = "/course/showdetailCourse/";
+		model.addAttribute("beginIndex", begin);
+		model.addAttribute("endIndex", end);
+		model.addAttribute("currentIndex", current);
+		model.addAttribute("totalPageCount", totalPageCount);
+		model.addAttribute("baseUrl", baseUrl);
+		model.addAttribute("employees", pages);
 		PagebleSort<Course> pagbleSort = new PagebleSort<>();
 		pagbleSort.Pageble(model,listCourseEmail1 , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
-		
 		
 		model.addAttribute("listCourse", listCourseEmail);
 		return "course/showdetailcourse";
@@ -96,12 +119,17 @@ public class CourseController {
 		return "course/showCourse";
 	}
 
-	@RequestMapping(value = "/showdetailCoursePram")
+	@RequestMapping(value = "/showdetailCoursePram/{pageNumber}")
 	public String showdetailCourseHome(org.springframework.ui.Model model,
-			@RequestParam(value = "email") String email) {
-
+			@RequestParam(value = "email") String email,
+			@PathVariable int pageNumber,HttpServletRequest request) {
+		PagebleSort<Course> pagbleSort = new PagebleSort<>();
+		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("listCoursePage");
 		List<Course> listCourseEmail = courseService.getAllCourseByEmail(email);
-		model.addAttribute("listCourse", listCourseEmail);
+		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, pageNumber);
+		pagbleSort.Pageble(model,listCourseEmail , pages, pageNumber, request,"/course/showdetailCourse/","listCoursePage");
+		
+		model.addAttribute("listCourse", listCourseEmail1);
 		return "course/showdetailcourse";
 		
 	}
@@ -117,10 +145,8 @@ public class CourseController {
 
 			if (email.equals(cus.getUsername()) && check == true) {
 				courseService.deleteCourseById(id);
-				response.sendRedirect("/course");
-			} else {
-				model.addAttribute("check", "false");
-			}
+				response.sendRedirect("/course/showdetailCourse/1");
+			} 
 
 		} catch (Exception e) {
 			// TODO: handle exception

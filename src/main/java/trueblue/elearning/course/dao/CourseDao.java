@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import trueblue.elearning.course.model.CourseModel;
 import trueblue.elearning.crouse.model.Course;
-
+@Repository
 public interface CourseDao extends JpaRepository<Course, Long>{
 	
 

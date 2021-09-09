@@ -10,7 +10,7 @@ public class PagebleSort<t> {
 	public  void Pageble(Model model 
 			, List<t> list,PagedListHolder<?> pages,int pageNumber
 			,HttpServletRequest request,String path,
-			String Setatribuite) {
+			String SetAtribuite) {
 		int pagesize = 3;
 		if (pages == null) {
 			pages = new PagedListHolder<>(list);
@@ -23,7 +23,7 @@ public class PagebleSort<t> {
 		}
 		request.getSession().setAttribute("pageSort", pages);
 		int current = pages.getPage() + 1;
-		int begin = Math.max(1, current - list.size());
+		int begin = Math.max(0, current - list.size());
 		int end = Math.min(begin + 5, pages.getPageCount());
 		int totalPageCount = pages.getPageCount();
 		String baseUrl = path;
