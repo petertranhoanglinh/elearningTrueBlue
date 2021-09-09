@@ -62,7 +62,7 @@ public class CourseController {
 			modell.addAttribute(courseDto.getCheckSave());
 		
 		}
-		return "/course/course";
+		return "course/course";
 	}
 
 	@RequestMapping(value = "/showdetailCourse/{pageNumber}")
