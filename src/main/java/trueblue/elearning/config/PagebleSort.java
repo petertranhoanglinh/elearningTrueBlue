@@ -21,7 +21,7 @@ public class PagebleSort<t> {
 				pages.setPage(goToPage);
 			}
 		}
-		request.getSession().setAttribute("pageSort", pages);
+		request.getSession().setAttribute(SetAtribuite, pages);
 		int current = pages.getPage() + 1;
 		int begin = Math.max(0, current - list.size());
 		int end = Math.min(begin + 5, pages.getPageCount());

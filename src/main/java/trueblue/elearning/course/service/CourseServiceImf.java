@@ -56,7 +56,7 @@ public class CourseServiceImf implements CourseService {
 	}
 
 	@Override
-	public Course EditCourseById(long id) {
+	public Course getCourseById(long id) {
 		// TODO Auto-generated method stub
 		return this.courseDao.getById(id);
 	}
