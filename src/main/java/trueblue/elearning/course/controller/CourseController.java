@@ -138,7 +138,8 @@ public class CourseController {
 
 	@GetMapping("/deleteById/{email}")
 	public void deleteById(@RequestParam(value = "id") long id, HttpServletResponse response,
-			@PathVariable(value = "email") String email, org.springframework.ui.Model model) throws IOException {
+			@PathVariable(value = "email") String email, org.springframework.ui.Model model,
+			HttpServletRequest request) throws IOException {
 		try {
 			if (cus.getUsername() == null) {
 				response.sendRedirect("/login");
@@ -147,12 +148,14 @@ public class CourseController {
 
 			if (email.equals(cus.getUsername()) && check == true) {
 				courseService.deleteCourseById(id);
-				response.sendRedirect("/course/showdetailCourse/1");
+			    response.sendRedirect("/course/showdetailCourse/0");
+				 
 			} 
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		
 
 	}
