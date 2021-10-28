@@ -97,14 +97,8 @@ public class CourseController {
 		model.addAttribute("totalPageCount", totalPageCount);
 		model.addAttribute("baseUrl", baseUrl);
 		model.addAttribute("employees", pages);
-		
-		
-		
 		model.addAttribute("listCourse", listCourseEmail);
 		return "course/showdetailcourse";
-	
-		
-		
 	}
 
 	@RequestMapping(value = "/showCourse/{pageNumber}")
@@ -115,9 +109,6 @@ public class CourseController {
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("pageSort");
 		List<Course> list =  courseService.getAllCourse();
 		pagbleSort.Pageble(model,list , pages, pageNumber, request,"/course/showCourse/","pageSort");
-		
-		
-		
 		//model.addAttribute(null, list);
 		return "course/showCourse";
 	}
@@ -132,35 +123,29 @@ public class CourseController {
 		List<Course> listCourseEmail1 = courseService.getAllCourseByEmail(email, pageNumber);
 		pagbleSort.Pageble(model,listCourseEmail , pages1, pageNumber, request,"/course/showdetailCoursePram/"+email+"/","listCoursePage1");
 		model.addAttribute("listCourse", listCourseEmail1);
-		return "course/showdetailcourse";
-		
+		return "course/showdetailcourse";	
 	}
 
 	@GetMapping("/deleteById/{email}")
 	public void deleteById(@RequestParam(value = "id") long id, HttpServletResponse response,
-			@PathVariable(value = "email") String email, org.springframework.ui.Model model) throws IOException {
+			@PathVariable(value = "email") String email, org.springframework.ui.Model model,
+			HttpServletRequest request) throws IOException {
 		try {
 			if (cus.getUsername() == null) {
 				response.sendRedirect("/login");
 			}
 			boolean check = courseService.checkEmail(id, cus.getUsername());
-
 			if (email.equals(cus.getUsername()) && check == true) {
 				courseService.deleteCourseById(id);
-				response.sendRedirect("/course/showdetailCourse/1");
+			    response.sendRedirect("/course/showdetailCourse/0"); 
 			} 
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-
 	}
-
 	@GetMapping(value = "/edit" )
 	public String editCourse(org.springframework.ui.Model model, @ModelAttribute("courseDto") CourseDto courseDto,
 			@RequestParam(value = "id") long id) {
-		
 		Course course =  courseService.getCourseById(id) ;
 		courseDto.setCreateBy(course.getCreateBy());
 		courseDto.setDescription(course.getDescription());
@@ -168,9 +153,4 @@ public class CourseController {
 		courseDto.setImage(course.getImage());
 		return "course/editCourse";
 	}
-	
-
-	
-	
-
 }
