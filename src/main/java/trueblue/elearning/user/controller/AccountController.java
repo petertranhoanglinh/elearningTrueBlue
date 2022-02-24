@@ -71,9 +71,6 @@ public class AccountController {
 			address = userList.get(0).getAddress();
 			avatar = userList.get(0).getAvatar();
 			password = userList.get(0).getPassword();
-			
-			
-			
 		}
 
 		model.addAttribute("fullname", fullname);
@@ -135,11 +132,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
-	
 	 public void UpdateAccount(@ModelAttribute("userDto") UserDto userDto,Model model, HttpServletResponse response) throws IOException {
-		
-		
-		
 		List<UserModel> userList;
 		userList = userService.getUserByEmailReal(cus.getUsername());
 		String password = userList.get(0).getPassword();
@@ -151,9 +144,6 @@ public class AccountController {
 		}else {
 			response.sendRedirect("/account?fail=true");
 		}
-		
-		
-		
 	}
 	
 	

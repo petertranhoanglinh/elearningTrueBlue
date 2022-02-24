@@ -2,6 +2,9 @@ package trueblue.elearning.user.service;
 
 import java.util.List;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -60,6 +63,21 @@ public class UserServiceImf implements UserService {
 		userDto.setPassword(password);
 		userdao.Account(userDto.getEmail(), userDto.getFullname() ,userDto.getAddress()
 				,userDto.getAvatar(),userDto.getPhone(), userDto.getPassword());
+	}
+
+	@Override
+	public boolean checkEmailReal(String email)  {
+		 boolean isValid = false;
+		 try {
+	            // Create InternetAddress object and validated the supplied
+	            // address which is this case is an email address.
+	            InternetAddress internetAddress = new InternetAddress(email);
+	            internetAddress.validate();
+	            isValid = true;
+	        } catch (AddressException e) {
+	            e.printStackTrace();
+	        }
+	        return isValid;
 	}
 	
 

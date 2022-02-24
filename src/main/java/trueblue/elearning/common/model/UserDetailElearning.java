@@ -5,11 +5,13 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
+
 public class UserDetailElearning implements UserDetails{
 	
 	
 	private static final long serialVersionUID = 1L;
-
+	private SmUserModel smUser;
 
 	private Collection<? extends GrantedAuthority> authorities;
 	private String password;
@@ -91,6 +93,13 @@ public class UserDetailElearning implements UserDetails{
 	 public void eraseCredentials(){
 	        this.password=null;
 	    }
+	 
+	 public SmUserModel getSmUser() {
+			return smUser;
+		}
+		public void setSmUser(SmUserModel smUser) {
+			this.smUser = smUser;
+		}
 
 	
 

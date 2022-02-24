@@ -10,32 +10,16 @@
 	     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-
-       
-            
             .div_left{
-            
             width: 40%;
-      
             float: left;
-            
-          
-            
             }
-            
             .div_right{
-            
-            width: 60%;
-            
-            float: left;
-            
-        
-            
-          }
-            
+            width: 60%;           
+            float: left;      
+          }            
 </style>
    	<script th:inline="javascript" type="text/javascript">
-
 	$(document).ready(function(){
 		var a = $("#show").text();
 		if($("#check").text()  == "false"){
@@ -45,14 +29,18 @@
 				return false;
 	        $("#check").text("");
 		}
-	
-	
+		
+		$("#deleteByEmail").click(function (e) { 
+			 var button = document.getElementById('refreshbtn');
+    			 button.form.submit();
+		});
 
-      });
+		
+      }); 
       
+     
+	
 	</script>
-   
-   
     </head>
     <body>
    <header th:replace="fragment/header:: header">
@@ -60,11 +48,7 @@
   <div style="width:100%;height:670px ;padding-top: 100px;">
        <h1 >List Your Course</h1>
 		<ul>
-		
-
 			<!--Duyệt qua toàn bộ phần tử trong biến "todoList"-->
-			
-
 			<div class="row">
 				<table class="table table-bordered table-hover">
 					<thead>
@@ -83,7 +67,7 @@
 							<td th:text="${listCourse.description}"></td>
 							<td><a><span
 									class="glyphicon glyphicon-pencil"></span></a></td>
-							<td><a th:href="@{'/course/deleteById/'+${listCourse.createBy}+'?id='+${listCourse.id}}"><span>delete</span></a></td>
+							<td> <button id = 'deleteByEmail'>delete</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -121,21 +105,8 @@
   
 			</div>
 			<span th:text="*{check}" id= "check" style="display: none;"><span>
-			
-		
-
-		
 </div>
-
-
-
-
-
-  
   <footer th:replace="fragment/footer:: footer" ></footer>
- 
- 
+ 	<button style="display: none;" type="button" class="btn btn-white" id="refreshbtn" onclick="reloadContent()"><i class="xi-refresh"></i>[[#{btn.refresh}]]</button>
 </body>
-    
-    
 </html>

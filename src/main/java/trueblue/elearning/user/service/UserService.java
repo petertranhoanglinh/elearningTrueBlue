@@ -5,6 +5,8 @@ import trueblue.elearning.user.model.Users;
 
 import java.util.List;
 
+import javax.mail.internet.AddressException;
+
 import org.springframework.data.domain.Pageable;
 
 
@@ -18,5 +20,6 @@ public interface UserService {
 	public Users addUser(UserDto userDto);
 
 	public void updateAccount( UserDto userDto);
+	public boolean checkEmailReal(String email);
 
 }

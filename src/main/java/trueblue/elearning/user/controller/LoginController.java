@@ -1,7 +1,11 @@
 package trueblue.elearning.user.controller;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,29 +31,27 @@ import trueblue.elearning.user.service.UserService;
 @Controller
 
 public class LoginController {
-    
+
 	@Autowired
-	private UserDao userdao; 
+	private UserDao userdao;
 	@Autowired
 	private UserService userService;
-	@Autowired private CustormerUserDetailsService cus;
+	@Autowired
+	private CustormerUserDetailsService cus;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-    String index21 (UserDto userDto) {
-		
-		
-			
+	String index21(UserDto userDto) {
+
 		return "login/login";
 
 	}
 
 	@RequestMapping(value = { "/home", "/", "login/login" }, method = RequestMethod.GET)
 	public String index2(Model model) {
-		Pageable pageable = PageRequest.of(0,5);
+		Pageable pageable = PageRequest.of(0, 5);
 		List<UserModel> userDao = userdao.ListGroup(pageable);
-		model.addAttribute("email123",  cus.getUsername());
+		model.addAttribute("email123", cus.getUsername());
 		model.addAttribute("userDao", userDao);
-       
 		return "login/home";
 
 	}
@@ -64,44 +66,45 @@ public class LoginController {
 
 	}
 
-
 	@RequestMapping("/getbyfullname")
 	public String getbyFullname(@RequestParam(value = "fullname", required = false) String fullname, Model model) {
 		List<UserModel> userDao;
-		if(fullname.equals(null) || fullname.equals("")) {
+		if (fullname.equals(null) || fullname.equals("")) {
 			userDao = userService.getUserByEmail(fullname).subList(0, 5);
-		}else {
+		} else {
 			userDao = userService.getUserByEmail(fullname);
 		}
-		
+
 		model.addAttribute("userDao", userDao);
 
 		return "login/home";
 	}
-	@RequestMapping(value= "/save",  method = RequestMethod.POST)
-	 @ResponseBody public String addUser(@ModelAttribute("userDto") UserDto userDto,Model model ) throws IOException {
-		
-	
-		 List<UserModel> user = new ArrayList<UserModel>();
-			user =     userService.getUserByEmailReal(userDto.getEmail());
-			
-			if(user.isEmpty()) {
-				userService.addUser(userDto);
-				System.out.println(userDto.getEmail());
-		
-				 return "Register success" + "*" + userDto.getEmail() + "*" ;
-				
-			}
-			else {
-				
-				System.out.println("CREATE FAIL BECAUSE EMAIL USED");
-				
-				return "Register Fail beacause email " + "*" + userDto.getEmail() + "*" + " used ";
-				}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public String addUser(@ModelAttribute("userDto") UserDto userDto, Model model)
+			throws IOException, AddressException {
+
+		List<UserModel> user = new ArrayList<UserModel>();
+		boolean check = userService.checkEmailReal(userDto.getEmail());
+		if (check == true) {
+			System.out.println("co the su dung email");
+		} else {
+			System.out.println("không  the su dung email");
+		}
+		user = userService.getUserByEmailReal(userDto.getEmail());
+		if (user.isEmpty()) {
+			userService.addUser(userDto);
+			System.out.println(userDto.getEmail());
+
+			return "Register success" + "*" + userDto.getEmail() + "*";
+		} else {
+
+			System.out.println("CREATE FAIL BECAUSE EMAIL USED");
+
+			return "Register Fail beacause email " + "*" + userDto.getEmail() + "*" + " used ";
+		}
 
 	}
-	
-	
-
 
 }

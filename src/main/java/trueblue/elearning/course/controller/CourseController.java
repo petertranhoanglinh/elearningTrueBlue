@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import groovyjarjarpicocli.CommandLine.Model;
+import trueblue.elearning.common.model.UserDetailElearning;
 import trueblue.elearning.config.PagebleSort;
 import trueblue.elearning.course.dto.CourseDto;
 import trueblue.elearning.course.service.CourseService;
@@ -126,19 +129,18 @@ public class CourseController {
 		return "course/showdetailcourse";	
 	}
 
-	@GetMapping("/deleteById/{email}")
-	public void deleteById(@RequestParam(value = "id") long id, HttpServletResponse response,
+	@PostMapping("/deleteById/{email}")
+	public void deleteById(@RequestParam(value = "id") String id, HttpServletResponse response,
 			@PathVariable(value = "email") String email, org.springframework.ui.Model model,
 			HttpServletRequest request) throws IOException {
 		try {
-			if (cus.getUsername() == null) {
-				response.sendRedirect("/login");
-			}
-			boolean check = courseService.checkEmail(id, cus.getUsername());
+			boolean check = courseService.checkEmail(Long.parseLong(id), cus.getUsername());
 			if (email.equals(cus.getUsername()) && check == true) {
-				courseService.deleteCourseById(id);
+				courseService.deleteCourseById(Long.parseLong(id));
 			    response.sendRedirect("/course/showdetailCourse/0"); 
-			} 
+			}else {
+				model.addAttribute(check);
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
